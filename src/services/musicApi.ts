@@ -118,7 +118,22 @@ export async function searchCategoryTracks(
   };
 
   const query = queryMap[category] || 'Music';
-  const apiTracks = await searchTracks(query, 16);
+  if (category === 'naats') {
+    const queries = [
+      'Urdu Naat Sharif Owais Raza Qadri',
+      'Junaid Jamshed Urdu Naat',
+      'Hafiz Tahir Qadri Naat',
+      'Maher Zain Nasheed',
+      'Sami Yusuf Islamic Nasheed',
+    ];
+    const batches = await Promise.all(queries.map((term) => searchTracks(term, 12)));
+    const unique = new Map<string, Track>();
+    batches.flat().forEach((track) => {
+      if (!unique.has(track.id)) unique.set(track.id, { ...track, category: 'naats' });
+    });
+    if (unique.size) return Array.from(unique.values()).slice(0, 30);
+  }
+  const apiTracks = await searchTracks(query, category === 'naats' ? 30 : 16);
 
   if (apiTracks.length > 0) {
     return apiTracks;

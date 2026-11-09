@@ -14,7 +14,9 @@ export const InstallPrompt: React.FC = () => {
   useEffect(() => {
     const standalone = window.matchMedia('(display-mode: standalone)').matches || (navigator as Navigator & { standalone?: boolean }).standalone === true;
     if (standalone) return;
-    setIos(/iphone|ipad|ipod/i.test(navigator.userAgent));
+    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    setIos(isIos);
+    if (isIos && !sessionStorage.getItem('zxh-install-dismissed')) window.setTimeout(() => setVisible(true), 4500);
     const onBeforeInstall = (event: Event) => {
       event.preventDefault();
       setInstallEvent(event as InstallPromptEvent);

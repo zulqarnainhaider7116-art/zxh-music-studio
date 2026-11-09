@@ -55,8 +55,16 @@ export const FloatingMusicBot: React.FC = () => {
             <button onClick={welcomeAgain} className="text-[10px] font-semibold text-slate-300">Speak again</button>
           </div>
         </div>
+          <p className="mt-2 border-t border-white/10 pt-2 text-[9px] text-slate-400">Powered by <strong className="text-pink-300">ZXH OFFICIAL</strong><br/>Developed by <strong className="text-white">ZULQARNAIN X HAIDER</strong></p>
+          <div className="mt-1 flex flex-wrap gap-x-2 gap-y-1 text-[9px]">
+            <a href="https://mr-zxh-official.vercel.app" target="_blank" rel="noreferrer" className="text-pink-300 hover:text-white">Portfolio</a>
+            <a href="https://zxh-official-tools.pages.dev/" target="_blank" rel="noreferrer" className="text-pink-300 hover:text-white">Tools Hub</a>
+            <a href="https://zxh-official-mods.pages.dev/" target="_blank" rel="noreferrer" className="text-pink-300 hover:text-white">Mods</a>
+            <a href="https://t.me/zxh_official786" target="_blank" rel="noreferrer" className="text-pink-300 hover:text-white">Telegram</a>
+          </div>
+        </div>
       )}
-      <button onClick={() => setExpanded(v => !v)} onDoubleClick={welcomeAgain} aria-label="Toggle ZXH music bot" title="ZXH Music Buddy — tap to open, double tap to hear welcome" className="relative w-[76px] h-[92px] sm:w-[92px] sm:h-[108px] rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 animate-[zxh-float_3.8s_ease-in-out_infinite]">
+      <button onClick={() => setExpanded(v => !v) onDoubleClick={welcomeAgain} aria-label="Toggle ZXH music bot" title="ZXH Music Buddy — tap to open, double tap to hear welcome" className="relative w-[76px] h-[92px] sm:w-[92px] sm:h-[108px] rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 animate-[zxh-float_3.8s_ease-in-out_infinite]">
         <svg viewBox="0 0 100 112" className="w-full h-full drop-shadow-[0_0_16px_rgba(244,114,182,.45)]" role="img" aria-label="Cute white robot mascot wearing pink headphones">
           <defs>
             <linearGradient id="botShell" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#fff"/><stop offset="1" stopColor="#d9dce8"/></linearGradient>

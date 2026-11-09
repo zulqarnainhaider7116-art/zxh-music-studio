@@ -59,7 +59,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#08080c]/90 backdrop-blur-2xl border-b border-white/[0.07] transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 h-18 flex items-center justify-between gap-4">
         {/* Brand Logo & Tagline */}
         <div
           onClick={() => {

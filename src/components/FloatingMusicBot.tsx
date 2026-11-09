@@ -44,8 +44,8 @@ export const FloatingMusicBot: React.FC = () => {
   }, [currentTrack?.id, currentTrack?.title, currentTrack?.artist, isPlaying]);
 
   return (
-    <aside className="fixed right-2 sm:right-5 bottom-24 sm:bottom-28 z-[60] pointer-events-none" aria-label="ZXH floating music robot">
-      <div className="w-[112px] h-[132px] sm:w-[150px] sm:h-[176px] animate-[zxh-float_3.8s_ease-in-out_infinite] drop-shadow-[0_0_22px_rgba(244,114,182,.32)]">
+    <aside className="fixed right-2 sm:right-6 lg:right-8 bottom-24 sm:bottom-28 z-[60] pointer-events-none" aria-label="ZXH floating music robot">
+      <div className="w-[116px] h-[138px] sm:w-[190px] sm:h-[224px] lg:w-[240px] lg:h-[282px] xl:w-[260px] xl:h-[306px] animate-[zxh-float_3.8s_ease-in-out_infinite] drop-shadow-[0_0_22px_rgba(244,114,182,.32)]">
         <svg viewBox="0 0 100 112" className="w-full h-full" role="img" aria-label="White and pink winged robot wearing pink headphones">
           <defs>
             <linearGradient id="zxhBotShell" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#fff"/><stop offset="1" stopColor="#d9dce8"/></linearGradient>

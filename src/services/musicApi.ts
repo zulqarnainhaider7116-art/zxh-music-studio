@@ -111,7 +111,7 @@ export async function searchCategoryTracks(
   const queryMap: Record<string, string> = {
     hindi: subterm ? `Hindi ${subterm}` : 'Arijit Singh Pritam Bollywood songs',
     punjabi: subterm ? `Punjabi ${subterm}` : 'Diljit Dosanjh Sidhu Moose Wala Punjabi songs',
-    naats: subterm ? `Naat ${subterm}` : 'Atif Aslam Maher Zain Islamic Naats Nasheeds',
+    naats: subterm ? `Urdu Naat Sharif ${subterm}` : 'Urdu Naat Sharif Owais Raza Qadri Junaid Jamshed Nasheed',
     english: subterm ? `English ${subterm}` : 'The Weeknd Tom Odell Pop songs',
     trending: 'Top Trending Global songs',
     'new-releases': 'New Hit songs 2024',

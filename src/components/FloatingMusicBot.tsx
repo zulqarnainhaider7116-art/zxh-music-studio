@@ -14,14 +14,20 @@ const speak = (message: string) => {
 export const FloatingMusicBot: React.FC = () => {
   const { currentTrack, isPlaying } = useMusic();
   const welcomed = useRef(false);
+  const welcomeStarted = useRef(false);
   const lastTrack = useRef<string | null>(null);
 
   useEffect(() => {
     const greeting = 'Welcome to Z X H Music Studio! I am your music buddy. Explore and enjoy your music.';
     const attemptWelcome = () => {
-      if (welcomed.current) return;
-      welcomed.current = true;
-      speak(greeting);
+      if (welcomeStarted.current) return;
+      const utterance = new SpeechSynthesisUtterance(greeting);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.94;
+      utterance.pitch = 1.2;
+      utterance.onstart = () => { welcomed.current = true; welcomeStarted.current = true; };
+      utterance.onerror = () => { welcomeStarted.current = false; };
+      window.speechSynthesis.speak(utterance);
     };
     const timer = window.setTimeout(attemptWelcome, 1200);
     window.addEventListener('pointerdown', attemptWelcome, { once: true });

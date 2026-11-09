@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { MusicProvider, useMusic } from './context/MusicContext';
 import { Navbar } from './components/Navbar';
 import { PlaybackBar } from './components/PlaybackBar';
@@ -15,7 +15,18 @@ import { Footer } from './components/Footer';
 import { FloatingMusicBot } from './components/FloatingMusicBot';
 
 const AppContent: React.FC = () => {
-  const { activeTab } = useMusic();
+  const { activeTab, setActiveTab } = useMusic();
+  const activeTabRef = useRef(activeTab);
+  activeTabRef.current = activeTab;
+  useEffect(() => {
+    window.history.pushState({ zxhMusic: true }, '');
+    const handleBack = () => {
+      if (activeTabRef.current !== 'home') setActiveTab('home');
+      window.history.pushState({ zxhMusic: true }, '');
+    };
+    window.addEventListener('popstate', handleBack);
+    return () => window.removeEventListener('popstate', handleBack);
+  }, [setActiveTab]);
 
   return (
     <div className="min-h-screen bg-[#08080a] text-slate-100 flex flex-col font-sans selection:bg-red-600 selection:text-white relative">

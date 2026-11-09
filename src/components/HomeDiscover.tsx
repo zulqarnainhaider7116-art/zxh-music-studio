@@ -125,7 +125,7 @@ export const HomeDiscover: React.FC = () => {
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Hero Content */}
-            <div className="lg:col-span-7 space-y-6 text-left">
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-800/40 text-red-400 text-xs font-semibold uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.25)]">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>ZXH MUSIC STUDIO · PREMIER STREAMING</span>
@@ -143,7 +143,7 @@ export const HomeDiscover: React.FC = () => {
               </p>
 
               {/* Action Buttons */}
-              <div className="pt-2 flex flex-wrap items-center justify-start gap-4">
+              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
                 <button
                   onClick={() => playTrack(featuredHeroTrack, CURATED_TRACKS)}
                   className="flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-500 hover:to-rose-500 text-white font-semibold text-sm shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-105 active:scale-95 transition-all"
@@ -161,16 +161,16 @@ export const HomeDiscover: React.FC = () => {
                 </button>
               </div>
 
-              <p className="pt-2 text-xs sm:text-sm text-slate-400">
+              <p className="pt-2 text-xs sm:text-sm text-slate-400 mx-auto lg:mx-0">
                 Explore Hindi, Punjabi, Naats and international music in one place.
               </p>
             </div>
 
             {/* Right Hero Artwork Card */}
-            <div className="lg:col-span-5 flex justify-center">
+            <div className="lg:col-span-5 flex justify-center mt-2 lg:mt-0">
               <div 
                 onClick={() => playTrack(featuredHeroTrack, CURATED_TRACKS)}
-                className="relative group w-full max-w-[360px] aspect-square lg:max-w-md lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-red-500/20 cursor-pointer"
+                className="relative group w-full max-w-[300px] sm:max-w-[340px] aspect-square lg:max-w-md lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-red-500/20 cursor-pointer"
               >
                 <img
                   src={featuredHeroTrack.coverUrl}

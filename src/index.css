@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-brand: 'Cinzel', serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #08080a;
+    color: #f1f5f9;
+  }
+}
+
+.font-serif-title {
+  font-family: var(--font-serif);
+}
+
+.font-brand-title {
+  font-family: var(--font-brand);
+  letter-spacing: 0.15em;
+}
+
+/* Vinyl rotation animation */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-vinyl-spin {
+  animation: spinSlow 18s linear infinite;
+}
+
+.animate-vinyl-spin-paused {
+  animation: spinSlow 18s linear infinite;
+  animation-play-state: paused;
+}
+
+/* Atmospheric crimson radial gradient */
+.bg-crimson-radial {
+  background: radial-gradient(circle at 50% 30%, rgba(225, 29, 72, 0.22) 0%, rgba(15, 10, 15, 0.8) 55%, #08080a 100%);
+}
+
+.bg-crimson-glow {
+  box-shadow: 0 0 35px -5px rgba(239, 68, 68, 0.45);
+}
+
+.bg-crimson-glow-sm {
+  box-shadow: 0 0 15px -2px rgba(239, 68, 68, 0.35);
+}
+
+.border-crimson-glow {
+  border-color: rgba(239, 68, 68, 0.35);
+  box-shadow: 0 0 15px rgba(225, 29, 72, 0.2);
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 15, 20, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(225, 29, 72, 0.5);
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

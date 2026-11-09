@@ -1,6 +1,12 @@
 import { Track } from '../types/music';
 import { upgradeArtworkResolution, parseDuration } from '../utils/audioUtils';
-import { CURATED_TRACKS } from '../data/curatedMusic';
+import {
+  CURATED_TRACKS,
+  HINDI_TRACKS,
+  PUNJABI_TRACKS,
+  NAATS_TRACKS,
+  ENGLISH_TRACKS,
+} from '../data/curatedMusic';
 
 interface ITunesResult {
   trackId: number;
@@ -84,7 +90,6 @@ export async function searchTracks(query: string, limit = 25): Promise<Track[]> 
     return tracks;
   } catch (err) {
     console.warn('Real iTunes search API call failed or timed out, falling back to local catalog search:', err);
-    // Fallback to local curated search
     const lower = trimmed.toLowerCase();
     const fallback = CURATED_TRACKS.filter(
       (t) =>
@@ -93,5 +98,43 @@ export async function searchTracks(query: string, limit = 25): Promise<Track[]> 
         t.genre?.toLowerCase().includes(lower)
     );
     return fallback.length > 0 ? fallback : CURATED_TRACKS.slice(0, 4);
+  }
+}
+
+/**
+ * Category-specific search helper with fallback to curated high-fidelity items
+ */
+export async function searchCategoryTracks(
+  category: 'hindi' | 'punjabi' | 'naats' | 'english' | 'trending' | 'new-releases',
+  subterm?: string
+): Promise<Track[]> {
+  const queryMap: Record<string, string> = {
+    hindi: subterm ? `Hindi ${subterm}` : 'Arijit Singh Pritam Bollywood songs',
+    punjabi: subterm ? `Punjabi ${subterm}` : 'Diljit Dosanjh Sidhu Moose Wala Punjabi songs',
+    naats: subterm ? `Naat ${subterm}` : 'Atif Aslam Maher Zain Islamic Naats Nasheeds',
+    english: subterm ? `English ${subterm}` : 'The Weeknd Tom Odell Pop songs',
+    trending: 'Top Trending Global songs',
+    'new-releases': 'New Hit songs 2024',
+  };
+
+  const query = queryMap[category] || 'Music';
+  const apiTracks = await searchTracks(query, 16);
+
+  if (apiTracks.length > 0) {
+    return apiTracks;
+  }
+
+  // Graceful category fallback
+  switch (category) {
+    case 'hindi':
+      return HINDI_TRACKS;
+    case 'punjabi':
+      return PUNJABI_TRACKS;
+    case 'naats':
+      return NAATS_TRACKS;
+    case 'english':
+      return ENGLISH_TRACKS;
+    default:
+      return CURATED_TRACKS;
   }
 }

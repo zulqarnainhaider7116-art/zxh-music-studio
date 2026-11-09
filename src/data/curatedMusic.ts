@@ -9,8 +9,9 @@ export const CURATED_TRACKS: Track[] = [
     album: 'Long Way Down (Deluxe Edition)',
     duration: 246,
     audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2a/0d/8d/2a0d8d48-f74a-236e-ec23-24a958f5649d/mzaf_16143782915340700495.plus.aac.p.m4a',
-    coverUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80', // dark crimson nocturnal portrait
+    coverUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
     genre: 'Indie',
+    category: 'english',
     releaseYear: 2013,
     isLiked: true,
     isCurated: true,
@@ -23,81 +24,137 @@ export const CURATED_TRACKS: Track[] = [
       "I'm just so tired to share my nights",
       "I wanna cry and I wanna love",
       "But all my tears have been used up",
-      "On another love, another love",
-      "All my tears have been used up",
-      "On another love, another love",
-      "And if somebody hurts you, I wanna fight",
-      "But my hands been broken one too many times",
-      "So I'll use my voice, I'll be so fucking rude",
-      "Words they always win, but I know I'll lose"
+      "On another love, another love"
     ]
   },
   {
-    id: 'track-eternal',
-    title: 'Eternal',
-    artist: 'AURORA',
-    album: 'The Gods We Can Touch',
-    duration: 249,
-    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b4/77/b8/b477b8a7-01d6-37ca-fdaa-59831b750f05/mzaf_16307313298352295595.plus.aac.p.m4a',
-    coverUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80', // red moon
-    genre: 'Alternative',
+    id: 'track-kesariya',
+    title: 'Kesariya',
+    artist: 'Pritam & Arijit Singh',
+    album: 'Brahmastra',
+    duration: 268,
+    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/38/4c/5c/384c5c8f-3ff8-e457-b2f7-3158ce108649/mzaf_12389299033886433185.plus.aac.p.m4a',
+    coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg',
+    genre: 'Bollywood Romantic',
+    category: 'hindi',
     releaseYear: 2022,
     isLiked: true,
     isCurated: true,
     lyrics: [
-      "I had a dream I was seven",
-      "Climbing my way in a tree",
-      "I saw a piece of heaven",
-      "Waiting in patience for me",
-      "And I was running far away",
-      "Would I run off the world someday?",
-      "Nobody knows, nobody knows",
-      "I was painting a picture",
-      "The picture was a painting of you and me"
+      "Kesariya tera ishq hai piya",
+      "Rang jaaun jo main haath lagaun",
+      "Din beete saara teri fikr mein",
+      "Rain saari teri khair manaun",
+      "Kesar ki laali se rang diya tune",
+      "Kismat ki lLakeeron ko mere"
     ]
   },
   {
-    id: 'track-neon-skies',
-    title: 'Neon Skies',
-    artist: 'Lunar',
-    album: 'Cyber Echoes',
-    duration: 258,
-    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d2/45/fb/d245fbf9-8570-fdc0-5e6b-aa528c130486/mzaf_11947081694159530687.plus.aac.p.m4a',
-    coverUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80', // neon crimson city
-    genre: 'Lo-fi',
-    releaseYear: 2024,
-    isLiked: false,
+    id: 'track-diljit-lover',
+    title: 'Lover',
+    artist: 'Diljit Dosanjh',
+    album: 'MoonChild Era',
+    duration: 190,
+    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/38/d5/7a/38d57a99-39fc-e901-7c45-fa6260ec83c1/mzaf_8083696285926392389.plus.aac.p.m4a',
+    coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg',
+    genre: 'Punjabi Pop',
+    category: 'punjabi',
+    releaseYear: 2021,
+    isLiked: true,
     isCurated: true,
     lyrics: [
-      "Driving through crimson rain",
-      "Reflections on the windshield glass",
-      "Every shadow knows your name",
-      "Nothing was ever built to last",
-      "Neon skies glowing red",
-      "Echoes echoing in my head",
-      "Electric pulse through the midnight air",
-      "Looking for you everywhere"
+      "Tera ni lover, koi hor houga",
+      "Main taan bas tainu chahunda aan",
+      "Kinna tainu karda pyar",
+      "Main taan akhan cho dasda aan"
     ]
   },
   {
-    id: 'track-lost-in-you',
-    title: 'Lost in You',
-    artist: 'Skye',
-    album: 'Midnight Chronicles',
-    duration: 200,
-    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d6/59/2b/d6592b0b-1e7e-4743-b2e4-f2af038fd783/mzaf_7697277787797935735.plus.aac.p.m4a',
-    coverUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80', // silhouette woman in red
-    genre: 'R&B',
-    releaseYear: 2023,
+    id: 'track-tajdar-e-haram',
+    title: 'Tajdar-E-Haram',
+    artist: 'Atif Aslam',
+    album: 'Coke Studio Season 8',
+    duration: 617,
+    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b9/75/0b/b9750bad-dc50-f831-6a76-1db3ff3a95f3/mzaf_16667428091119990004.plus.aac.p.m4a',
+    coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/67/ad/4167ad0c-1dfd-6655-d62d-61d3059cdd10/7316476372880.jpg/600x600bb.jpg',
+    genre: 'Urdu Naat & Qawwali',
+    category: 'naats',
+    releaseYear: 2015,
+    isLiked: true,
+    isCurated: true,
+    lyrics: [
+      "Qismat mein meri chain se jeena likh de",
+      "Doobe na kabhi mera safeena likh de",
+      "Jannat bhi gawaara hai magar mere liye",
+      "Aye kaatib-e-taqdeer Madina likh de",
+      "Tajdar-e-Haram, ho nigaah-e-karam",
+      "Hum ghareebon ke din bhi sanwar jaayenge"
+    ]
+  },
+  {
+    id: 'track-maher-zain-yanabi',
+    title: 'Ya Nabi Salam Alayka',
+    artist: 'Maher Zain',
+    album: 'Thank You Allah',
+    duration: 299,
+    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/07/b7/4a/07b74ada-9fc2-1bf5-e106-9f1950ee147c/mzaf_715121258896882606.plus.aac.p.m4a',
+    coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3b/2c/00/3b2c008e-227f-7334-4bb4-600658285f71/5060071981825.jpg/600x600bb.jpg',
+    genre: 'Islamic Nasheed',
+    category: 'naats',
+    releaseYear: 2009,
+    isLiked: true,
+    isCurated: true,
+    lyrics: [
+      "Anta noorullahi fajran",
+      "Jeeta ba'dal usri yusra",
+      "Rabbuna a'laka qadran",
+      "Ya imamal anbiya'i",
+      "Ya Nabi salam 'alayka",
+      "Ya Rasool salam 'alayka",
+      "Ya Habib salam 'alayka",
+      "Salawatullah 'alayka"
+    ]
+  },
+  {
+    id: 'track-sidhu-295',
+    title: '295',
+    artist: 'Sidhu Moose Wala',
+    album: 'Moosetape',
+    duration: 270,
+    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7f/f3/6d/7ff36d63-b933-3993-cd2f-f3fd770c3763/mzaf_12675758250838366519.plus.aac.p.m4a',
+    coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/69/58/976958ae-725e-bd41-6755-f0921c697840/810063889609_cover.jpg/600x600bb.jpg',
+    genre: 'Punjabi Hip-Hop',
+    category: 'punjabi',
+    releaseYear: 2021,
     isLiked: false,
     isCurated: true,
     lyrics: [
-      "I've been watching you",
-      "For some time",
-      "Can't stop staring at those ocean eyes",
-      "Burning cities and napalm skies",
-      "Fifteen flares inside those eyes",
-      "Your ocean eyes"
+      "Dass keda ethe sacch bol sakda",
+      "Kithon labbna ae sacha insaan bai",
+      "Ajj kal sach bolan te lagdi",
+      "Dhaara 295 je kare bayan bai"
+    ]
+  },
+  {
+    id: 'track-tum-hi-ho',
+    title: 'Tum Hi Ho',
+    artist: 'Arijit Singh',
+    album: 'Aashiqui 2',
+    duration: 237,
+    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ea/b2/30/eab2309a-4c4b-1ffb-e335-a0a92feea386/mzaf_4556994173020272430.plus.aac.p.m4a',
+    coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/600x600bb.jpg',
+    genre: 'Bollywood Sad & Romantic',
+    category: 'hindi',
+    releaseYear: 2013,
+    isLiked: false,
+    isCurated: true,
+    lyrics: [
+      "Hum tere bin ab reh nahi sakte",
+      "Tere bina kya wajood mera",
+      "Tujhse juda agar ho jaayenge",
+      "Toh khud se hi ho jaayenge judaa",
+      "Kyunki tum hi ho, ab tum hi ho",
+      "Zindagi ab tum hi ho"
     ]
   },
   {
@@ -108,7 +165,8 @@ export const CURATED_TRACKS: Track[] = [
     duration: 361,
     audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/54/2b/61/542b6133-80f7-f30f-4dcf-059490db9d84/mzaf_1539067797902127760.plus.aac.p.m4a',
     coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
-    genre: 'Pop',
+    genre: 'Pop / Synthwave',
+    category: 'english',
     releaseYear: 2020,
     isLiked: true,
     isCurated: true,
@@ -117,29 +175,36 @@ export const CURATED_TRACKS: Track[] = [
       "Fightin' for my life, I couldn't breathe again",
       "Totally numb and I'm frozen",
       "Pour myself a drink and I'm back in motion",
-      "My darkest hour",
-      "Girl, I felt so alone inside of this crowded room",
-      "Different girls on the floor, distracting my thoughts of you"
+      "My darkest hour"
     ]
   },
   {
-    id: 'track-nuvole-bianche',
-    title: 'Nuvole Bianche',
-    artist: 'Ludovico Einaudi',
-    album: 'Una Mattina',
-    duration: 358,
-    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0b/1e/a5/0b1ea5fb-9bd9-3695-9b04-791c99de975d/mzaf_10126848900834615297.plus.aac.p.m4a',
-    coverUrl: 'https://images.unsplash.com/photo-1520523839898-507121c1d683?auto=format&fit=crop&w=800&q=80',
-    genre: 'Chill',
-    releaseYear: 2004,
-    isLiked: false,
-    isCurated: true,
-    lyrics: [
-      "[Instrumental Piano Solo]",
-      "Gentle cascades and evocative harmonic progressions",
-      "A journey into quiet midnight reflections",
-      "The soul whispers in silence"
-    ]
+    id: 'track-eternal',
+    title: 'Eternal',
+    artist: 'AURORA',
+    album: 'The Gods We Can Touch',
+    duration: 249,
+    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b4/77/b8/b477b8a7-01d6-37ca-fdaa-59831b750f05/mzaf_16307313298352295595.plus.aac.p.m4a',
+    coverUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80',
+    genre: 'Alternative / Ethereal',
+    category: 'english',
+    releaseYear: 2022,
+    isLiked: true,
+    isCurated: true
+  },
+  {
+    id: 'track-hasbi-rabbi',
+    title: 'Hasbi Rabbi',
+    artist: 'Sami Yusuf',
+    album: 'My Ummah',
+    duration: 258,
+    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0e/b0/9f/0eb09f0a-b698-e6e7-2227-82442d2491ff/mzaf_6651501586607752988.plus.aac.p.m4a',
+    coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d3/1b/40/d31b4070-13fd-122f-87ea-c5521da63672/mzi.htdpclbn.jpg/600x600bb.jpg',
+    genre: 'Arabic & Urdu Nasheed',
+    category: 'naats',
+    releaseYear: 2005,
+    isLiked: true,
+    isCurated: true
   },
   {
     id: 'track-cornfield-chase',
@@ -149,169 +214,171 @@ export const CURATED_TRACKS: Track[] = [
     duration: 127,
     audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3a/ee/23/3aee2300-f6f7-a006-e20f-28092e814cbe/mzaf_1624587954644600228.plus.aac.p.m4a',
     coverUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    genre: 'Rock',
+    genre: 'Cinematic Score',
+    category: 'english',
     releaseYear: 2014,
     isLiked: false,
-    isCurated: true,
-    lyrics: [
-      "[Cinematic Organ & Symphonic Strings]",
-      "Racing past dust and collapsing dimensions",
-      "Do not go gentle into that good night",
-      "Rage, rage against the dying of the light"
-    ]
-  },
-  {
-    id: 'track-cafe-focus',
-    title: 'Cafe Focus Lofi Beats',
-    artist: 'Lofi Jazz Terrace',
-    album: 'LoFi Work Beats Night',
-    duration: 203,
-    audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7f/a2/8d/7fa28da2-1d49-8338-1f19-0e8952504554/mzaf_12452324633794048360.plus.aac.p.m4a',
-    coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
-    genre: 'Lo-fi',
-    releaseYear: 2023,
-    isLiked: false,
-    isCurated: true,
-    lyrics: [
-      "[Warm Vinyl Crackle & Soft Fender Rhodes Keys]",
-      "Gentle rain tapping on the studio pane",
-      "Deep focus for late night creators and coders",
-      "Rhythmic heartbeat of the city"
-    ]
+    isCurated: true
   }
 ];
+
+export const HINDI_TRACKS = CURATED_TRACKS.filter((t) => t.category === 'hindi');
+export const PUNJABI_TRACKS = CURATED_TRACKS.filter((t) => t.category === 'punjabi');
+export const NAATS_TRACKS = CURATED_TRACKS.filter((t) => t.category === 'naats');
+export const ENGLISH_TRACKS = CURATED_TRACKS.filter((t) => t.category === 'english');
 
 export const CURATED_PLAYLISTS: Playlist[] = [
   {
     id: 'playlist-midnight-vibes',
     title: 'Midnight Vibes',
-    description: 'Deep beats for quieter nights. Handpicked cinematic soundscapes.',
+    description: 'Deep nocturnal beats for quieter hours. Handpicked cinematic soundscapes.',
     coverUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80',
     trackCount: 48,
     tracks: [
       CURATED_TRACKS[0],
-      CURATED_TRACKS[2],
-      CURATED_TRACKS[4],
+      CURATED_TRACKS[1],
       CURATED_TRACKS[7],
+      CURATED_TRACKS[8],
     ]
   },
   {
-    id: 'playlist-chill-evenings',
-    title: 'Chill Evenings',
-    description: 'Soft melodies and moonlit acoustics for winding down.',
-    coverUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80', // red moon over sea
-    trackCount: 52,
+    id: 'playlist-bollywood-romance',
+    title: 'Bollywood Romance & Sufi',
+    description: 'Timeless melodies, soulful vocals and unforgettable poetic romance.',
+    coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg',
+    trackCount: 64,
     tracks: [
       CURATED_TRACKS[1],
-      CURATED_TRACKS[5],
+      CURATED_TRACKS[6],
       CURATED_TRACKS[3],
     ]
   },
   {
-    id: 'playlist-workout-mode',
-    title: 'Workout Mode',
-    description: 'High octane adrenaline, driving basslines and peak power.',
-    coverUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80', // crimson moody athlete
-    trackCount: 36,
+    id: 'playlist-punjabi-fire',
+    title: 'Punjabi Heatwave',
+    description: 'Driving 808s, swaggering lyrics, and the biggest Punjabi anthems.',
+    coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/89/e4/8a89e445-d2c6-f8ac-a828-27818b0c1afe/859749638209_cover.jpg/600x600bb.jpg',
+    trackCount: 45,
     tracks: [
       CURATED_TRACKS[2],
-      CURATED_TRACKS[4],
-      CURATED_TRACKS[6],
+      CURATED_TRACKS[5],
     ]
   },
   {
-    id: 'playlist-focus-flow',
-    title: 'Focus & Flow',
-    description: 'Deep work, uninterrupted rhythm and cognitive concentration.',
-    coverUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80', // moody workspace
-    trackCount: 48,
+    id: 'playlist-noor-e-madina',
+    title: 'Noor-e-Madina Naats',
+    description: 'Sacred praises, heartfelt durood, and tranquil devotional expressions.',
+    coverUrl: 'https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=800&q=80',
+    trackCount: 38,
     tracks: [
-      CURATED_TRACKS[7],
-      CURATED_TRACKS[5],
-      CURATED_TRACKS[6],
+      CURATED_TRACKS[3],
+      CURATED_TRACKS[4],
+      CURATED_TRACKS[9],
     ]
   },
   {
     id: 'playlist-late-night-drive',
     title: 'Late Night Drive',
     description: 'Empty highways, crimson brake lights, synthwave and neon memories.',
-    coverUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80', // wet street with red lights
+    coverUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
     trackCount: 41,
     tracks: [
-      CURATED_TRACKS[2],
-      CURATED_TRACKS[4],
+      CURATED_TRACKS[7],
       CURATED_TRACKS[0],
+      CURATED_TRACKS[10],
     ]
   },
   {
-    id: 'playlist-sad-but-okay',
-    title: 'Sad but Okay',
-    description: 'Cathartic acoustics and melancholic poetry for rainy nights.',
-    coverUrl: 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=800&q=80', // rain on glass with moody red
-    trackCount: 67,
+    id: 'playlist-chill-evenings',
+    title: 'Chill Evenings',
+    description: 'Soft melodies and moonlit acoustics for winding down.',
+    coverUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80',
+    trackCount: 52,
     tracks: [
+      CURATED_TRACKS[8],
       CURATED_TRACKS[0],
       CURATED_TRACKS[1],
-      CURATED_TRACKS[3],
-    ]
-  },
-  {
-    id: 'playlist-feel-good',
-    title: 'Feel Good',
-    description: 'Soulful rhythms, warm analog grooves and uplifting energy.',
-    coverUrl: 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=800&q=80', // vinyl with red flowers
-    trackCount: 39,
-    tracks: [
-      CURATED_TRACKS[4],
-      CURATED_TRACKS[0],
-      CURATED_TRACKS[2],
     ]
   }
 ];
 
-export const CURATED_ARTISTS: Artist[] = [
+export const FEATURED_ARTISTS: Artist[] = [
   {
-    id: 'artist-tom-odell',
-    name: 'Tom Odell',
-    bio: 'British singer-songwriter known for passionate piano ballads and emotional resonance.',
-    coverUrl: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=800&q=80',
-    monthlyListeners: '34,291,480',
-    topTracks: [CURATED_TRACKS[0]]
+    id: 'artist-arijit-singh',
+    name: 'Arijit Singh',
+    bio: 'The voice of Indian cinema. Known for emotive romantic anthems and soul-stirring ballads.',
+    coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+    monthlyListeners: '48,920,400',
+    genre: 'Bollywood / Classical',
+    topTracks: [CURATED_TRACKS[1], CURATED_TRACKS[6]]
   },
   {
-    id: 'artist-aurora',
-    name: 'AURORA',
-    bio: 'Norwegian singer, songwriter and producer with ethereal vocals and pagan-folk energy.',
-    coverUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80',
-    monthlyListeners: '19,812,050',
-    topTracks: [CURATED_TRACKS[1]]
-  },
-  {
-    id: 'artist-lunar',
-    name: 'Lunar',
-    bio: 'Electronic and synthwave producer crafting cinematic nocturnal cyberpunk soundscapes.',
-    coverUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
-    monthlyListeners: '8,420,100',
+    id: 'artist-diljit-dosanjh',
+    name: 'Diljit Dosanjh',
+    bio: 'Global Punjabi powerhouse, Coachella performer and icon of modern Punjabi music.',
+    coverUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80',
+    monthlyListeners: '22,410,200',
+    genre: 'Punjabi Pop',
     topTracks: [CURATED_TRACKS[2]]
+  },
+  {
+    id: 'artist-atif-aslam',
+    name: 'Atif Aslam',
+    bio: 'Legendary Pakistani playback singer and Sufi vocalist beloved worldwide.',
+    coverUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80',
+    monthlyListeners: '26,380,900',
+    genre: 'Sufi / Pop / Naat',
+    topTracks: [CURATED_TRACKS[3]]
   },
   {
     id: 'artist-the-weeknd',
     name: 'The Weeknd',
-    bio: 'Pioneering Canadian R&B, synth-pop icon and global superstar.',
-    coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+    bio: 'Pioneering Canadian R&B and synth-pop superstar redefining atmospheric pop.',
+    coverUrl: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=800&q=80',
     monthlyListeners: '109,420,380',
+    genre: 'R&B / Synthwave',
+    topTracks: [CURATED_TRACKS[7]]
+  },
+  {
+    id: 'artist-maher-zain',
+    name: 'Maher Zain',
+    bio: 'Swedish-Lebanese singer-songwriter and prominent global Nasheed artist.',
+    coverUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80',
+    monthlyListeners: '12,500,000',
+    genre: 'Nasheed / Spiritual',
     topTracks: [CURATED_TRACKS[4]]
+  },
+  {
+    id: 'artist-sidhu-moosewala',
+    name: 'Sidhu Moose Wala',
+    bio: 'Immortal Punjabi rap legend who captured hearts across continents with raw lyrics.',
+    coverUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80',
+    monthlyListeners: '19,700,000',
+    genre: 'Punjabi Hip-Hop',
+    topTracks: [CURATED_TRACKS[5]]
   }
+];
+
+export const CURATED_ARTISTS = FEATURED_ARTISTS;
+
+export const MOOD_COLLECTIONS = [
+  { id: 'mood-romantic', title: 'Romantic & Love', desc: 'Heartfelt melodies & slow dance poetry', color: 'from-rose-900/60 to-black', query: 'Hindi romantic love songs', icon: 'Heart' },
+  { id: 'mood-sad', title: 'Melancholy & Sad', desc: 'Emotional catharsis for reflective moments', color: 'from-indigo-950/70 to-black', query: 'Arijit Singh sad songs', icon: 'CloudRain' },
+  { id: 'mood-chill', title: 'Chill & Relaxing', desc: 'Acoustic calm and quiet midnight peace', color: 'from-teal-950/70 to-black', query: 'Chill acoustic peaceful songs', icon: 'Coffee' },
+  { id: 'mood-workout', title: 'Workout & Energy', desc: 'High adrenaline, heavy bass & driving beats', color: 'from-red-950/80 to-black', query: 'Punjabi workout gym songs', icon: 'Flame' },
+  { id: 'mood-party', title: 'Party & Celebration', desc: 'Unstoppable rhythm to fill the floor', color: 'from-fuchsia-950/70 to-black', query: 'Bollywood dance party hits', icon: 'Sparkles' },
+  { id: 'mood-lofi', title: 'Lo-fi & Focus', desc: 'Dusty vinyl beats for deep creative focus', color: 'from-amber-950/70 to-black', query: 'Lofi chill beats study', icon: 'Headphones' },
+  { id: 'mood-latenight', title: 'Late Night Nocturne', desc: 'Crimson atmospheric nocturnal sounds', color: 'from-red-900/40 via-[#100a12] to-black', query: 'The Weeknd synthwave nocturnal', icon: 'Moon' },
+  { id: 'mood-devotional', title: 'Naats & Nasheeds', desc: 'Peaceful Islamic vocals and sacred praises', color: 'from-emerald-950/80 to-black', query: 'Urdu Naat Sharif peaceful', icon: 'Star' }
 ];
 
 export const GENRE_CATEGORIES = [
   'All',
-  'Chill',
+  'Hindi',
+  'Punjabi',
+  'Naats',
   'Pop',
-  'Rock',
   'Lo-fi',
-  'Indie',
-  'Electronic',
-  'R&B',
-  'Classical'
+  'Sufi',
+  'Soundtrack'
 ];

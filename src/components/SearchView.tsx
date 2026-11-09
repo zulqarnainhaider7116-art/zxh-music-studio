@@ -15,14 +15,23 @@ export const SearchView: React.FC = () => {
     playlists,
     addTrackToPlaylist,
     setShowCreatePlaylistModal,
+    searchQuery,
+    setSearchQuery,
   } = useMusic();
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(searchQuery || '');
   const [results, setResults] = useState<Track[]>(CURATED_TRACKS);
   const [isLoading, setIsLoading] = useState(false);
   const [activeMenuTrackId, setActiveMenuTrackId] = useState<string | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // Sync if context query changes
+  useEffect(() => {
+    if (searchQuery && searchQuery !== query) {
+      setQuery(searchQuery);
+    }
+  }, [searchQuery]);
 
   // Auto-focus input on mount
   useEffect(() => {

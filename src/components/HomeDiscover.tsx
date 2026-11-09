@@ -1,375 +1,740 @@
-import React from 'react';
-import { Play, SlidersHorizontal, ChevronRight, Heart, Sparkles, Disc3, Radio } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import {
+  Play,
+  Heart,
+  Sparkles,
+  ChevronRight,
+  Flame,
+  Radio,
+  Disc,
+  Compass,
+  Star,
+  Moon,
+  CloudRain,
+  Coffee,
+  Headphones,
+  Music2,
+  Clock,
+  ArrowRight,
+  Layers,
+} from 'lucide-react';
 import { useMusic } from '../context/MusicContext';
-import { CURATED_PLAYLISTS, CURATED_TRACKS, GENRE_CATEGORIES, CURATED_ARTISTS } from '../data/curatedMusic';
+import {
+  CURATED_TRACKS,
+  HINDI_TRACKS,
+  PUNJABI_TRACKS,
+  NAATS_TRACKS,
+  ENGLISH_TRACKS,
+  CURATED_PLAYLISTS,
+  FEATURED_ARTISTS,
+  MOOD_COLLECTIONS,
+} from '../data/curatedMusic';
+import { searchCategoryTracks } from '../services/musicApi';
 import { Track } from '../types/music';
+import { formatTime } from '../utils/audioUtils';
 
 export const HomeDiscover: React.FC = () => {
   const {
     playTrack,
     currentTrack,
     isPlaying,
-    genreFilter,
-    setGenreFilter,
-    setActiveTab,
     isLiked,
     toggleLike,
     setSelectedPlaylist,
-    recentlyPlayed,
+    setActiveTab,
+    setSearchQuery,
   } = useMusic();
 
+  // Dynamic state for live category tracks loaded via API
+  const [liveHindi, setLiveHindi] = useState<Track[]>(HINDI_TRACKS);
+  const [livePunjabi, setLivePunjabi] = useState<Track[]>(PUNJABI_TRACKS);
+  const [liveNaats, setLiveNaats] = useState<Track[]>(NAATS_TRACKS);
+  const [liveEnglish, setLiveEnglish] = useState<Track[]>(ENGLISH_TRACKS);
+  const [hindiSubFilter, setHindiSubFilter] = useState<'all' | 'romantic' | 'sad' | 'hits'>('all');
+  const [punjabiSubFilter, setPunjabiSubFilter] = useState<'all' | 'hits' | 'vibes'>('all');
+
+  // Load enriched catalog asynchronously in background
+  useEffect(() => {
+    let isMounted = true;
+    async function loadData() {
+      try {
+        const [hindiRes, punjabiRes, naatsRes, englishRes] = await Promise.allSettled([
+          searchCategoryTracks('hindi'),
+          searchCategoryTracks('punjabi'),
+          searchCategoryTracks('naats'),
+          searchCategoryTracks('english'),
+        ]);
+
+        if (isMounted) {
+          if (hindiRes.status === 'fulfilled' && hindiRes.value.length > 0) {
+            setLiveHindi(hindiRes.value);
+          }
+          if (punjabiRes.status === 'fulfilled' && punjabiRes.value.length > 0) {
+            setLivePunjabi(punjabiRes.value);
+          }
+          if (naatsRes.status === 'fulfilled' && naatsRes.value.length > 0) {
+            setLiveNaats(naatsRes.value);
+          }
+          if (englishRes.status === 'fulfilled' && englishRes.value.length > 0) {
+            setLiveEnglish(englishRes.value);
+          }
+        }
+      } catch (err) {
+        console.warn('API enrichment fallback to curated:', err);
+      }
+    }
+    loadData();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const featuredHeroTrack = CURATED_TRACKS[1]; // Kesariya by Arijit Singh & Pritam
   const featuredPlaylist = CURATED_PLAYLISTS[0]; // Midnight Vibes
 
-  const filteredTracks = React.useMemo(() => {
-    if (genreFilter === 'All') return CURATED_TRACKS;
-    return CURATED_TRACKS.filter(
-      (t) => t.genre?.toLowerCase() === genreFilter.toLowerCase()
-    );
-  }, [genreFilter]);
-
-  const handlePlayHero = () => {
-    if (featuredPlaylist && featuredPlaylist.tracks.length > 0) {
-      playTrack(featuredPlaylist.tracks[0], featuredPlaylist.tracks);
-    }
+  const handleMoodClick = (query: string) => {
+    setSearchQuery(query);
+    setActiveTab('search');
   };
 
+  const filteredHindiTracks = React.useMemo(() => {
+    if (hindiSubFilter === 'romantic') {
+      return liveHindi.filter((t) => t.title.toLowerCase().includes('kesariya') || t.genre?.toLowerCase().includes('romantic'));
+    }
+    if (hindiSubFilter === 'sad') {
+      return liveHindi.filter((t) => t.title.toLowerCase().includes('tum hi ho') || t.genre?.toLowerCase().includes('sad'));
+    }
+    return liveHindi;
+  }, [liveHindi, hindiSubFilter]);
+
   return (
-    <div className="pb-36 pt-2 px-4 md:px-8 max-w-7xl mx-auto space-y-7 animate-fadeIn">
-      {/* Editorial Hero Header matching Screen 1 */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#120a10] via-[#1a0c14] to-[#0d0910] border border-red-950/40 p-6 md:p-10 shadow-[0_15px_40px_rgba(0,0,0,0.7)]">
+    <div className="pb-32 space-y-16 animate-fadeIn">
+      {/* ======================================================== */}
+      {/* SECTION A: CINEMATIC HERO SECTION                         */}
+      {/* ======================================================== */}
+      <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#140b12] via-[#0b080e] to-[#08080a] border-b border-white/[0.06] pt-8 md:pt-14 pb-16 md:pb-24">
         {/* Ambient Crimson Glow Sphere */}
-        <div className="absolute top-0 right-1/4 -translate-y-1/2 w-96 h-96 bg-red-600/15 rounded-full blur-[90px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-rose-700/10 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="max-w-lg space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/50 border border-red-800/40 text-red-400 text-xs font-semibold tracking-wider uppercase">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>ZXH MUSIC STUDIO · NOIR EDITION</span>
-            </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Hero Content */}
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-800/40 text-red-400 text-xs font-semibold uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.25)]">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>ZXH MUSIC STUDIO · PREMIER STREAMING</span>
+              </div>
 
-            <h1 className="font-serif-title text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight">
-              Discover <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-amber-300 italic font-normal drop-shadow-[0_0_25px_rgba(239,68,68,0.4)]">
-                New Sounds
-              </span>
-            </h1>
+              <h1 className="font-serif-title text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
+                MUSIC BEYOND <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-amber-300 italic font-normal drop-shadow-[0_0_35px_rgba(239,68,68,0.35)]">
+                  BOUNDARIES.
+                </span>
+              </h1>
 
-            <p className="text-sm sm:text-base text-slate-400 max-w-md font-normal leading-relaxed">
-              Music for every mood, moment and you. Stream licensed previews and high-fidelity studio productions in dark cinematic harmony.
-            </p>
-
-            <div className="pt-2 flex items-center gap-3">
-              <button
-                onClick={handlePlayHero}
-                aria-label="Play featured playlist"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-medium text-sm shadow-[0_0_20px_rgba(239,68,68,0.45)] hover:scale-105 active:scale-95 transition-all"
-              >
-                <Play className="w-4 h-4 fill-white" />
-                <span>Play Midnight Vibes</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('explore')}
-                aria-label="Explore catalog"
-                className="px-5 py-2.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-slate-200 text-sm font-medium transition-all"
-              >
-                Browse Genres
-              </button>
-            </div>
-          </div>
-
-          {/* Hero Visual Imagery */}
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl overflow-hidden shadow-2xl border border-red-500/20 shrink-0 group">
-            <img
-              src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
-              alt="Discover New Sounds Headphones"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-red-950/30 to-transparent" />
-            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-slate-300">
-              <span className="font-semibold text-white">Midnight Vibes</span>
-              <span className="text-red-400 font-mono">48 Tracks</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Search Bar matching Reference */}
-      <section>
-        <div 
-          onClick={() => setActiveTab('search')}
-          className="group relative flex items-center gap-3 bg-[#13131a] hover:bg-[#181822] border border-white/[0.08] hover:border-red-500/40 rounded-2xl px-4 py-3.5 shadow-lg cursor-pointer transition-all"
-        >
-          <div className="p-1 text-slate-400 group-hover:text-red-400 transition-colors">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-          <span className="flex-1 text-sm text-slate-400 group-hover:text-slate-200 transition-colors select-none">
-            Search songs, artists, playlists...
-          </span>
-          <div className="p-1.5 rounded-lg bg-white/[0.04] text-slate-400 group-hover:text-white transition-colors">
-            <SlidersHorizontal className="w-4 h-4" />
-          </div>
-        </div>
-      </section>
-
-      {/* Genre and Mood Filter Pills matching Reference */}
-      <section>
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-          {GENRE_CATEGORIES.map((genre) => {
-            const isActive = genreFilter === genre;
-            return (
-              <button
-                key={genre}
-                onClick={() => setGenreFilter(genre)}
-                aria-pressed={isActive}
-                className={`px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 select-none ${
-                  isActive
-                    ? 'bg-red-600 text-white shadow-[0_0_15px_rgba(239,68,68,0.5)] font-semibold'
-                    : 'bg-[#14141c] hover:bg-[#1c1c28] text-slate-400 hover:text-white border border-white/[0.06]'
-                }`}
-              >
-                {genre}
-              </button>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Featured Playlist Card matching Reference (Midnight Vibes) */}
-      <section>
-        <div 
-          onClick={() => {
-            setSelectedPlaylist(featuredPlaylist);
-          }}
-          className="relative group overflow-hidden rounded-3xl bg-gradient-to-br from-[#1b0d16] via-[#140a12] to-[#0a070c] border border-red-900/30 p-6 sm:p-7 shadow-xl cursor-pointer hover:border-red-500/40 transition-all duration-300"
-        >
-          {/* Ambient red lighting glow */}
-          <div className="absolute -top-16 -right-16 w-60 h-60 bg-red-600/20 rounded-full blur-3xl group-hover:bg-red-600/30 transition-all" />
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="space-y-1.5 max-w-md">
-              <span className="text-[11px] uppercase tracking-[0.2em] text-red-400 font-bold">
-                Featured Playlist
-              </span>
-              <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                {featuredPlaylist.title}
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                {featuredPlaylist.description}
+              <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                Discover the sounds, artists, and music that define every moment. From timeless Bollywood melodies and electrifying Punjabi beats to tranquil Naats and international pop.
               </p>
-              <div className="flex items-center gap-2 text-xs text-slate-400 pt-2 font-mono">
-                <span>{featuredPlaylist.trackCount} Tracks</span>
-                <span aria-hidden="true">·</span>
-                <span>HQ Stream</span>
+
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                <button
+                  onClick={() => playTrack(featuredHeroTrack, CURATED_TRACKS)}
+                  className="flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-500 hover:to-rose-500 text-white font-semibold text-sm shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-105 active:scale-95 transition-all"
+                >
+                  <Play className="w-4 h-4 fill-white" />
+                  <span>Play Featured · {featuredHeroTrack.title}</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab('explore')}
+                  className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-red-500/30 text-slate-200 font-medium text-sm transition-all"
+                >
+                  <Compass className="w-4 h-4 text-red-400" />
+                  <span>Explore Music</span>
+                </button>
+              </div>
+
+              {/* Sub-hero quick metrics */}
+              <div className="pt-4 flex items-center justify-center lg:justify-start gap-8 text-xs text-slate-400 font-medium">
+                <div>
+                  <span className="block text-lg font-bold text-white font-mono">10M+</span>
+                  <span className="text-[11px] uppercase tracking-wider text-slate-400">Authentic Tracks</span>
+                </div>
+                <div className="w-[1px] h-8 bg-white/[0.1]" />
+                <div>
+                  <span className="block text-lg font-bold text-white font-mono">256 kbps</span>
+                  <span className="text-[11px] uppercase tracking-wider text-slate-400">Studio Audio</span>
+                </div>
+                <div className="w-[1px] h-8 bg-white/[0.1]" />
+                <div>
+                  <span className="block text-lg font-bold text-white font-mono">100%</span>
+                  <span className="text-[11px] uppercase tracking-wider text-slate-400">Real Previews</span>
+                </div>
               </div>
             </div>
 
-            {/* Glowing Red Circular Play Button matching Reference */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handlePlayHero();
-              }}
-              aria-label="Play Midnight Vibes"
-              className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-red-600 to-rose-500 text-white flex items-center justify-center shadow-[0_0_25px_rgba(239,68,68,0.7)] group-hover:scale-110 active:scale-95 transition-all self-end sm:self-center shrink-0"
-            >
-              <Play className="w-6 h-6 fill-white text-white translate-x-0.5" />
-            </button>
+            {/* Right Hero Artwork Card */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div 
+                onClick={() => playTrack(featuredHeroTrack, CURATED_TRACKS)}
+                className="relative group w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-red-500/20 cursor-pointer"
+              >
+                <img
+                  src={featuredHeroTrack.coverUrl}
+                  alt={featuredHeroTrack.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#08080c] via-black/30 to-transparent" />
+
+                {/* Overlaid Vinyl Spin Badge */}
+                <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-red-500 shadow-xl group-hover:rotate-90 transition-transform duration-500">
+                  <Disc className="w-6 h-6 animate-spin-slow" />
+                </div>
+
+                {/* Overlaid Card Info */}
+                <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-red-400">
+                      Now Trending Worldwide
+                    </span>
+                    <h3 className="font-serif-title text-2xl font-bold text-white drop-shadow">
+                      {featuredHeroTrack.title}
+                    </h3>
+                    <p className="text-xs text-slate-300">
+                      {featuredHeroTrack.artist} · {featuredHeroTrack.album}
+                    </p>
+                  </div>
+
+                  <div className="w-13 h-13 rounded-full bg-red-600 text-white flex items-center justify-center shadow-[0_0_20px_#ef4444] group-hover:scale-110 active:scale-95 transition-all shrink-0">
+                    <Play className="w-6 h-6 fill-white translate-x-0.5" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Top Picks For You section matching Reference */}
-      <section>
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-              Top Picks For You
-            </h2>
-            <p className="text-xs text-slate-400">
-              Curated for your nocturnal listening session
-            </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* ======================================================== */}
+        {/* SECTION B: TRENDING NOW (Smooth Horizontal Rail)         */}
+        {/* ======================================================== */}
+        <section>
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <div className="flex items-center gap-2 text-red-500 text-xs font-semibold uppercase tracking-widest mb-1">
+                <Flame className="w-4 h-4 fill-current" />
+                <span>Top Charts</span>
+              </div>
+              <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Trending Now
+              </h2>
+            </div>
+            <button
+              onClick={() => setActiveTab('explore')}
+              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-red-400 transition-colors"
+            >
+              <span>View All</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
-          <button
-            onClick={() => setActiveTab('explore')}
-            className="flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-red-400 transition-colors"
-          >
-            <span>See All</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
 
-        {/* Horizontal track cards scroll */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-          {filteredTracks.slice(0, 5).map((track) => {
-            const isCurrent = currentTrack?.id === track.id;
-            return (
-              <div
-                key={track.id}
-                onClick={() => playTrack(track, filteredTracks)}
-                className={`group relative bg-[#121219] hover:bg-[#181824] p-3 rounded-2xl border transition-all duration-200 cursor-pointer ${
-                  isCurrent ? 'border-red-500/50 shadow-[0_0_20px_rgba(239,68,68,0.25)]' : 'border-white/[0.06] hover:border-white/[0.12]'
-                }`}
-              >
-                {/* Artwork with hover play button */}
-                <div className="relative aspect-square rounded-xl overflow-hidden mb-2.5 bg-black/40">
-                  <img
-                    src={track.coverUrl}
-                    alt={track.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity ${
-                    isCurrent && isPlaying ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                  }`}>
-                    <div className="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-[0_0_15px_#ef4444]">
-                      {isCurrent && isPlaying ? (
-                        <Radio className="w-4 h-4 animate-pulse" />
-                      ) : (
-                        <Play className="w-4 h-4 fill-white translate-x-0.5" />
-                      )}
+          {/* Horizontal scroll track rail */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {CURATED_TRACKS.slice(0, 6).map((track) => {
+              const isCurrent = currentTrack?.id === track.id;
+              const liked = isLiked(track.id);
+              return (
+                <div
+                  key={track.id}
+                  onClick={() => playTrack(track, CURATED_TRACKS)}
+                  className={`group relative bg-[#12121a] hover:bg-[#181824] p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                    isCurrent
+                      ? 'border-red-500/50 shadow-[0_0_20px_rgba(239,68,68,0.25)]'
+                      : 'border-white/[0.06] hover:border-red-500/30'
+                  }`}
+                >
+                  <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-black/40">
+                    <img
+                      src={track.coverUrl}
+                      alt={track.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div
+                      className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity ${
+                        isCurrent && isPlaying ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                      }`}
+                    >
+                      <div className="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center shadow-[0_0_15px_#ef4444]">
+                        {isCurrent && isPlaying ? (
+                          <Radio className="w-5 h-5 animate-pulse" />
+                        ) : (
+                          <Play className="w-5 h-5 fill-white translate-x-0.5" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 className={`text-sm font-semibold truncate ${isCurrent ? 'text-red-400' : 'text-white'}`}>
+                    {track.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 truncate mt-0.5">
+                    {track.artist}
+                  </p>
+
+                  <div className="mt-2 pt-2 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-slate-400">
+                    <span className="font-mono">{formatTime(track.duration)}</span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleLike(track);
+                      }}
+                      className="p-1 hover:text-white"
+                    >
+                      <Heart
+                        className={`w-3.5 h-3.5 ${liked ? 'fill-red-500 text-red-500' : ''}`}
+                      />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ======================================================== */}
+        {/* SECTION C: HINDI & BOLLYWOOD                             */}
+        {/* ======================================================== */}
+        <section className="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-[#160d14] via-[#100a12] to-[#0a070c] border border-red-950/40 shadow-xl">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-red-400">
+                Bollywood & Sufi Hits
+              </span>
+              <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
+                Hindi Music Studio
+              </h2>
+              <p className="text-xs text-slate-400 mt-1">
+                Soulful romantic melodies, emotional ballads, and blockbuster film tracks.
+              </p>
+            </div>
+
+            {/* Sub-filter chips */}
+            <div className="flex items-center gap-1.5 p-1 bg-black/40 border border-white/[0.08] rounded-full text-xs">
+              {(['all', 'romantic', 'sad', 'hits'] as const).map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setHindiSubFilter(filter)}
+                  className={`px-3 py-1 rounded-full capitalize transition-all ${
+                    hindiSubFilter === filter
+                      ? 'bg-red-600 text-white font-semibold shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            {filteredHindiTracks.slice(0, 6).map((track) => {
+              const isCurrent = currentTrack?.id === track.id;
+              const liked = isLiked(track.id);
+              return (
+                <div
+                  key={track.id}
+                  onClick={() => playTrack(track, filteredHindiTracks)}
+                  className={`flex items-center justify-between p-3 rounded-2xl border transition-all cursor-pointer group ${
+                    isCurrent
+                      ? 'bg-red-950/40 border-red-500/50 shadow-md'
+                      : 'bg-[#12121a]/80 hover:bg-[#181822] border-white/[0.06]'
+                  }`}
+                >
+                  <div className="flex items-center gap-3.5 min-w-0 pr-3">
+                    <img
+                      src={track.coverUrl}
+                      alt={track.title}
+                      className="w-12 h-12 rounded-xl object-cover shrink-0 shadow"
+                    />
+                    <div className="min-w-0">
+                      <h4 className={`text-sm font-semibold truncate ${isCurrent ? 'text-red-400' : 'text-white'}`}>
+                        {track.title}
+                      </h4>
+                      <p className="text-xs text-slate-400 truncate mt-0.5">
+                        {track.artist}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleLike(track);
+                      }}
+                      className="p-1.5 text-slate-400 hover:text-white"
+                    >
+                      <Heart className={`w-4 h-4 ${liked ? 'fill-red-500 text-red-500' : ''}`} />
+                    </button>
+                    <div className="w-8 h-8 rounded-full bg-white/[0.06] group-hover:bg-red-600 text-white flex items-center justify-center transition-all">
+                      <Play className="w-3.5 h-3.5 fill-white translate-x-0.5" />
                     </div>
                   </div>
                 </div>
+              );
+            })}
+          </div>
+        </section>
 
-                <h3 className={`text-sm font-semibold truncate ${isCurrent ? 'text-red-400' : 'text-white'}`}>
+        {/* ======================================================== */}
+        {/* SECTION D: PUNJABI MUSIC                                 */}
+        {/* ======================================================== */}
+        <section>
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-amber-500">
+                Loud & Proud
+              </span>
+              <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
+                Punjabi Wave & Anthems
+              </h2>
+              <p className="text-xs text-slate-400 mt-1">
+                From Sidhu Moose Wala and Diljit Dosanjh to AP Dhillon and Karan Aujla.
+              </p>
+            </div>
+            <button
+              onClick={() => setActiveTab('punjabi')}
+              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-red-400 transition-colors"
+            >
+              <span>Explore Punjabi</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {livePunjabi.slice(0, 5).map((track) => {
+              const isCurrent = currentTrack?.id === track.id;
+              return (
+                <div
+                  key={track.id}
+                  onClick={() => playTrack(track, livePunjabi)}
+                  className={`group bg-[#111118] hover:bg-[#161622] p-3.5 rounded-2xl border transition-all cursor-pointer ${
+                    isCurrent ? 'border-amber-500/60 shadow-[0_0_15px_rgba(245,158,11,0.25)]' : 'border-white/[0.06] hover:border-amber-500/30'
+                  }`}
+                >
+                  <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-black/40">
+                    <img
+                      src={track.coverUrl}
+                      alt={track.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                      <div className="w-10 h-10 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center shadow-lg">
+                        <Play className="w-4 h-4 fill-black translate-x-0.5" />
+                      </div>
+                    </div>
+                  </div>
+                  <h3 className="text-sm font-semibold text-white truncate group-hover:text-amber-400 transition-colors">
+                    {track.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 truncate mt-0.5">
+                    {track.artist}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ======================================================== */}
+        {/* SECTION E: NAATS & ISLAMIC VOCALS (Distinct & Reverent)   */}
+        {/* ======================================================== */}
+        <section className="relative overflow-hidden p-6 md:p-10 rounded-3xl bg-gradient-to-br from-[#071813] via-[#08120e] to-[#060809] border border-emerald-900/30 shadow-2xl">
+          {/* Subtle Emerald Sacred Glow */}
+          <div className="absolute -top-20 -right-20 w-80 h-80 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-700/40 text-emerald-400 text-xs font-semibold tracking-wider uppercase mb-2">
+                <Star className="w-3.5 h-3.5" />
+                <span>Devotional Sanctum</span>
+              </div>
+              <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Naats, Nasheeds & Spiritual Vocals
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">
+                Heartfelt Durood-o-Salam, Urdu Naat Shareef, Arabic Nasheeds, and peaceful spiritual recitations by Atif Aslam, Maher Zain, and Sami Yusuf.
+              </p>
+            </div>
+
+            <button
+              onClick={() => setActiveTab('naats')}
+              className="flex items-center gap-1 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors self-start sm:self-end"
+            >
+              <span>Full Naat Collection</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {liveNaats.slice(0, 4).map((track) => {
+              const isCurrent = currentTrack?.id === track.id;
+              return (
+                <div
+                  key={track.id}
+                  onClick={() => playTrack(track, liveNaats)}
+                  className={`group relative p-4 rounded-2xl border transition-all cursor-pointer ${
+                    isCurrent
+                      ? 'bg-emerald-950/60 border-emerald-500/60 shadow-[0_0_20px_rgba(16,185,129,0.25)]'
+                      : 'bg-[#0a1410]/70 hover:bg-[#0e1d17] border-emerald-900/20 hover:border-emerald-500/40'
+                  }`}
+                >
+                  <div className="relative aspect-video rounded-xl overflow-hidden mb-3 bg-black/50">
+                    <img
+                      src={track.coverUrl}
+                      alt={track.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5">
+                      <span className="text-[10px] font-semibold text-emerald-400 tracking-wider uppercase">
+                        Devotional Vocal
+                      </span>
+                    </div>
+                  </div>
+
+                  <h3 className="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors truncate">
+                    {track.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 truncate mt-0.5">
+                    {track.artist}
+                  </p>
+                  <div className="mt-3 flex items-center justify-between text-xs text-slate-400 font-mono">
+                    <span>{formatTime(track.duration)}</span>
+                    <div className="w-7 h-7 rounded-full bg-emerald-950/80 group-hover:bg-emerald-500 group-hover:text-black text-emerald-400 flex items-center justify-center transition-all">
+                      <Play className="w-3.5 h-3.5 fill-current translate-x-0.5" />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ======================================================== */}
+        {/* SECTION F: ENGLISH & INTERNATIONAL POP                   */}
+        {/* ======================================================== */}
+        <section>
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-rose-400">
+                International Hits
+              </span>
+              <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
+                English Pop & Global Soundtracks
+              </h2>
+            </div>
+            <button
+              onClick={() => {
+                setSearchQuery('English Pop Hits');
+                setActiveTab('search');
+              }}
+              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-red-400 transition-colors"
+            >
+              <span>Explore Pop</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4">
+            {liveEnglish.slice(0, 5).map((track) => (
+              <div
+                key={track.id}
+                onClick={() => playTrack(track, liveEnglish)}
+                className="group bg-[#111118] hover:bg-[#161622] p-3 rounded-2xl border border-white/[0.06] hover:border-red-500/30 cursor-pointer transition-all"
+              >
+                <div className="relative aspect-square rounded-xl overflow-hidden mb-2.5">
+                  <img
+                    src={track.coverUrl}
+                    alt={track.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                  />
+                </div>
+                <h4 className="text-sm font-semibold text-white group-hover:text-red-400 truncate">
                   {track.title}
-                </h3>
+                </h4>
                 <p className="text-xs text-slate-400 truncate mt-0.5">
                   {track.artist}
                 </p>
               </div>
-            );
-          })}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
 
-      {/* Recently Played List matching Reference */}
-      <section>
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-            Recently Played
-          </h2>
-          <button
-            onClick={() => setActiveTab('library')}
-            className="flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-red-400 transition-colors"
-          >
-            <span>See All</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
-
-        <div className="space-y-2">
-          {recentlyPlayed.slice(0, 4).map((track, idx) => {
-            const isCurrent = currentTrack?.id === track.id;
-            const liked = isLiked(track.id);
-            return (
-              <div
-                key={`${track.id}-${idx}`}
-                onClick={() => playTrack(track, recentlyPlayed)}
-                className={`flex items-center justify-between p-2.5 rounded-2xl border transition-all cursor-pointer ${
-                  isCurrent
-                    ? 'bg-[#181116] border-red-500/40'
-                    : 'bg-[#111117] hover:bg-[#171722] border-white/[0.05]'
-                }`}
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0">
-                    <img
-                      src={track.coverUrl}
-                      alt={track.title}
-                      className="w-full h-full object-cover"
-                    />
-                    {isCurrent && isPlaying && (
-                      <div className="absolute inset-0 bg-red-950/40 flex items-center justify-center">
-                        <Disc3 className="w-5 h-5 text-red-400 animate-spin" />
-                      </div>
-                    )}
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className={`text-sm font-medium truncate ${isCurrent ? 'text-red-400 font-bold' : 'text-white'}`}>
-                      {track.title}
-                    </h3>
-                    <p className="text-xs text-slate-400 truncate">
-                      {track.artist} {track.album ? `· ${track.album}` : ''}
-                    </p>
-                  </div>
-                </div>
-
-                <div 
-                  onClick={(e) => e.stopPropagation()} 
-                  className="flex items-center gap-2 shrink-0"
-                >
-                  <button
-                    onClick={() => toggleLike(track)}
-                    aria-label={liked ? 'Unlike' : 'Like'}
-                    className="p-2 text-slate-400 hover:text-white transition-colors"
-                  >
-                    <Heart
-                      className={`w-4 h-4 ${liked ? 'fill-red-500 text-red-500 drop-shadow-[0_0_8px_#ef4444]' : ''}`}
-                    />
-                  </button>
-
-                  <button
-                    onClick={() => playTrack(track, recentlyPlayed)}
-                    aria-label={`Play ${track.title}`}
-                    className="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-red-600/20 text-white flex items-center justify-center border border-white/[0.08] hover:border-red-500 transition-colors"
-                  >
-                    {isCurrent && isPlaying ? (
-                      <Radio className="w-3.5 h-3.5 text-red-400 animate-pulse" />
-                    ) : (
-                      <Play className="w-3.5 h-3.5 fill-white translate-x-0.5" />
-                    )}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Featured Artists section */}
-      <section className="pt-2">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-              Featured Artists
+        {/* ======================================================== */}
+        {/* SECTION H: BROWSE BY MOOD                                */}
+        {/* ======================================================== */}
+        <section>
+          <div className="mb-6">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
+              Personalized Discovery
+            </span>
+            <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
+              Browse By Mood & Scene
             </h2>
-            <p className="text-xs text-slate-400">
-              Masters of atmospheric and cinematic music
+            <p className="text-xs text-slate-400 mt-1">
+              Select your current headspace to launch instant curated musical atmospheres.
             </p>
           </div>
-        </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {CURATED_ARTISTS.map((artist) => (
-            <div
-              key={artist.id}
-              onClick={() => {
-                if (artist.topTracks[0]) {
-                  playTrack(artist.topTracks[0], artist.topTracks);
-                }
-              }}
-              className="group flex flex-col items-center text-center p-4 rounded-2xl bg-[#111117] hover:bg-[#171722] border border-white/[0.06] hover:border-red-500/30 cursor-pointer transition-all"
-            >
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden p-[2px] bg-gradient-to-br from-red-600/40 to-transparent group-hover:from-red-500 transition-colors shadow-lg mb-3">
-                <img
-                  src={artist.coverUrl}
-                  alt={artist.name}
-                  className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-300"
-                />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {MOOD_COLLECTIONS.map((mood) => (
+              <div
+                key={mood.id}
+                onClick={() => handleMoodClick(mood.query)}
+                className={`group p-5 rounded-2xl bg-gradient-to-br ${mood.color} border border-white/[0.08] hover:border-red-500/40 shadow-lg cursor-pointer transition-all hover:scale-[1.02]`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                </div>
+                <h3 className="font-bold text-base text-white group-hover:text-red-300 transition-colors">
+                  {mood.title}
+                </h3>
+                <p className="text-xs text-slate-400 mt-1 line-clamp-2">
+                  {mood.desc}
+                </p>
               </div>
-              <h3 className="text-sm font-semibold text-white group-hover:text-red-400 transition-colors">
-                {artist.name}
-              </h3>
-              <p className="text-[11px] text-slate-400 mt-0.5">
-                {artist.monthlyListeners} monthly
-              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* ======================================================== */}
+        {/* SECTION I: FEATURED ARTISTS                              */}
+        {/* ======================================================== */}
+        <section>
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-red-400">
+                Studio Spotlight
+              </span>
+              <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
+                Featured Artists
+              </h2>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {FEATURED_ARTISTS.map((artist) => (
+              <div
+                key={artist.id}
+                onClick={() => {
+                  if (artist.topTracks[0]) {
+                    playTrack(artist.topTracks[0], artist.topTracks);
+                  }
+                }}
+                className="group flex flex-col items-center text-center p-4 rounded-2xl bg-[#111117] hover:bg-[#181824] border border-white/[0.06] hover:border-red-500/30 cursor-pointer transition-all"
+              >
+                <div className="relative w-22 h-22 sm:w-24 sm:h-24 rounded-full overflow-hidden p-[2px] bg-gradient-to-br from-red-600/40 via-rose-500/20 to-transparent group-hover:from-red-500 transition-colors shadow-lg mb-3">
+                  <img
+                    src={artist.coverUrl}
+                    alt={artist.name}
+                    className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="text-sm font-semibold text-white group-hover:text-red-400 transition-colors">
+                  {artist.name}
+                </h3>
+                <p className="text-[11px] text-slate-400 font-mono mt-0.5">
+                  {artist.monthlyListeners} monthly
+                </p>
+                <span className="text-[10px] text-red-400/80 mt-1 uppercase tracking-wider font-semibold">
+                  {artist.genre}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ======================================================== */}
+        {/* SECTION J: CURATED PLAYLISTS                             */}
+        {/* ======================================================== */}
+        <section>
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-red-400">
+                Editorial Suites
+              </span>
+              <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
+                Curated Playlists
+              </h2>
+            </div>
+            <button
+              onClick={() => setActiveTab('playlists')}
+              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-red-400 transition-colors"
+            >
+              <span>All Playlists</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+            {CURATED_PLAYLISTS.map((pl) => (
+              <div
+                key={pl.id}
+                onClick={() => setSelectedPlaylist(pl)}
+                className="group bg-[#111117] hover:bg-[#181824] p-3 rounded-2xl border border-white/[0.06] hover:border-red-500/30 cursor-pointer transition-all"
+              >
+                <div className="relative aspect-square rounded-xl overflow-hidden mb-2.5 bg-black/40">
+                  <img
+                    src={pl.coverUrl}
+                    alt={pl.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-red-600/90 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                    <Play className="w-3.5 h-3.5 fill-white translate-x-0.5" />
+                  </div>
+                </div>
+                <h4 className="text-xs sm:text-sm font-semibold text-white group-hover:text-red-400 truncate">
+                  {pl.title}
+                </h4>
+                <p className="text-[11px] text-slate-400 mt-0.5 font-mono">
+                  {pl.trackCount} Songs
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ======================================================== */}
+        {/* SECTION K: PROMOTIONAL EDITORIAL BANNER                  */}
+        {/* ======================================================== */}
+        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-red-950 via-[#180a14] to-[#0d0912] border border-red-800/40 p-8 md:p-12 shadow-2xl">
+          <div className="relative z-10 max-w-2xl space-y-4">
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-red-400">
+              ZXH OFFICIAL · AUDIO PLATFORM
+            </span>
+            <h2 className="font-serif-title text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
+              Crafted for True Music Lovers and Nocturnal Creators.
+            </h2>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Experience zero distractions, high-resolution audio preview streams, lossless local playback, and an iconic vinyl turntable player built from the ground up by <strong>ZULQARNAIN X HAIDER</strong>.
+            </p>
+            <div className="pt-2 flex items-center gap-3">
+              <button
+                onClick={() => setActiveTab('explore')}
+                className="px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-xs font-semibold shadow-[0_0_20px_rgba(239,68,68,0.5)] transition-all"
+              >
+                Start Listening Now
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

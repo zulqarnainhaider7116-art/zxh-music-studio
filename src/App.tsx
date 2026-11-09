@@ -1,13 +1,13 @@
 import React from 'react';
 import { MusicProvider, useMusic } from './context/MusicContext';
 import { Navbar } from './components/Navbar';
-import { BottomNav } from './components/BottomNav';
-import { MiniPlayer } from './components/MiniPlayer';
+import { PlaybackBar } from './components/PlaybackBar';
 import { VinylPlayer } from './components/VinylPlayer';
 import { HomeDiscover } from './components/HomeDiscover';
 import { LibraryView } from './components/LibraryView';
 import { SearchView } from './components/SearchView';
 import { ExploreView } from './components/ExploreView';
+import { CategoryView } from './components/CategoryView';
 import { PlaylistDetailModal } from './components/PlaylistDetailModal';
 import { CreatePlaylistModal } from './components/CreatePlaylistModal';
 import { BrandModal } from './components/BrandModal';
@@ -18,27 +18,27 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#08080a] text-slate-100 flex flex-col font-sans selection:bg-red-600 selection:text-white relative">
-      {/* Top Navbar */}
+      {/* Top Website Header with Navigation & Search */}
       <Navbar />
 
-      {/* Main View Router */}
+      {/* Main Content Router */}
       <main className="flex-1 w-full relative z-0">
         {activeTab === 'home' && <HomeDiscover />}
         {activeTab === 'explore' && <ExploreView />}
-        {activeTab === 'library' && <LibraryView />}
+        {activeTab === 'hindi' && <CategoryView category="hindi" />}
+        {activeTab === 'punjabi' && <CategoryView category="punjabi" />}
+        {activeTab === 'naats' && <CategoryView category="naats" />}
+        {activeTab === 'playlists' && <LibraryView />}
         {activeTab === 'search' && <SearchView />}
       </main>
 
-      {/* Site Footer */}
+      {/* Full Website Footer */}
       <Footer />
 
-      {/* Persistent Mini-Player */}
-      <MiniPlayer />
+      {/* Full-Width Website Bottom Playback Bar (Spotify / YouTube Music Style) */}
+      <PlaybackBar />
 
-      {/* Persistent Mobile Bottom Navigation */}
-      <BottomNav />
-
-      {/* Full-Screen Turntable Vinyl Player */}
+      {/* Expanded Turntable Vinyl Player Overlay */}
       <VinylPlayer />
 
       {/* Playlist Detail Modal */}
@@ -47,7 +47,7 @@ const AppContent: React.FC = () => {
       {/* Create Playlist Modal */}
       <CreatePlaylistModal />
 
-      {/* Brand & Developer Modal */}
+      {/* ZXH OFFICIAL Brand & Developer Dossier Modal */}
       <BrandModal />
     </div>
   );

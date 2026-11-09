@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Search, Play, MoreVertical, Heart, Music, Disc } from 'lucide-react';
 import { useMusic } from '../context/MusicContext';
-import { LibraryTab, Playlist, Track } from '../types/music';
+import { LibraryTab, Playlist, Track, Artist } from '../types/music';
 import { CURATED_ARTISTS, CURATED_TRACKS } from '../data/curatedMusic';
 
 export const LibraryView: React.FC = () => {
@@ -170,7 +170,7 @@ export const LibraryView: React.FC = () => {
       {/* Tab Content: Artists */}
       {libraryTab === 'artists' && (
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {CURATED_ARTISTS.map((artist) => (
+          {CURATED_ARTISTS.map((artist: Artist) => (
             <div
               key={artist.id}
               onClick={() => {

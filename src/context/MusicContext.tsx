@@ -20,6 +20,13 @@ import {
   loadStoredShuffle,
   saveStoredShuffle,
 } from '../utils/storage';
+import {
+  isSfxEnabled,
+  setSfxEnabled,
+  playNeedleDrop,
+  playLikeChime,
+  playUiClick,
+} from '../utils/soundEffects';
 
 interface MusicContextType {
   currentTrack: Track | null;
@@ -40,6 +47,8 @@ interface MusicContextType {
   recentlyPlayed: Track[];
   audioError: string | null;
   isLoadingAudio: boolean;
+  sfxEnabled: boolean;
+  searchQuery: string;
 
   // Actions
   playTrack: (track: Track, queueContext?: Track[]) => void;
@@ -64,6 +73,8 @@ interface MusicContextType {
   setActiveTab: (tab: NavTab) => void;
   setGenreFilter: (genre: string) => void;
   importLocalAudio: (file: File) => void;
+  toggleSfx: () => void;
+  setSearchQuery: (q: string) => void;
   selectedPlaylist: Playlist | null;
   setSelectedPlaylist: (playlist: Playlist | null) => void;
   showCreatePlaylistModal: boolean;
@@ -90,18 +101,33 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [queue, setQueue] = useState<Track[]>(CURATED_TRACKS);
   const [queueIndex, setQueueIndex] = useState<number>(0);
   const [isPlayerOpen, setIsPlayerOpen] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<NavTab>('home');
+  const [activeTab, setActiveTabState] = useState<NavTab>('home');
   const [genreFilter, setGenreFilter] = useState<string>('All');
   const [playlists, setPlaylists] = useState<Playlist[]>(loadStoredPlaylists);
   const [likedTrackIds, setLikedTrackIds] = useState<Set<string>>(() => new Set(loadStoredLikedTracks()));
   const [recentlyPlayed, setRecentlyPlayed] = useState<Track[]>(loadStoredRecentlyPlayed);
   const [audioError, setAudioError] = useState<string | null>(null);
   const [isLoadingAudio, setIsLoadingAudio] = useState<boolean>(false);
+  const [sfxEnabled, setSfxEnabledState] = useState<boolean>(isSfxEnabled);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Modals
   const [selectedPlaylist, setSelectedPlaylist] = useState<Playlist | null>(null);
   const [showCreatePlaylistModal, setShowCreatePlaylistModal] = useState<boolean>(false);
   const [showBrandModal, setShowBrandModal] = useState<boolean>(false);
+
+  const setActiveTab = useCallback((tab: NavTab) => {
+    setActiveTabState(tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const toggleSfx = useCallback(() => {
+    setSfxEnabledState((prev) => {
+      const next = !prev;
+      setSfxEnabled(next);
+      return next;
+    });
+  }, []);
 
   // Initialize Audio element once
   useEffect(() => {
@@ -139,7 +165,7 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const handleError = () => {
       setIsLoadingAudio(false);
       setIsPlaying(false);
-      setAudioError('Audio playback failed or network preview stream unavailable.');
+      setAudioError('Audio preview stream unavailable or network blocked.');
     };
 
     audio.addEventListener('timeupdate', handleTimeUpdate);
@@ -183,7 +209,7 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         audioRef.current.src = nextTrackObj.audioUrl;
         audioRef.current.currentTime = 0;
         audioRef.current.play().catch((err) => {
-          console.warn('Auto play next track was prevented:', err);
+          console.warn('Auto play next track prevented:', err);
         });
       }
       addToRecentlyPlayed(nextTrackObj);
@@ -235,8 +261,9 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       const audio = audioRef.current;
       if (!audio) return;
 
+      playNeedleDrop();
+
       let targetQueue = newQueue || queue;
-      // If track is not in current queue, prepend or make queue
       let trackIdx = targetQueue.findIndex((t) => t.id === track.id);
       if (trackIdx === -1) {
         targetQueue = [track, ...targetQueue];
@@ -260,7 +287,7 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           setIsLoadingAudio(false);
         })
         .catch((err) => {
-          console.warn('Playback error or user gesture needed:', err);
+          console.warn('Playback error or gesture needed:', err);
           setIsLoadingAudio(false);
           setIsPlaying(false);
         });
@@ -273,6 +300,8 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const togglePlay = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
+    playUiClick();
 
     if (isPlaying) {
       audio.pause();
@@ -326,6 +355,7 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [isMuted]);
 
   const toggleMute = useCallback(() => {
+    playUiClick();
     if (isMuted) {
       setIsMuted(false);
       setVolumeState(prevVolume || 0.85);
@@ -336,10 +366,12 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [isMuted, volume, prevVolume]);
 
   const nextTrack = useCallback(() => {
+    playUiClick();
     nextTrackInternal();
   }, [nextTrackInternal]);
 
   const previousTrack = useCallback(() => {
+    playUiClick();
     const prevIdx = getPreviousTrackIndex(queueIndex, queue.length);
     if (queue[prevIdx]) {
       const prevTrack = queue[prevIdx];
@@ -355,16 +387,15 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [queueIndex, queue]);
 
   const toggleShuffle = useCallback(() => {
+    playUiClick();
     setIsShuffled((prev) => {
       const nextVal = !prev;
       saveStoredShuffle(nextVal);
       if (nextVal) {
-        // shuffle queue retaining current track at top
         const shuffled = shuffleQueue(queue, queueIndex);
         setQueue(shuffled);
         setQueueIndex(0);
       } else {
-        // reset to original
         setQueue(CURATED_TRACKS);
         const idx = CURATED_TRACKS.findIndex((t) => t.id === currentTrack?.id);
         setQueueIndex(idx >= 0 ? idx : 0);
@@ -374,6 +405,7 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [queue, queueIndex, currentTrack]);
 
   const cycleRepeat = useCallback(() => {
+    playUiClick();
     setRepeatMode((prev) => {
       const nextMode: RepeatMode = prev === 'off' ? 'all' : prev === 'all' ? 'one' : 'off';
       saveStoredRepeat(nextMode);
@@ -386,8 +418,10 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       const copy = new Set(prev);
       if (copy.has(track.id)) {
         copy.delete(track.id);
+        playUiClick();
       } else {
         copy.add(track.id);
+        playLikeChime();
       }
       saveStoredLikedTracks(Array.from(copy));
       return copy;
@@ -507,6 +541,8 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         recentlyPlayed,
         audioError,
         isLoadingAudio,
+        sfxEnabled,
+        searchQuery,
 
         playTrack,
         togglePlay,
@@ -530,6 +566,8 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setActiveTab,
         setGenreFilter,
         importLocalAudio,
+        toggleSfx,
+        setSearchQuery,
         selectedPlaylist,
         setSelectedPlaylist,
         showCreatePlaylistModal,

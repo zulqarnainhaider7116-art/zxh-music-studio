@@ -16,6 +16,7 @@ export interface Track {
   isCurated?: boolean;
   lyrics?: string[];
   externalUrl?: string;
+  category?: 'hindi' | 'punjabi' | 'naats' | 'english' | 'general';
 }
 
 export interface Playlist {
@@ -36,6 +37,7 @@ export interface Artist {
   coverUrl: string;
   monthlyListeners?: string;
   topTracks: Track[];
+  genre?: string;
 }
 
 export interface Album {
@@ -49,5 +51,5 @@ export interface Album {
 
 export type RepeatMode = 'off' | 'all' | 'one';
 
-export type NavTab = 'home' | 'explore' | 'library' | 'search';
+export type NavTab = 'home' | 'explore' | 'hindi' | 'punjabi' | 'naats' | 'playlists' | 'search';
 export type LibraryTab = 'playlists' | 'artists' | 'albums' | 'liked';

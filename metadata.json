@@ -1,6 +1,6 @@
 {
   "name": "ZXH MUSIC STUDIO",
-  "description": "Premium dark cinematic music streaming platform inspired by NOIR aesthetics, crafted by ZULQARNAIN X HAIDER for ZXH OFFICIAL.",
+  "description": "Discover Hindi, Bollywood, Punjabi, English music, Naats, Nasheeds, trending songs, artists, and playlists with ZXH MUSIC STUDIO, crafted by ZULQARNAIN X HAIDER for ZXH OFFICIAL.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

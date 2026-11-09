@@ -13,12 +13,15 @@ import { CreatePlaylistModal } from './components/CreatePlaylistModal';
 import { BrandModal } from './components/BrandModal';
 import { Footer } from './components/Footer';
 import { FloatingMusicBot } from './components/FloatingMusicBot';
+import { ThemeSwitcher } from './components/ThemeSwitcher';
+import { InstallPrompt } from './components/InstallPrompt';
 
 const AppContent: React.FC = () => {
   const { activeTab, setActiveTab } = useMusic();
   const activeTabRef = useRef(activeTab);
   activeTabRef.current = activeTab;
   useEffect(() => {
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
     window.history.pushState({ zxhMusic: true }, '');
     const handleBack = () => {
       if (activeTabRef.current !== 'home') setActiveTab('home');
@@ -63,6 +66,8 @@ const AppContent: React.FC = () => {
       <BrandModal />
 
       <FloatingMusicBot />
+      <ThemeSwitcher />
+      <InstallPrompt />
     </div>
   );
 };

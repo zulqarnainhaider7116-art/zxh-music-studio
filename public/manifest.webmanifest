@@ -1,0 +1,19 @@
+{
+  "name": "ZXH MUSIC STUDIO",
+  "short_name": "ZXH Music",
+  "description": "Discover Hindi, Bollywood, Punjabi, English music, Naats and Nasheeds.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

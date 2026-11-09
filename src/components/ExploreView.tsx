@@ -58,7 +58,7 @@ export const ExploreView: React.FC = () => {
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950/40 text-red-400 text-xs font-semibold mb-3 border border-red-800/40">
           <Compass className="w-3.5 h-3.5" /><span>ZXH MUSIC DISCOVERY</span>
         </div>
-        <h1 className="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">Explore Every Sound</h1>
+        <h1 className="font-serif-title text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight">Explore Every Sound</h1>
         <p className="text-sm text-slate-400 mt-2 max-w-2xl">Discover Hindi, Punjabi, Urdu Naats, Arabic Nasheeds, international music and collections for every mood.</p>
       </header>
 

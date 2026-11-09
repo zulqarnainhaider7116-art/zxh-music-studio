@@ -94,7 +94,6 @@ export const HomeDiscover: React.FC = () => {
     };
   }, []);
 
-  const featuredHeroTrack = CURATED_TRACKS[1]; // Kesariya by Arijit Singh & Pritam
   const featuredPlaylist = CURATED_PLAYLISTS[0]; // Midnight Vibes
 
   const handleMoodClick = (query: string) => {
@@ -123,15 +122,15 @@ export const HomeDiscover: React.FC = () => {
         <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-rose-700/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 gap-8 lg:gap-12 items-center">
             {/* Left Hero Content */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div className="w-full max-w-5xl space-y-6 text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-800/40 text-red-400 text-xs font-semibold uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.25)]">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>ZXH MUSIC STUDIO · PREMIER STREAMING</span>
               </div>
 
-              <h1 className="font-serif-title text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
+              <h1 className="font-serif-title text-5xl sm:text-7xl xl:text-8xl font-extrabold tracking-tight text-white leading-[1.08]">
                 MUSIC BEYOND <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-amber-300 italic font-normal drop-shadow-[0_0_35px_rgba(239,68,68,0.35)]">
                   BOUNDARIES.
@@ -143,15 +142,7 @@ export const HomeDiscover: React.FC = () => {
               </p>
 
               {/* Action Buttons */}
-              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
-                <button
-                  onClick={() => playTrack(featuredHeroTrack, CURATED_TRACKS)}
-                  className="flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-500 hover:to-rose-500 text-white font-semibold text-sm shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-105 active:scale-95 transition-all"
-                >
-                  <Play className="w-4 h-4 fill-white" />
-                  <span>Play Featured · {featuredHeroTrack.title}</span>
-                </button>
-
+              <div className="pt-2 flex flex-wrap items-center justify-start gap-4">
                 <button
                   onClick={() => setActiveTab('explore')}
                   className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-red-500/30 text-slate-200 font-medium text-sm transition-all"
@@ -161,49 +152,11 @@ export const HomeDiscover: React.FC = () => {
                 </button>
               </div>
 
-              <p className="pt-2 text-xs sm:text-sm text-slate-400 mx-auto lg:mx-0">
+              <p className="pt-2 text-xs sm:text-sm text-slate-400 ">
                 Explore Hindi, Punjabi, Naats and international music in one place.
               </p>
             </div>
 
-            {/* Right Hero Artwork Card */}
-            <div className="lg:col-span-5 flex justify-center mt-2 lg:mt-0">
-              <div 
-                onClick={() => playTrack(featuredHeroTrack, CURATED_TRACKS)}
-                className="relative group w-full max-w-[300px] sm:max-w-[340px] aspect-square lg:max-w-md lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-red-500/20 cursor-pointer"
-              >
-                <img
-                  src={featuredHeroTrack.coverUrl}
-                  alt={featuredHeroTrack.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#08080c] via-black/30 to-transparent" />
-
-                {/* Overlaid Vinyl Spin Badge */}
-                <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-red-500 shadow-xl group-hover:rotate-90 transition-transform duration-500">
-                  <Disc className="w-6 h-6 animate-spin-slow" />
-                </div>
-
-                {/* Overlaid Card Info */}
-                <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-red-400">
-                      Now Trending Worldwide
-                    </span>
-                    <h3 className="font-serif-title text-2xl font-bold text-white drop-shadow">
-                      {featuredHeroTrack.title}
-                    </h3>
-                    <p className="text-xs text-slate-300">
-                      {featuredHeroTrack.artist} · {featuredHeroTrack.album}
-                    </p>
-                  </div>
-
-                  <div className="w-13 h-13 rounded-full bg-red-600 text-white flex items-center justify-center shadow-[0_0_20px_#ef4444] group-hover:scale-110 active:scale-95 transition-all shrink-0">
-                    <Play className="w-6 h-6 fill-white translate-x-0.5" />
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

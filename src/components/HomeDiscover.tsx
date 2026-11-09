@@ -470,14 +470,14 @@ export const HomeDiscover: React.FC = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {liveNaats.slice(0, 4).map((track) => {
+          <div className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory no-scrollbar">
+            {liveNaats.slice(0, 12).map((track) => {
               const isCurrent = currentTrack?.id === track.id;
               return (
                 <div
                   key={track.id}
                   onClick={() => playTrack(track, liveNaats)}
-                  className={`group relative p-4 rounded-2xl border transition-all cursor-pointer ${
+                  className={`group relative w-[220px] sm:w-[250px] shrink-0 snap-start p-4 rounded-2xl border transition-all cursor-pointer ${
                     isCurrent
                       ? 'bg-emerald-950/60 border-emerald-500/60 shadow-[0_0_20px_rgba(16,185,129,0.25)]'
                       : 'bg-[#0a1410]/70 hover:bg-[#0e1d17] border-emerald-900/20 hover:border-emerald-500/40'

@@ -12,6 +12,7 @@ import { PlaylistDetailModal } from './components/PlaylistDetailModal';
 import { CreatePlaylistModal } from './components/CreatePlaylistModal';
 import { BrandModal } from './components/BrandModal';
 import { Footer } from './components/Footer';
+import { FloatingMusicBot } from './components/FloatingMusicBot';
 
 const AppContent: React.FC = () => {
   const { activeTab } = useMusic();
@@ -49,6 +50,8 @@ const AppContent: React.FC = () => {
 
       {/* ZXH OFFICIAL Brand & Developer Dossier Modal */}
       <BrandModal />
+
+      <FloatingMusicBot />
     </div>
   );
 };

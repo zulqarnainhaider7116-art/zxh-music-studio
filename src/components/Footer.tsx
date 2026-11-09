@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="w-full border-t border-white/[0.08] bg-[#07070a] text-slate-400 pt-16 pb-36 px-4 sm:px-6 lg:px-8 mt-16">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+      <div className="w-full max-w-[1600px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
         {/* Col 1: Brand & Identity */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center gap-3">
@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
               <Disc className="w-5 h-5 text-red-500" />
             </div>
             <div>
-              <span className="font-brand-title text-lg font-bold tracking-widest text-white block">
+              <span className="font-brand-title text-xl sm:text-2xl font-bold tracking-widest text-white block">
                 ZXH MUSIC STUDIO
               </span>
               <span className="text-[10px] tracking-[0.2em] text-red-400 uppercase font-semibold">
@@ -159,7 +159,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Legal Bar */}
-      <div className="max-w-7xl mx-auto pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between text-xs gap-4">
+      <div className="w-full max-w-[1600px] mx-auto pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between text-xs gap-4">
         <p className="text-slate-400 text-center sm:text-left">
           © {new Date().getFullYear()} <strong className="text-slate-200">ZXH MUSIC STUDIO</strong>. All rights reserved. Powered by <strong className="text-red-400">ZXH OFFICIAL</strong>.
         </p>

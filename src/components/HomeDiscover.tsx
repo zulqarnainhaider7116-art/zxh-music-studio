@@ -50,6 +50,7 @@ export const HomeDiscover: React.FC = () => {
   const [livePunjabi, setLivePunjabi] = useState<Track[]>(PUNJABI_TRACKS);
   const [liveNaats, setLiveNaats] = useState<Track[]>(NAATS_TRACKS);
   const [liveEnglish, setLiveEnglish] = useState<Track[]>(ENGLISH_TRACKS);
+  const [liveTrending, setLiveTrending] = useState<Track[]>(CURATED_TRACKS);
   const [hindiSubFilter, setHindiSubFilter] = useState<'all' | 'romantic' | 'sad' | 'hits'>('all');
   const [punjabiSubFilter, setPunjabiSubFilter] = useState<'all' | 'hits' | 'vibes'>('all');
 
@@ -58,11 +59,12 @@ export const HomeDiscover: React.FC = () => {
     let isMounted = true;
     async function loadData() {
       try {
-        const [hindiRes, punjabiRes, naatsRes, englishRes] = await Promise.allSettled([
+        const [hindiRes, punjabiRes, naatsRes, englishRes, trendingRes] = await Promise.allSettled([
           searchCategoryTracks('hindi'),
           searchCategoryTracks('punjabi'),
           searchCategoryTracks('naats'),
           searchCategoryTracks('english'),
+          searchCategoryTracks('trending'),
         ]);
 
         if (isMounted) {
@@ -77,6 +79,9 @@ export const HomeDiscover: React.FC = () => {
           }
           if (englishRes.status === 'fulfilled' && englishRes.value.length > 0) {
             setLiveEnglish(englishRes.value);
+          }
+          if (trendingRes.status === 'fulfilled' && trendingRes.value.length > 0) {
+            setLiveTrending(trendingRes.value);
           }
         }
       } catch (err) {
@@ -117,10 +122,10 @@ export const HomeDiscover: React.FC = () => {
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/15 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-rose-700/10 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Hero Content */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div className="lg:col-span-7 space-y-6 text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-800/40 text-red-400 text-xs font-semibold uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.25)]">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>ZXH MUSIC STUDIO · PREMIER STREAMING</span>
@@ -133,12 +138,12 @@ export const HomeDiscover: React.FC = () => {
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-300 max-w-xl font-normal leading-relaxed">
                 Discover the sounds, artists, and music that define every moment. From timeless Bollywood melodies and electrifying Punjabi beats to tranquil Naats and international pop.
               </p>
 
               {/* Action Buttons */}
-              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+              <div className="pt-2 flex flex-wrap items-center justify-start gap-4">
                 <button
                   onClick={() => playTrack(featuredHeroTrack, CURATED_TRACKS)}
                   className="flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-500 hover:to-rose-500 text-white font-semibold text-sm shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-105 active:scale-95 transition-all"
@@ -156,30 +161,16 @@ export const HomeDiscover: React.FC = () => {
                 </button>
               </div>
 
-              {/* Sub-hero quick metrics */}
-              <div className="pt-4 flex items-center justify-center lg:justify-start gap-8 text-xs text-slate-400 font-medium">
-                <div>
-                  <span className="block text-lg font-bold text-white font-mono">10M+</span>
-                  <span className="text-[11px] uppercase tracking-wider text-slate-400">Authentic Tracks</span>
-                </div>
-                <div className="w-[1px] h-8 bg-white/[0.1]" />
-                <div>
-                  <span className="block text-lg font-bold text-white font-mono">256 kbps</span>
-                  <span className="text-[11px] uppercase tracking-wider text-slate-400">Studio Audio</span>
-                </div>
-                <div className="w-[1px] h-8 bg-white/[0.1]" />
-                <div>
-                  <span className="block text-lg font-bold text-white font-mono">100%</span>
-                  <span className="text-[11px] uppercase tracking-wider text-slate-400">Real Previews</span>
-                </div>
-              </div>
+              <p className="pt-2 text-xs sm:text-sm text-slate-400">
+                Explore Hindi, Punjabi, Naats and international music in one place.
+              </p>
             </div>
 
             {/* Right Hero Artwork Card */}
             <div className="lg:col-span-5 flex justify-center">
               <div 
                 onClick={() => playTrack(featuredHeroTrack, CURATED_TRACKS)}
-                className="relative group w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-red-500/20 cursor-pointer"
+                className="relative group w-full max-w-[360px] aspect-square lg:max-w-md lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-red-500/20 cursor-pointer"
               >
                 <img
                   src={featuredHeroTrack.coverUrl}
@@ -217,7 +208,7 @@ export const HomeDiscover: React.FC = () => {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 space-y-12 md:space-y-16">
         {/* ======================================================== */}
         {/* SECTION B: TRENDING NOW (Smooth Horizontal Rail)         */}
         {/* ======================================================== */}
@@ -242,14 +233,14 @@ export const HomeDiscover: React.FC = () => {
           </div>
 
           {/* Horizontal scroll track rail */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {CURATED_TRACKS.slice(0, 6).map((track) => {
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            {liveTrending.slice(0, 12).map((track) => {
               const isCurrent = currentTrack?.id === track.id;
               const liked = isLiked(track.id);
               return (
                 <div
                   key={track.id}
-                  onClick={() => playTrack(track, CURATED_TRACKS)}
+                  onClick={() => playTrack(track, liveTrending)}
                   className={`group relative bg-[#12121a] hover:bg-[#181824] p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
                     isCurrent
                       ? 'border-red-500/50 shadow-[0_0_20px_rgba(239,68,68,0.25)]'

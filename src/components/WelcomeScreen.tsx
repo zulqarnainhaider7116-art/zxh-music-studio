@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Headphones, Music2, Sparkles, Play, Disc3 } from 'lucide-react';
+import { ArrowRight, Headphones, Music2, Sparkles, Play, Disc3, Bot } from 'lucide-react';
 type WelcomeScreenProps = { onGetStarted: () => void; onGuestContinue: () => void };
 const boyArtwork = 'https://raw.githubusercontent.com/zulqarnainhaider7116-art/Login-dashboard-/main/src/assets/boy.png';
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onGetStarted, onGuestContinue }) => (
 <main className="zxh-welcome min-h-screen relative overflow-hidden flex flex-col">
-<div className="zxh-welcome-orb zxh-orb-one"/><div className="zxh-welcome-orb zxh-orb-two"/>
+<div className="zxh-welcome-orb zxh-orb-one"/><div className="zxh-welcome-orb zxh-orb-two"/><div className="zxh-robot-welcome"><span className="zxh-robot-welcome-icon"><Bot size={22}/></span><span><b>ZXH MUSIC BOT</b><small>Your friendly music buddy</small></span></div>
 <header className="zxh-welcome-header relative z-10"><a className="zxh-welcome-brand" href="#" onClick={e=>e.preventDefault()}><span className="zxh-brand-mark"><Music2 size={22}/></span><span><strong>ZXH MUSIC STUDIO</strong><small>DISCOVER MUSIC BEYOND BOUNDARIES</small></span></a><div className="zxh-welcome-header-actions"><button className="zxh-guest-link" onClick={onGuestContinue}>Continue as Guest</button><button className="zxh-login-link" onClick={onGetStarted}>Log In <ArrowRight size={16}/></button></div></header>
 <section className="zxh-welcome-content relative z-10">
 <motion.div className="zxh-welcome-copy" initial={{opacity:0,x:-28}} animate={{opacity:1,x:0}} transition={{duration:.65}}><div className="zxh-eyebrow"><Sparkles size={14}/> YOUR PERSONAL MUSIC UNIVERSE</div><h1>Every beat has a story.<br/><span>Make yours play.</span></h1><p>Discover your favourite songs, explore fresh sounds, and enjoy a music experience designed around you. Your next favourite track is just one play away.</p><div className="zxh-welcome-cta-row"><button className="zxh-primary-cta" onClick={onGetStarted}>Enter Music Studio <ArrowRight size={19}/></button><button className="zxh-secondary-cta" onClick={onGuestContinue}><Play size={16} fill="currentColor"/> Explore as Guest</button></div><div className="zxh-welcome-proof"><span><Headphones size={17}/> Music, your way</span><i/><span><Disc3 size={17}/> Made for discovery</span></div></motion.div>

@@ -162,6 +162,26 @@ export const HomeDiscover: React.FC = () => {
       </section>
 
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 space-y-12 md:space-y-16">
+        {/* FEATURED NAATS — 12 live devotional selections */}
+        <section className="relative overflow-hidden rounded-[34px] border border-white/90 bg-gradient-to-br from-white via-blue-50 to-cyan-50 p-5 sm:p-7 md:p-9 shadow-[12px_12px_28px_rgba(148,163,184,.22),-10px_-10px_26px_rgba(255,255,255,.95)]">
+          <div className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-cyan-200/35 blur-3xl pointer-events-none"/>
+          <div className="relative z-10 flex flex-wrap items-end justify-between gap-3 mb-6">
+            <div><span className="inline-flex items-center gap-2 rounded-full bg-white/80 border border-blue-100 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[.2em] text-blue-700"><Sparkles className="w-3.5 h-3.5"/> Featured Collection</span><h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900">Featured Naats</h2><p className="mt-2 max-w-xl text-sm sm:text-base text-slate-600">A dedicated collection of Urdu Naats and peaceful Nasheeds.</p></div>
+            <button onClick={() => setActiveTab('naats')} className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-extrabold text-blue-700 shadow-[5px_5px_12px_rgba(148,163,184,.2),-4px_-4px_10px_white] border border-blue-100">Explore Naats <ChevronRight className="w-4 h-4"/></button>
+          </div>
+          <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-4">
+            {liveNaats.slice(0, 12).map((track) => {
+              const isCurrent = currentTrack?.id === track.id;
+              return <button key={track.id} onClick={() => playTrack(track, liveNaats)} className="group min-w-0 text-left rounded-[24px] border border-white bg-white/85 p-2.5 sm:p-3 shadow-[7px_7px_16px_rgba(148,163,184,.2),-6px_-6px_14px_white] hover:-translate-y-1 transition-all">
+                <div className="relative aspect-square overflow-hidden rounded-[18px] bg-blue-50"><img src={track.coverUrl} alt={track.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"/><span className="absolute bottom-2 right-2 flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg"><Play className="h-4 w-4 fill-current ml-0.5"/></span></div>
+                <span className="mt-3 block truncate text-sm font-extrabold text-slate-900">{track.title}</span><span className="mt-1 block truncate text-xs text-slate-500">{track.artist}</span>
+                {isCurrent && <span className="mt-2 inline-flex rounded-full bg-blue-50 px-2 py-1 text-[10px] font-bold text-blue-700">Now playing</span>}
+              </button>;
+            })}
+          </div>
+          {liveNaats.length < 10 && <p className="relative z-10 mt-4 text-xs text-slate-500">More Naats are being fetched from the live music catalogue…</p>}
+        </section>
+
         {/* ======================================================== */}
         {/* SECTION B: TRENDING NOW (Smooth Horizontal Rail)         */}
         {/* ======================================================== */}
@@ -248,25 +268,6 @@ export const HomeDiscover: React.FC = () => {
           </div>
         </section>
 
-        {/* FEATURED NAATS — 12 live devotional selections */}
-        <section className="relative overflow-hidden rounded-[34px] border border-white/90 bg-gradient-to-br from-white via-blue-50 to-cyan-50 p-5 sm:p-7 md:p-9 shadow-[12px_12px_28px_rgba(148,163,184,.22),-10px_-10px_26px_rgba(255,255,255,.95)]">
-          <div className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-cyan-200/35 blur-3xl pointer-events-none"/>
-          <div className="relative z-10 flex flex-wrap items-end justify-between gap-3 mb-6">
-            <div><span className="inline-flex items-center gap-2 rounded-full bg-white/80 border border-blue-100 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[.2em] text-blue-700"><Sparkles className="w-3.5 h-3.5"/> Featured Collection</span><h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900">Featured Naats</h2><p className="mt-2 max-w-xl text-sm sm:text-base text-slate-600">A dedicated collection of Urdu Naats and peaceful Nasheeds.</p></div>
-            <button onClick={() => setActiveTab('naats')} className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-extrabold text-blue-700 shadow-[5px_5px_12px_rgba(148,163,184,.2),-4px_-4px_10px_white] border border-blue-100">Explore Naats <ChevronRight className="w-4 h-4"/></button>
-          </div>
-          <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-4">
-            {liveNaats.slice(0, 12).map((track) => {
-              const isCurrent = currentTrack?.id === track.id;
-              return <button key={track.id} onClick={() => playTrack(track, liveNaats)} className="group min-w-0 text-left rounded-[24px] border border-white bg-white/85 p-2.5 sm:p-3 shadow-[7px_7px_16px_rgba(148,163,184,.2),-6px_-6px_14px_white] hover:-translate-y-1 transition-all">
-                <div className="relative aspect-square overflow-hidden rounded-[18px] bg-blue-50"><img src={track.coverUrl} alt={track.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"/><span className="absolute bottom-2 right-2 flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg"><Play className="h-4 w-4 fill-current ml-0.5"/></span></div>
-                <span className="mt-3 block truncate text-sm font-extrabold text-slate-900">{track.title}</span><span className="mt-1 block truncate text-xs text-slate-500">{track.artist}</span>
-                {isCurrent && <span className="mt-2 inline-flex rounded-full bg-blue-50 px-2 py-1 text-[10px] font-bold text-blue-700">Now playing</span>}
-              </button>;
-            })}
-          </div>
-          {liveNaats.length < 10 && <p className="relative z-10 mt-4 text-xs text-slate-500">More Naats are being fetched from the live music catalogue…</p>}
-        </section>
         {/* ======================================================== */}
         {/* SECTION C: HINDI & BOLLYWOOD                             */}
         {/* ======================================================== */}

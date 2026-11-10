@@ -89,7 +89,6 @@ export const ProfileView: React.FC = () => {
     }
   },[wallpapers,activeWallpaperId]);
 
-  useEffect(() => () => { wallpapers.forEach(item => URL.revokeObjectURL(item.src)); },[wallpapers]);
 
   const timer=String(Math.floor(remaining/60)).padStart(2,'0')+':'+String(remaining%60).padStart(2,'0');
   const links=[

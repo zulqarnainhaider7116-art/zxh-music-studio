@@ -28,76 +28,65 @@ interface ITunesResponse {
 
 const cache = new Map<string, Track[]>();
 
+const LOCAL_SEARCH_CATALOG = Array.from(
+  new Map([...CURATED_TRACKS, ...HINDI_TRACKS, ...PUNJABI_TRACKS, ...NAATS_TRACKS, ...ENGLISH_TRACKS].map((track) => [track.id, track])).values()
+);
+
+function searchLocalCatalog(query: string): Track[] {
+  const normalized = query.toLowerCase().replace(/[^\\p{L}\\p{N} ]/gu, ' ').trim();
+  const terms = normalized.split(/\\s+/).filter(Boolean);
+  const devotional = /naat|naats|nasheed|nasheeds|islamic|urdu|hamd|madina|nabi|rasool|durood|qadri/i.test(normalized);
+  const source = devotional ? LOCAL_SEARCH_CATALOG.filter((track) => track.category === 'naats' || /naat|nasheed|islamic/i.test(track.genre || '')) : LOCAL_SEARCH_CATALOG;
+  return source.filter((track) => {
+    const haystack = [track.title, track.artist, track.album, track.genre, track.category, ...(track.lyrics || [])].join(' ').toLowerCase();
+    return terms.every((term) => haystack.includes(term)) || (devotional && track.category === 'naats');
+  });
+}
+
 /**
- * Searches the official iTunes Search API for genuine tracks with real audio preview URLs
+ * Searches the official iTunes Search API and merges genuine preview results
+ * with the local catalogue so devotional tracks remain searchable when iTunes
+ * has no preview available for them.
  */
 export async function searchTracks(query: string, limit = 25): Promise<Track[]> {
   const trimmed = query.trim();
-  if (!trimmed) {
-    return CURATED_TRACKS;
-  }
+  if (!trimmed) return CURATED_TRACKS;
 
   const cacheKey = `${trimmed.toLowerCase()}_${limit}`;
-  if (cache.has(cacheKey)) {
-    return cache.get(cacheKey)!;
-  }
+  if (cache.has(cacheKey)) return cache.get(cacheKey)!;
 
+  const localMatches = searchLocalCatalog(trimmed);
   try {
     const encoded = encodeURIComponent(trimmed);
     const url = `https://itunes.apple.com/search?term=${encoded}&entity=song&limit=${limit}`;
-
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 6500);
-
     const res = await fetch(url, { signal: controller.signal });
     clearTimeout(timeoutId);
-
-    if (!res.ok) {
-      throw new Error(`iTunes API returned status ${res.status}`);
-    }
-
+    if (!res.ok) throw new Error(`iTunes API returned status ${res.status}`);
     const data: ITunesResponse = await res.json();
-
-    const tracks: Track[] = (data.results || [])
-      .filter((item) => item.previewUrl && item.trackName) // only keep tracks with genuine playable audio previews!
+    const remoteTracks: Track[] = (data.results || [])
+      .filter((item) => item.previewUrl && item.trackName)
       .map((item) => {
         const cover = upgradeArtworkResolution(item.artworkUrl100 || '', 600);
         const year = item.releaseDate ? new Date(item.releaseDate).getFullYear() : undefined;
-
         return {
-          id: `itunes-${item.trackId}`,
-          title: item.trackName,
-          artist: item.artistName,
-          album: item.collectionName || 'Single',
-          duration: parseDuration(item.trackTimeMillis || 30000),
-          audioUrl: item.previewUrl!,
-          coverUrl: cover || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80',
-          genre: item.primaryGenreName || 'Music',
-          releaseYear: year,
-          isLiked: false,
-          isCurated: false,
-          lyrics: [
-            `"${item.trackName}" by ${item.artistName}`,
-            `From the release "${item.collectionName || 'Single'}"`,
-            `Official preview audio stream provided via iTunes Search API.`,
-            `Available on Apple Music & official distribution channels.`
-          ],
+          id: `itunes-${item.trackId}`, title: item.trackName, artist: item.artistName,
+          album: item.collectionName || 'Single', duration: parseDuration(item.trackTimeMillis || 30000),
+          audioUrl: item.previewUrl!, coverUrl: cover || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80',
+          genre: item.primaryGenreName || 'Music', releaseYear: year, isLiked: false, isCurated: false,
+          lyrics: [`"${item.trackName}" by ${item.artistName}`, `From the release "${item.collectionName || 'Single'}"`, 'Official preview audio stream provided via iTunes Search API.', 'Available on Apple Music & official distribution channels.'],
           externalUrl: item.trackViewUrl,
         };
       });
-
-    cache.set(cacheKey, tracks);
-    return tracks;
+    const merged = Array.from(new Map([...localMatches, ...remoteTracks].map((track) => [track.id, track])).values());
+    const result = merged.length ? merged.slice(0, Math.max(limit, localMatches.length)) : [];
+    cache.set(cacheKey, result);
+    return result;
   } catch (err) {
-    console.warn('Real iTunes search API call failed or timed out, falling back to local catalog search:', err);
-    const lower = trimmed.toLowerCase();
-    const fallback = CURATED_TRACKS.filter(
-      (t) =>
-        t.title.toLowerCase().includes(lower) ||
-        t.artist.toLowerCase().includes(lower) ||
-        t.genre?.toLowerCase().includes(lower)
-    );
-    return fallback;
+    console.warn('iTunes search unavailable; using local catalogue matches:', err);
+    cache.set(cacheKey, localMatches);
+    return localMatches;
   }
 }
 

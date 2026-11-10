@@ -177,6 +177,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
       <header className="w-full max-w-[460px] mx-auto mb-3 z-30 flex items-center justify-between px-1">
         <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"/><span className="text-xs font-extrabold text-blue-800 uppercase tracking-[.18em]">ZXH Boys World</span></div>
         <div className="flex items-center gap-2">
+          <button onClick={() => setDisplayMode((mode) => mode === "card-overlap" ? "full-room" : "card-overlap")} className="p-2 rounded-full bg-white/85 text-blue-700 shadow-[5px_5px_12px_rgba(148,163,184,.22),-4px_-4px_10px_white] border border-white" title="Toggle full room view" aria-label="Toggle full room view">{displayMode === "card-overlap" ? <Smartphone className="w-4 h-4"/> : <Layers className="w-4 h-4"/>}</button>
           <button onClick={toggleSound} className="p-2 rounded-full bg-white/85 text-blue-700 shadow-[5px_5px_12px_rgba(148,163,184,.22),-4px_-4px_10px_white] border border-white" title={soundEnabled ? 'Mute Sounds' : 'Enable Sounds'} aria-label={soundEnabled ? 'Mute sound effects' : 'Enable sound effects'}>{soundEnabled ? <Volume2 className="w-4 h-4"/> : <VolumeX className="w-4 h-4"/>}</button>
           <button onClick={() => onGuestContinue?.()} className="px-4 py-2 rounded-full bg-white/85 text-blue-700 text-xs font-extrabold shadow-[5px_5px_12px_rgba(148,163,184,.22),-4px_-4px_10px_white] border border-white">Continue as Guest</button>
         </div>
@@ -280,34 +281,23 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
                   {authSuccess.type === 'login' ? 'Login Successful!' : 'Account Created!'}
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 max-w-xs">
-                  Welcome, <span className="font-bold text-slate-700">{authSuccess.user}</span>! You
-                  This is a demo preview; secure account authentication is not connected yet.
+                  Welcome, <span className="font-bold text-slate-700">{authSuccess.user}</span>! This is a demo preview; secure account authentication is not connected yet.
                 </p>
 
                 <div className="mt-5 flex flex-col gap-2 w-full">
                   <button
                     onClick={() => {
-                      triggerSound('pop');
-                      setAuthSuccess(null);
-                      setLoginIdentity('');
-                      setLoginPassword('');
-                      setSignupName('');
-                      setSignupEmail('');
-                      setSignupPassword('');
-                      setSignupConfirmPassword('');
-                      setLoginErrors({});
-                      setSignupErrors({});
+                      const email = authSuccess.type === 'login' ? loginIdentity : signupEmail;
+                      if (email.includes('@')) localStorage.setItem('zxh-user-email', email);
+                      if (authSuccess.type === 'signup' && signupName.trim()) localStorage.setItem('zxh-profile-name', signupName.trim());
+                      onGuestContinue?.();
                     }}
-                    className={`w-full py-3 px-6 rounded-full text-white font-bold text-xs tracking-wide transition-all cursor-pointer ${
-                      isGirl
-                        ? 'bg-[#8B5CF6] hover:bg-[#7C3AED] shadow-[0_5px_0_#6D28D9] active:translate-y-1 active:shadow-none'
-                        : 'bg-[#3B82F6] hover:bg-[#2563EB] shadow-[0_5px_0_#1D4ED8] active:translate-y-1 active:shadow-none'
-                    }`}
+                    className="w-full py-3 px-6 rounded-full text-white font-extrabold text-xs tracking-wide bg-gradient-to-r from-blue-500 to-blue-700 shadow-[0_5px_0_#1d4ed8] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
                   >
-                    Continue Journey
+                    Continue to Music Studio <ArrowRight className="inline w-4 h-4 ml-1"/>
                   </button>
                   <button
-                    onClick={handleBack}
+                    onClick={() => onGuestContinue?.()}
                     className="w-full py-2 px-4 rounded-full text-slate-600 hover:bg-slate-100 font-semibold text-xs transition-colors cursor-pointer"
                   >
                     Continue as Guest

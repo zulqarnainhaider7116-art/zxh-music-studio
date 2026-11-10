@@ -51,5 +51,5 @@ export interface Album {
 
 export type RepeatMode = 'off' | 'all' | 'one';
 
-export type NavTab = 'home' | 'explore' | 'hindi' | 'punjabi' | 'naats' | 'playlists' | 'search';
+export type NavTab = 'home' | 'explore' | 'hindi' | 'punjabi' | 'naats' | 'playlists' | 'search' | 'profile';
 export type LibraryTab = 'playlists' | 'artists' | 'albums' | 'liked';

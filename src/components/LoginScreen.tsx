@@ -157,17 +157,17 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
 
   return (
     <div
-      className={`min-h-screen w-full flex flex-col items-center justify-start sm:justify-center py-6 sm:py-10 px-4 transition-colors duration-500 relative overflow-x-hidden ${
+      className={`zxh-auth-screen min-h-screen w-full flex flex-col items-center justify-start sm:justify-center py-6 sm:py-10 px-4 lg:px-10 transition-colors duration-500 relative overflow-x-hidden ${
         isGirl
-          ? 'bg-gradient-to-br from-[#F5EEFB] via-[#FBF7FF] to-[#EFE4F8]'
-          : 'bg-gradient-to-br from-[#E8F2FE] via-[#F4F9FF] to-[#D9ECFE]'
+          ? 'bg-gradient-to-br from-pink-100/40 via-blue-100/25 to-cyan-100/35'
+          : 'bg-gradient-to-br from-pink-100/40 via-blue-100/25 to-cyan-100/35'
       }`}
     >
       {/* Ambient background glow orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className={`absolute -top-24 -left-24 w-96 h-96 rounded-full blur-3xl opacity-50 ${
-            isGirl ? 'bg-purple-300' : 'bg-blue-300'
+            isGirl ? 'bg-pink-300' : 'bg-pink-300'
           }`}
         />
         <div
@@ -177,8 +177,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
         />
       </div>
 
-      <header className="w-full max-w-[460px] mx-auto mb-3 z-30 flex items-center justify-between px-1">
-        <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"/><span className="text-xs font-extrabold text-blue-800 uppercase tracking-[.18em]">ZXH Boys World</span></div>
+      <header className="w-full max-w-[1120px] mx-auto mb-3 z-30 flex items-center justify-between px-1">
+        <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"/><span className="text-xs font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-600 uppercase tracking-[.18em]">ZXH Boys World</span></div>
         <div className="flex items-center gap-2">
           <button onClick={() => setDisplayMode((mode) => mode === "card-overlap" ? "full-room" : "card-overlap")} className="p-2 rounded-full bg-white/85 text-blue-700 shadow-[5px_5px_12px_rgba(148,163,184,.22),-4px_-4px_10px_white] border border-white" title="Toggle full room view" aria-label="Toggle full room view">{displayMode === "card-overlap" ? <Smartphone className="w-4 h-4"/> : <Layers className="w-4 h-4"/>}</button>
           <button onClick={toggleSound} className="p-2 rounded-full bg-white/85 text-blue-700 shadow-[5px_5px_12px_rgba(148,163,184,.22),-4px_-4px_10px_white] border border-white" title={soundEnabled ? 'Mute Sounds' : 'Enable Sounds'} aria-label={soundEnabled ? 'Mute sound effects' : 'Enable sound effects'}>{soundEnabled ? <Volume2 className="w-4 h-4"/> : <VolumeX className="w-4 h-4"/>}</button>
@@ -187,7 +187,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
       </header>
 
       {/* Main Container */}
-      <div className="w-full max-w-[400px] relative z-10 mt-36 sm:mt-40 mb-4">
+      <div className="w-full max-w-[1120px] relative z-10 mt-36 sm:mt-40 lg:mt-6 mb-4 lg:grid lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-12">
         {/* ========================================================
             THE 3D CHARACTER (CRUCIAL):
             Position absolute, pops out of the card.
@@ -197,7 +197,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
         <motion.div
           animate={{ y: [0, -6, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-[160px] sm:-top-[180px] left-1/2 -translate-x-1/2 z-20 w-[330px] sm:w-[365px] pointer-events-none"
+          className="absolute -top-[160px] sm:-top-[180px] left-1/2 -translate-x-1/2 z-20 w-[330px] sm:w-[365px] pointer-events-none lg:relative lg:top-auto lg:left-auto lg:translate-x-0 lg:col-start-1 lg:row-start-1 lg:w-full lg:max-w-[500px] lg:justify-self-center lg:self-center"
         >
           <img
             src={characterImg}
@@ -215,13 +215,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-          className="w-full bg-[#F8F9FA] rounded-[50px] shadow-2xl shadow-slate-500/20 border border-white/80 pt-16 sm:pt-18 pb-7 px-6 sm:px-7 relative z-10 overflow-visible"
+          className="w-full max-w-[520px] mx-auto bg-white/35 backdrop-blur-2xl rounded-[34px] sm:rounded-[42px] lg:rounded-[48px] shadow-[0_28px_90px_rgba(40,70,130,.18)] border border-white/55 pt-16 sm:pt-18 pb-7 px-6 sm:px-7 lg:px-9 relative z-10 overflow-visible lg:col-start-2 lg:row-start-1"
         >
           {/* Card Header with Claymorphic Auth Mode Switcher */}
           <div className="text-center mb-4">
             <h1
               className={`text-2xl sm:text-[26px] font-extrabold tracking-tight font-display leading-tight ${
-                isGirl ? 'text-[#6D28D9]' : 'text-[#1D4ED8]'
+                isGirl ? 'text-[#6D28D9]' : 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-600'
               }`}
             >
               {authMode === 'login' ? 'Welcome Back' : isGirl ? 'Join Girls World' : 'Join Boys World'}
@@ -231,7 +231,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
             </p>
 
             {/* Tactile 3D Clay Mode Switcher Pill */}
-            <div className="inline-flex items-center p-1 mt-3 bg-[#EEF2F6] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.06),0_1px_2px_rgba(255,255,255,0.8)] border border-slate-200/50">
+            <div className="inline-flex items-center p-1 mt-3 bg-white/30 backdrop-blur-xl rounded-full shadow-[inset_0_1px_4px_rgba(255,255,255,.45)] border border-white/45">
               <button
                 type="button"
                 onClick={() => switchAuthMode('login')}
@@ -323,7 +323,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
                 {/* Pill Username/Email Input */}
                 <div>
                   <div
-                    className={`relative flex items-center bg-[#F1F3F5] rounded-full p-1 transition-all focus-within:ring-2 ${
+                    className={`relative flex items-center bg-white/35 backdrop-blur-xl rounded-full p-1 border border-white/45 transition-all focus-within:ring-2 ${
                       isGirl
                         ? 'focus-within:ring-purple-400 focus-within:bg-white focus-within:shadow-md'
                         : 'focus-within:ring-blue-400 focus-within:bg-white focus-within:shadow-md'
@@ -418,7 +418,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
                       setShowForgotModal(true);
                     }}
                     className={`text-xs font-bold transition-colors cursor-pointer ${
-                      isGirl ? 'text-[#7C3AED] hover:text-[#6D28D9]' : 'text-[#2563EB] hover:text-[#1D4ED8]'
+                      isGirl ? 'text-[#7C3AED] hover:text-[#6D28D9]' : 'text-pink-600 hover:text-[#1D4ED8]'
                     }`}
                   >
                     Forgot Password?

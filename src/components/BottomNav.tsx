@@ -1,16 +1,15 @@
 import React from 'react';
-import { Home, Compass, Library, Search } from 'lucide-react';
+import { Home, Search, Compass, UserRound } from 'lucide-react';
 import { useMusic } from '../context/MusicContext';
-import { NavTab } from '../types/music';
 
 export const BottomNav: React.FC = () => {
   const { activeTab, setActiveTab } = useMusic();
 
-  const navItems: { id: NavTab; label: string; icon: React.FC<{ className?: string }> }[] = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'explore', label: 'Explore', icon: Compass },
-    { id: 'library', label: 'Library', icon: Library },
-    { id: 'search', label: 'Search', icon: Search },
+  const navItems = [
+    { id: 'home' as const, label: 'Home', icon: Home },
+    { id: 'search' as const, label: 'Search', icon: Search },
+    { id: 'explore' as const, label: 'Explore', icon: Compass },
+    { id: 'profile' as const, label: 'Profile', icon: UserRound },
   ];
 
   return (
@@ -18,7 +17,7 @@ export const BottomNav: React.FC = () => {
       aria-label="Main Navigation"
       className="fixed bottom-0 left-0 right-0 z-40 bg-[#09090d]/95 backdrop-blur-2xl border-t border-white/[0.08] px-4 py-2"
     >
-      <div className="max-w-md mx-auto flex items-center justify-around">
+      <div className="max-w-xl mx-auto grid grid-cols-4 items-center justify-items-center">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;

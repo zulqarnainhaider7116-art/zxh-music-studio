@@ -14,10 +14,8 @@ import { CreatePlaylistModal } from './components/CreatePlaylistModal';
 import { BrandModal } from './components/BrandModal';
 import { Footer } from './components/Footer';
 import { FloatingMusicBot } from './components/FloatingMusicBot';
-import { ThemeSwitcher } from './components/ThemeSwitcher';
 import { InstallPrompt } from './components/InstallPrompt';
 import { useState } from 'react';
-import { Welcome } from './components/Welcome';
 import { LoginScreen } from './components/LoginScreen';
 import { RegisterScreen } from './components/RegisterScreen';
 
@@ -37,7 +35,7 @@ const AppContent: React.FC = () => {
   }, [setActiveTab]);
 
   return (
-    <div className="min-h-screen bg-[#08080a] text-slate-100 flex flex-col font-sans selection:bg-red-600 selection:text-white relative">
+    <div className="zxh-boys-world min-h-screen flex flex-col font-sans relative">
       {/* Top Website Header with Navigation & Search */}
       <Navbar />
 
@@ -72,37 +70,25 @@ const AppContent: React.FC = () => {
       <BrandModal />
 
       <FloatingMusicBot />
-      <ThemeSwitcher />
       <InstallPrompt />
     </div>
   );
 };
 
-type AuthScreen = 'welcome' | 'login' | 'register' | 'music';
+type AuthScreen = 'login' | 'register' | 'music';
 function AppGate() {
   const [screen, setScreen] = useState<AuthScreen>(() => {
-    try { return sessionStorage.getItem('zxh-music-guest') === '1' ? 'music' : 'welcome'; } catch { return 'welcome'; }
+    try { return sessionStorage.getItem('zxh-music-guest') === '1' ? 'music' : 'login'; } catch { return 'login'; }
   });
-  const [gender, setGender] = useState<'boy' | 'girl'>(() => {
-    try { return (localStorage.getItem('zxh-auth-gender') as 'boy' | 'girl') || 'girl'; } catch { return 'girl'; }
-  });
-  const chooseGender = (value: 'boy' | 'girl') => {
-    setGender(value);
-    try { localStorage.setItem('zxh-auth-gender', value); } catch {}
-    setScreen('login');
-  };
   const enterGuest = () => {
     try { sessionStorage.setItem('zxh-music-guest', '1'); } catch {}
     setScreen('music');
   };
   if (screen === 'music') return <AppContent />;
-  return (
-    <div className="min-h-screen">
-      {screen === 'welcome' && <Welcome selectedGender={gender} onSelectGender={chooseGender} />}
-      {screen === 'login' && <LoginScreen gender={gender} onBack={() => setScreen('welcome')} onSwitchGender={setGender} onRegister={() => setScreen('register')} onGuestContinue={enterGuest} />}
-      {screen === 'register' && <RegisterScreen gender={gender} onBack={() => setScreen('login')} onLogin={() => setScreen('login')} />}
-    </div>
-  );
+  return <div className="min-h-screen">
+    {screen === 'login' && <LoginScreen gender="boy" onRegister={() => setScreen('register')} onGuestContinue={enterGuest} />}
+    {screen === 'register' && <RegisterScreen gender="boy" onBack={() => setScreen('login')} onLogin={() => setScreen('login')} />}
+  </div>;
 }
 export default function App() {
   return <MusicProvider><AppGate /></MusicProvider>;

@@ -119,7 +119,7 @@ export const HomeDiscover: React.FC = () => {
       <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50 to-cyan-50 border-b border-white/[0.06] pt-8 md:pt-14 pb-16 md:pb-24">
         {/* Ambient Crimson Glow Sphere */}
         <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-rose-700/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-cyan-700/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
           <div className="grid grid-cols-1 gap-8 lg:gap-12 items-center">
@@ -211,7 +211,7 @@ export const HomeDiscover: React.FC = () => {
                         isCurrent && isPlaying ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
                       }`}
                     >
-                      <div className="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center shadow-[5px_5px_12px_rgba(37,99,235,.22)]">
+                      <div className="w-11 h-11 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-[5px_5px_12px_rgba(37,99,235,.22)]">
                         {isCurrent && isPlaying ? (
                           <Radio className="w-5 h-5 animate-pulse" />
                         ) : (
@@ -221,7 +221,7 @@ export const HomeDiscover: React.FC = () => {
                     </div>
                   </div>
 
-                  <h3 className={`text-sm font-semibold truncate ${isCurrent ? 'text-red-400' : 'text-white'}`}>
+                  <h3 className={`text-sm font-semibold truncate ${isCurrent ? 'text-blue-400' : 'text-white'}`}>
                     {track.title}
                   </h3>
                   <p className="text-xs text-slate-400 truncate mt-0.5">
@@ -238,7 +238,7 @@ export const HomeDiscover: React.FC = () => {
                       className="p-1 hover:text-white"
                     >
                       <Heart
-                        className={`w-3.5 h-3.5 ${liked ? 'fill-red-500 text-red-500' : ''}`}
+                        className={`w-3.5 h-3.5 ${liked ? 'fill-blue-500 text-blue-500' : ''}`}
                       />
                     </button>
                   </div>
@@ -273,7 +273,7 @@ export const HomeDiscover: React.FC = () => {
         <section className="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-white via-blue-50 to-cyan-50 border border-blue-100 shadow-xl">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-red-400">
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-400">
                 Bollywood & Sufi Hits
               </span>
               <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
@@ -285,14 +285,14 @@ export const HomeDiscover: React.FC = () => {
             </div>
 
             {/* Sub-filter chips */}
-            <div className="flex items-center gap-1.5 p-1 bg-black/40 border border-white/[0.08] rounded-full text-xs">
+            <div className="flex items-center gap-1.5 p-1 bg-blue-50/70 border border-white/[0.08] rounded-full text-xs">
               {(['all', 'romantic', 'sad', 'hits'] as const).map((filter) => (
                 <button
                   key={filter}
                   onClick={() => setHindiSubFilter(filter)}
                   className={`px-3 py-1 rounded-full capitalize transition-all ${
                     hindiSubFilter === filter
-                      ? 'bg-red-600 text-white font-semibold shadow-sm'
+                      ? 'bg-blue-600 text-white font-semibold shadow-sm'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -312,8 +312,8 @@ export const HomeDiscover: React.FC = () => {
                   onClick={() => playTrack(track, filteredHindiTracks)}
                   className={`flex items-center justify-between p-3 rounded-2xl border transition-all cursor-pointer group ${
                     isCurrent
-                      ? 'bg-blue-50 border-red-500/50 shadow-md'
-                      : 'bg-[#12121a]/80 hover:bg-[#181822] border-white/[0.06]'
+                      ? 'bg-blue-50 border-blue-500/50 shadow-md'
+                      : 'bg-white/85/80 hover:bg-[#181822] border-white/[0.06]'
                   }`}
                 >
                   <div className="flex items-center gap-3.5 min-w-0 pr-3">
@@ -323,7 +323,7 @@ export const HomeDiscover: React.FC = () => {
                       className="w-12 h-12 rounded-xl object-cover shrink-0 shadow"
                     />
                     <div className="min-w-0">
-                      <h4 className={`text-sm font-semibold truncate ${isCurrent ? 'text-red-400' : 'text-white'}`}>
+                      <h4 className={`text-sm font-semibold truncate ${isCurrent ? 'text-blue-400' : 'text-white'}`}>
                         {track.title}
                       </h4>
                       <p className="text-xs text-slate-400 truncate mt-0.5">
@@ -340,9 +340,9 @@ export const HomeDiscover: React.FC = () => {
                       }}
                       className="p-1.5 text-slate-400 hover:text-white"
                     >
-                      <Heart className={`w-4 h-4 ${liked ? 'fill-red-500 text-red-500' : ''}`} />
+                      <Heart className={`w-4 h-4 ${liked ? 'fill-blue-500 text-blue-500' : ''}`} />
                     </button>
-                    <div className="w-8 h-8 rounded-full bg-white/[0.06] group-hover:bg-red-600 text-white flex items-center justify-center transition-all">
+                    <div className="w-8 h-8 rounded-full bg-white/[0.06] group-hover:bg-blue-600 text-white flex items-center justify-center transition-all">
                       <Play className="w-3.5 h-3.5 fill-white translate-x-0.5" />
                     </div>
                   </div>
@@ -370,7 +370,7 @@ export const HomeDiscover: React.FC = () => {
             </div>
             <button
               onClick={() => setActiveTab('punjabi')}
-              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-red-400 transition-colors"
+              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-blue-400 transition-colors"
             >
               <span>Explore Punjabi</span>
               <ChevronRight className="w-4 h-4" />
@@ -384,17 +384,17 @@ export const HomeDiscover: React.FC = () => {
                 <div
                   key={track.id}
                   onClick={() => playTrack(track, livePunjabi)}
-                  className={`group bg-[#111118] hover:bg-[#161622] p-3.5 rounded-2xl border transition-all cursor-pointer ${
+                  className={`group bg-white/85 hover:bg-[#161622] p-3.5 rounded-2xl border transition-all cursor-pointer ${
                     isCurrent ? 'border-amber-500/60 shadow-[0_0_15px_rgba(245,158,11,0.25)]' : 'border-white/[0.06] hover:border-amber-500/30'
                   }`}
                 >
-                  <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-black/40">
+                  <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-blue-50/70">
                     <img
                       src={track.coverUrl}
                       alt={track.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                    <div className="absolute inset-0 bg-blue-50/70 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                       <div className="w-10 h-10 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center shadow-lg">
                         <Play className="w-4 h-4 fill-black translate-x-0.5" />
                       </div>
@@ -492,7 +492,7 @@ export const HomeDiscover: React.FC = () => {
         <section>
           <div className="flex items-end justify-between mb-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-rose-400">
+              <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">
                 International Hits
               </span>
               <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
@@ -504,7 +504,7 @@ export const HomeDiscover: React.FC = () => {
                 setSearchQuery('English Pop Hits');
                 setActiveTab('search');
               }}
-              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-red-400 transition-colors"
+              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-blue-400 transition-colors"
             >
               <span>Explore Pop</span>
               <ChevronRight className="w-4 h-4" />
@@ -516,7 +516,7 @@ export const HomeDiscover: React.FC = () => {
               <div
                 key={track.id}
                 onClick={() => playTrack(track, liveEnglish)}
-                className="group bg-[#111118] hover:bg-[#161622] p-3 rounded-2xl border border-white/[0.06] hover:border-red-500/30 cursor-pointer transition-all"
+                className="group bg-white/85 hover:bg-[#161622] p-3 rounded-2xl border border-white/[0.06] hover:border-blue-500/30 cursor-pointer transition-all"
               >
                 <div className="relative aspect-square rounded-xl overflow-hidden mb-2.5">
                   <img
@@ -525,7 +525,7 @@ export const HomeDiscover: React.FC = () => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                   />
                 </div>
-                <h4 className="text-sm font-semibold text-white group-hover:text-red-400 truncate">
+                <h4 className="text-sm font-semibold text-white group-hover:text-blue-400 truncate">
                   {track.title}
                 </h4>
                 <p className="text-xs text-slate-400 truncate mt-0.5">
@@ -557,15 +557,15 @@ export const HomeDiscover: React.FC = () => {
               <div
                 key={mood.id}
                 onClick={() => handleMoodClick(mood.query)}
-                className={`group p-5 rounded-2xl bg-gradient-to-br ${mood.color} border border-white/[0.08] hover:border-red-500/40 shadow-lg cursor-pointer transition-all hover:scale-[1.02]`}
+                className={`group p-5 rounded-2xl bg-gradient-to-br ${mood.color} border border-white/[0.08] hover:border-blue-500/40 shadow-lg cursor-pointer transition-all hover:scale-[1.02]`}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
                     <Sparkles className="w-5 h-5" />
                   </div>
                   <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
                 </div>
-                <h3 className="font-bold text-base text-white group-hover:text-red-300 transition-colors">
+                <h3 className="font-bold text-base text-white group-hover:text-blue-300 transition-colors">
                   {mood.title}
                 </h3>
                 <p className="text-xs text-slate-400 mt-1 line-clamp-2">
@@ -582,7 +582,7 @@ export const HomeDiscover: React.FC = () => {
         <section>
           <div className="flex items-end justify-between mb-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-red-400">
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-400">
                 Studio Spotlight
               </span>
               <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
@@ -600,22 +600,22 @@ export const HomeDiscover: React.FC = () => {
                     playTrack(artist.topTracks[0], artist.topTracks);
                   }
                 }}
-                className="group flex flex-col items-center text-center p-4 rounded-2xl bg-[#111117] hover:bg-[#181824] border border-white/[0.06] hover:border-red-500/30 cursor-pointer transition-all"
+                className="group flex flex-col items-center text-center p-4 rounded-2xl bg-white/85 hover:bg-[#181824] border border-white/[0.06] hover:border-blue-500/30 cursor-pointer transition-all"
               >
-                <div className="relative w-22 h-22 sm:w-24 sm:h-24 rounded-full overflow-hidden p-[2px] bg-gradient-to-br from-red-600/40 via-rose-500/20 to-transparent group-hover:from-red-500 transition-colors shadow-lg mb-3">
+                <div className="relative w-22 h-22 sm:w-24 sm:h-24 rounded-full overflow-hidden p-[2px] bg-gradient-to-br from-blue-600/40 via-cyan-500/20 to-transparent group-hover:from-blue-500 transition-colors shadow-lg mb-3">
                   <img
                     src={artist.coverUrl}
                     alt={artist.name}
                     className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <h3 className="text-sm font-semibold text-white group-hover:text-red-400 transition-colors">
+                <h3 className="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors">
                   {artist.name}
                 </h3>
                 <p className="text-[11px] text-slate-400 font-mono mt-0.5">
                   {artist.monthlyListeners} monthly
                 </p>
-                <span className="text-[10px] text-red-400/80 mt-1 uppercase tracking-wider font-semibold">
+                <span className="text-[10px] text-blue-400/80 mt-1 uppercase tracking-wider font-semibold">
                   {artist.genre}
                 </span>
               </div>
@@ -629,7 +629,7 @@ export const HomeDiscover: React.FC = () => {
         <section>
           <div className="flex items-end justify-between mb-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-red-400">
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-400">
                 Editorial Suites
               </span>
               <h2 className="font-serif-title text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">
@@ -638,7 +638,7 @@ export const HomeDiscover: React.FC = () => {
             </div>
             <button
               onClick={() => setActiveTab('playlists')}
-              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-red-400 transition-colors"
+              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-blue-400 transition-colors"
             >
               <span>All Playlists</span>
               <ChevronRight className="w-4 h-4" />
@@ -650,19 +650,19 @@ export const HomeDiscover: React.FC = () => {
               <div
                 key={pl.id}
                 onClick={() => setSelectedPlaylist(pl)}
-                className="group bg-[#111117] hover:bg-[#181824] p-3 rounded-2xl border border-white/[0.06] hover:border-red-500/30 cursor-pointer transition-all"
+                className="group bg-white/85 hover:bg-[#181824] p-3 rounded-2xl border border-white/[0.06] hover:border-blue-500/30 cursor-pointer transition-all"
               >
-                <div className="relative aspect-square rounded-xl overflow-hidden mb-2.5 bg-black/40">
+                <div className="relative aspect-square rounded-xl overflow-hidden mb-2.5 bg-blue-50/70">
                   <img
                     src={pl.coverUrl}
                     alt={pl.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-red-600/90 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                  <div className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-blue-600/90 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
                     <Play className="w-3.5 h-3.5 fill-white translate-x-0.5" />
                   </div>
                 </div>
-                <h4 className="text-xs sm:text-sm font-semibold text-white group-hover:text-red-400 truncate">
+                <h4 className="text-xs sm:text-sm font-semibold text-white group-hover:text-blue-400 truncate">
                   {pl.title}
                 </h4>
                 <p className="text-[11px] text-slate-400 mt-0.5 font-mono">
@@ -676,9 +676,9 @@ export const HomeDiscover: React.FC = () => {
         {/* ======================================================== */}
         {/* SECTION K: PROMOTIONAL EDITORIAL BANNER                  */}
         {/* ======================================================== */}
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-red-950 via-[#180a14] to-[#0d0912] border border-red-800/40 p-8 md:p-12 shadow-2xl">
+        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-white via-blue-50 to-cyan-50 border border-blue-800/40 p-8 md:p-12 shadow-2xl">
           <div className="relative z-10 max-w-2xl space-y-4">
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-red-400">
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-blue-400">
               ZXH OFFICIAL · AUDIO PLATFORM
             </span>
             <h2 className="font-serif-title text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
@@ -690,7 +690,7 @@ export const HomeDiscover: React.FC = () => {
             <div className="pt-2 flex items-center gap-3">
               <button
                 onClick={() => setActiveTab('explore')}
-                className="px-6 py-2.5 rounded-full bg-red-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-[0_0_20px_rgba(239,68,68,0.5)] transition-all"
+                className="px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-[0_0_20px_rgba(239,68,68,0.5)] transition-all"
               >
                 Start Listening Now
               </button>

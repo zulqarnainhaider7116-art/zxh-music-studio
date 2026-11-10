@@ -187,7 +187,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
       </header>
 
       {/* Main Container */}
-      <div className="w-full max-w-[1120px] relative z-10 mt-36 sm:mt-40 lg:mt-6 mb-4 lg:grid lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-12">
+      <div className="w-full max-w-[1120px] relative z-10 mt-24 sm:mt-28 lg:mt-6 mb-4 lg:grid lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-12">
         {/* ========================================================
             THE 3D CHARACTER (CRUCIAL):
             Position absolute, pops out of the card.

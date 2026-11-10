@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { MusicProvider, useMusic } from './context/MusicContext';
 import { Navbar } from './components/Navbar';
-import { PlaybackBar } from './components/PlaybackBar';
+import { BottomNav } from './components/BottomNav';
+import { ProfileView } from './components/ProfileView';
 import { VinylPlayer } from './components/VinylPlayer';
 import { HomeDiscover } from './components/HomeDiscover';
 import { LibraryView } from './components/LibraryView';
@@ -49,13 +50,14 @@ const AppContent: React.FC = () => {
         {activeTab === 'naats' && <CategoryView category="naats" />}
         {activeTab === 'playlists' && <LibraryView />}
         {activeTab === 'search' && <SearchView />}
+        {activeTab === 'profile' && <ProfileView />}
       </main>
 
       {/* Full Website Footer */}
       <Footer />
 
-      {/* Full-Width Website Bottom Playback Bar (Spotify / YouTube Music Style) */}
-      <PlaybackBar />
+      {/* Four-button navigation replaces the fixed bottom playback bar */}
+      <BottomNav />
 
       {/* Expanded Turntable Vinyl Player Overlay */}
       <VinylPlayer />

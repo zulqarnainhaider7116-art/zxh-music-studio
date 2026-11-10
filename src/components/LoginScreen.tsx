@@ -32,9 +32,10 @@ export interface LoginScreenProps {
   defaultMode?: 'login' | 'signup';
   onBack?: () => void;
   onGuestContinue?: () => void;
+  onBack?: () => void;
 }
 
-export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login', onGuestContinue }) => {
+export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login', onGuestContinue, onBack }) => {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [displayMode, setDisplayMode] = useState<'card-overlap' | 'full-room'>('card-overlap');
   const toggleSound = () => setSoundEnabled((value) => !value);
@@ -178,7 +179,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login',
       </div>
 
       <header className="w-full max-w-[1120px] mx-auto mb-3 z-30 flex items-center justify-between px-1">
-        <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"/><span className="text-xs font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-600 uppercase tracking-[.18em]">ZXH Boys World</span></div>
+        <div className="flex items-center gap-3">{onBack && <button onClick={onBack} className="zxh-auth-back" aria-label="Back to welcome"><ChevronLeft className="w-5 h-5"/></button>}<span className="w-2.5 h-2.5 rounded-full bg-blue-500"/><span className="text-xs sm:text-sm font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-600 uppercase tracking-[.18em]">ZXH MUSIC STUDIO</span></div>
         <div className="flex items-center gap-2">
           <button onClick={() => setDisplayMode((mode) => mode === "card-overlap" ? "full-room" : "card-overlap")} className="p-2 rounded-full bg-white/85 text-blue-700 shadow-[5px_5px_12px_rgba(148,163,184,.22),-4px_-4px_10px_white] border border-white" title="Toggle full room view" aria-label="Toggle full room view">{displayMode === "card-overlap" ? <Smartphone className="w-4 h-4"/> : <Layers className="w-4 h-4"/>}</button>
           <button onClick={toggleSound} className="p-2 rounded-full bg-white/85 text-blue-700 shadow-[5px_5px_12px_rgba(148,163,184,.22),-4px_-4px_10px_white] border border-white" title={soundEnabled ? 'Mute Sounds' : 'Enable Sounds'} aria-label={soundEnabled ? 'Mute sound effects' : 'Enable sound effects'}>{soundEnabled ? <Volume2 className="w-4 h-4"/> : <VolumeX className="w-4 h-4"/>}</button>

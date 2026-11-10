@@ -102,7 +102,7 @@ export const VinylPlayer: React.FC = () => {
       role="dialog"
       aria-modal="true"
       aria-label="Full Screen Vinyl Player"
-      className="fixed inset-0 z-50 bg-[#08080a] text-slate-100 flex flex-col justify-between overflow-y-auto overflow-x-hidden selection:bg-red-600 animate-fadeIn"
+      className="fixed inset-0 z-50 bg-blue-50 text-slate-100 flex flex-col justify-between overflow-y-auto overflow-x-hidden selection:bg-blue-600 animate-fadeIn"
     >
       {/* Ambient Crimson Radial Backdrop */}
       <div className="fixed inset-0 pointer-events-none bg-crimson-radial opacity-80" />
@@ -146,7 +146,7 @@ export const VinylPlayer: React.FC = () => {
                   <button
                     key={pl.id}
                     onClick={() => handleAddToPlaylist(pl.id, pl.title)}
-                    className="w-full text-left px-3 py-1.5 text-xs text-slate-200 hover:bg-red-950/60 hover:text-white rounded-lg transition-colors truncate"
+                    className="w-full text-left px-3 py-1.5 text-xs text-slate-200 hover:bg-blue-950/60 hover:text-white rounded-lg transition-colors truncate"
                   >
                     {pl.title}
                   </button>
@@ -158,7 +158,7 @@ export const VinylPlayer: React.FC = () => {
                     setShowPlaylistMenu(false);
                     setShowCreatePlaylistModal(true);
                   }}
-                  className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-red-400 hover:bg-red-950/60 rounded-lg transition-colors"
+                  className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-blue-400 hover:bg-blue-950/60 rounded-lg transition-colors"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Create New Playlist</span>
@@ -178,7 +178,7 @@ export const VinylPlayer: React.FC = () => {
               onClick={() => setActiveTab('player')}
               className={`px-3 py-1 rounded-full transition-all ${
                 activeTab === 'player'
-                  ? 'bg-red-600 text-white shadow-[0_0_12px_rgba(239,68,68,0.5)] font-medium'
+                  ? 'bg-blue-600 text-white shadow-[0_0_12px_rgba(239,68,68,0.5)] font-medium'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -188,7 +188,7 @@ export const VinylPlayer: React.FC = () => {
               onClick={() => setActiveTab('lyrics')}
               className={`px-3 py-1 rounded-full transition-all ${
                 activeTab === 'lyrics'
-                  ? 'bg-red-600 text-white shadow-[0_0_12px_rgba(239,68,68,0.5)] font-medium'
+                  ? 'bg-blue-600 text-white shadow-[0_0_12px_rgba(239,68,68,0.5)] font-medium'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -198,7 +198,7 @@ export const VinylPlayer: React.FC = () => {
               onClick={() => setActiveTab('queue')}
               className={`px-3 py-1 rounded-full transition-all ${
                 activeTab === 'queue'
-                  ? 'bg-red-600 text-white shadow-[0_0_12px_rgba(239,68,68,0.5)] font-medium'
+                  ? 'bg-blue-600 text-white shadow-[0_0_12px_rgba(239,68,68,0.5)] font-medium'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -213,7 +213,7 @@ export const VinylPlayer: React.FC = () => {
             {/* Vinyl Record & Turntable Tonearm Container */}
             <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 my-1 sm:my-2 flex items-center justify-center select-none">
               {/* Outer Glowing Crimson Neon Ring */}
-              <div className="absolute inset-0 rounded-full border border-red-500/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] animate-pulse" />
+              <div className="absolute inset-0 rounded-full border border-blue-500/30 shadow-[0_0_40px_rgba(239,68,68,0.35)] animate-pulse" />
 
               {/* Turntable Platter Base */}
               <div className="relative w-[96%] h-[96%] rounded-full bg-[#0a0a0d] border border-white/[0.08] shadow-2xl flex items-center justify-center">
@@ -244,14 +244,14 @@ export const VinylPlayer: React.FC = () => {
                   />
 
                   {/* Vinyl Center Album Art Badge */}
-                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-[2px] bg-gradient-to-tr from-red-600 via-rose-500 to-amber-500 shadow-xl overflow-hidden">
+                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-[2px] bg-gradient-to-tr from-blue-600 via-cyan-500 to-amber-500 shadow-xl overflow-hidden">
                     <img
                       src={currentTrack.coverUrl}
                       alt={currentTrack.title}
                       className="w-full h-full object-cover rounded-full"
                     />
                     {/* Vinyl Center Spindle Hole */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#08080a] border border-white/20 shadow-inner" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-blue-50 border border-white/20 shadow-inner" />
                   </div>
                 </div>
 
@@ -269,7 +269,7 @@ export const VinylPlayer: React.FC = () => {
                   <div className="absolute top-5 right-3 w-1.5 h-28 bg-gradient-to-r from-zinc-400 via-zinc-200 to-zinc-500 rounded-full shadow-md transform -rotate-25 origin-top" />
                   {/* Cartridge & Glowing Crimson Stylus */}
                   <div className="absolute bottom-4 left-2 w-4 h-6 bg-zinc-900 border border-zinc-700 rounded-sm shadow flex items-center justify-center transform -rotate-15">
-                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444] animate-pulse" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_#ef4444] animate-pulse" />
                   </div>
                 </div>
               </div>
@@ -294,8 +294,8 @@ export const VinylPlayer: React.FC = () => {
                 <Heart
                   className={`w-6 h-6 transition-all ${
                     liked
-                      ? 'fill-red-500 text-red-500 drop-shadow-[0_0_12px_rgba(239,68,68,0.8)] scale-110'
-                      : 'hover:text-red-400'
+                      ? 'fill-blue-500 text-blue-500 drop-shadow-[0_0_12px_rgba(239,68,68,0.8)] scale-110'
+                      : 'hover:text-blue-400'
                   }`}
                 />
               </button>
@@ -322,7 +322,7 @@ export const VinylPlayer: React.FC = () => {
                       <div
                         className={`w-full rounded-full transition-all duration-150 ${
                           isPast
-                            ? 'bg-gradient-to-t from-red-600 to-rose-400 shadow-[0_0_6px_rgba(239,68,68,0.5)]'
+                            ? 'bg-gradient-to-t from-blue-600 to-cyan-400 shadow-[0_0_6px_rgba(239,68,68,0.5)]'
                             : 'bg-white/[0.12] group-hover:bg-white/30'
                         }`}
                         style={{ height: `${dynamicHeight}%` }}
@@ -342,7 +342,7 @@ export const VinylPlayer: React.FC = () => {
                   value={progressPercent || 0}
                   onChange={handleSeek}
                   aria-label="Seek track"
-                  className="w-full h-1.5 bg-white/[0.08] rounded-lg appearance-none cursor-pointer accent-red-600 focus:outline-none"
+                  className="w-full h-1.5 bg-white/[0.08] rounded-lg appearance-none cursor-pointer accent-blue-600 focus:outline-none"
                 />
               </div>
 
@@ -361,7 +361,7 @@ export const VinylPlayer: React.FC = () => {
                 aria-label={isShuffled ? 'Shuffle enabled' : 'Shuffle disabled'}
                 className={`p-3 rounded-full transition-colors ${
                   isShuffled
-                    ? 'text-red-500 bg-red-950/40 shadow-[0_0_12px_rgba(239,68,68,0.3)]'
+                    ? 'text-blue-500 bg-blue-950/40 shadow-[0_0_12px_rgba(239,68,68,0.3)]'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -381,7 +381,7 @@ export const VinylPlayer: React.FC = () => {
               <button
                 onClick={togglePlay}
                 aria-label={isPlaying ? 'Pause' : 'Play'}
-                className="w-16 h-16 rounded-full bg-gradient-to-tr from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.65)] hover:scale-105 active:scale-95 transition-all"
+                className="w-16 h-16 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.65)] hover:scale-105 active:scale-95 transition-all"
               >
                 {isPlaying ? (
                   <Pause className="w-7 h-7 fill-white text-white" />
@@ -405,7 +405,7 @@ export const VinylPlayer: React.FC = () => {
                 aria-label={`Repeat mode: ${repeatMode}`}
                 className={`p-3 rounded-full transition-colors ${
                   repeatMode !== 'off'
-                    ? 'text-red-500 bg-red-950/40 shadow-[0_0_12px_rgba(239,68,68,0.3)]'
+                    ? 'text-blue-500 bg-blue-950/40 shadow-[0_0_12px_rgba(239,68,68,0.3)]'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -433,7 +433,7 @@ export const VinylPlayer: React.FC = () => {
                     key={index}
                     className={`text-base sm:text-lg transition-all duration-300 ${
                       isHighlight
-                        ? 'font-serif-title text-red-400 font-bold text-xl sm:text-2xl drop-shadow-[0_0_12px_rgba(239,68,68,0.6)]'
+                        ? 'font-serif-title text-blue-400 font-bold text-xl sm:text-2xl drop-shadow-[0_0_12px_rgba(239,68,68,0.6)]'
                         : 'text-slate-400 font-normal hover:text-slate-200'
                     }`}
                   >
@@ -458,7 +458,7 @@ export const VinylPlayer: React.FC = () => {
               </span>
               <button
                 onClick={toggleShuffle}
-                className="text-xs text-red-400 hover:underline flex items-center gap-1"
+                className="text-xs text-blue-400 hover:underline flex items-center gap-1"
               >
                 <Shuffle className="w-3 h-3" />
                 <span>Shuffle Queue</span>
@@ -472,7 +472,7 @@ export const VinylPlayer: React.FC = () => {
                   onClick={() => playTrack(track, queue)}
                   className={`flex items-center justify-between p-2.5 rounded-xl cursor-pointer transition-all ${
                     isCurrent
-                      ? 'bg-red-950/60 border border-red-500/40 text-white'
+                      ? 'bg-blue-950/60 border border-blue-500/40 text-white'
                       : 'bg-white/[0.03] hover:bg-white/[0.06] text-slate-300'
                   }`}
                 >
@@ -486,7 +486,7 @@ export const VinylPlayer: React.FC = () => {
                       className="w-10 h-10 rounded-lg object-cover shrink-0"
                     />
                     <div className="min-w-0">
-                      <p className={`text-sm truncate ${isCurrent ? 'font-bold text-red-400' : 'font-medium text-white'}`}>
+                      <p className={`text-sm truncate ${isCurrent ? 'font-bold text-blue-400' : 'font-medium text-white'}`}>
                         {track.title}
                       </p>
                       <p className="text-xs text-slate-400 truncate">
@@ -500,7 +500,7 @@ export const VinylPlayer: React.FC = () => {
                       {formatTime(track.duration)}
                     </span>
                     {isCurrent && (
-                      <Radio className="w-4 h-4 text-red-500 animate-pulse" />
+                      <Radio className="w-4 h-4 text-blue-500 animate-pulse" />
                     )}
                   </div>
                 </div>
@@ -520,7 +520,7 @@ export const VinylPlayer: React.FC = () => {
             className="text-slate-400 hover:text-white transition-colors"
           >
             {isMuted || volume === 0 ? (
-              <VolumeX className="w-4 h-4 text-red-400" />
+              <VolumeX className="w-4 h-4 text-blue-400" />
             ) : (
               <Volume2 className="w-4 h-4" />
             )}
@@ -533,7 +533,7 @@ export const VinylPlayer: React.FC = () => {
             value={isMuted ? 0 : volume}
             onChange={(e) => setVolume(parseFloat(e.target.value))}
             aria-label="Volume slider"
-            className="w-full h-1 bg-white/[0.1] rounded-lg appearance-none cursor-pointer accent-red-600 focus:outline-none"
+            className="w-full h-1 bg-white/[0.1] rounded-lg appearance-none cursor-pointer accent-blue-600 focus:outline-none"
           />
           <span className="text-xs font-mono text-slate-400 w-8 text-right">
             {isMuted ? '0%' : `${Math.round(volume * 100)}%`}
@@ -545,7 +545,7 @@ export const VinylPlayer: React.FC = () => {
           <button
             onClick={() => setActiveTab(activeTab === 'lyrics' ? 'player' : 'lyrics')}
             className={`flex flex-col items-center gap-1 hover:text-white transition-colors ${
-              activeTab === 'lyrics' ? 'text-red-400 font-semibold' : ''
+              activeTab === 'lyrics' ? 'text-blue-400 font-semibold' : ''
             }`}
           >
             <FileText className="w-5 h-5" />
@@ -555,7 +555,7 @@ export const VinylPlayer: React.FC = () => {
           <button
             onClick={() => setActiveTab(activeTab === 'queue' ? 'player' : 'queue')}
             className={`flex flex-col items-center gap-1 hover:text-white transition-colors ${
-              activeTab === 'queue' ? 'text-red-400 font-semibold' : ''
+              activeTab === 'queue' ? 'text-blue-400 font-semibold' : ''
             }`}
           >
             <ListMusic className="w-5 h-5" />
@@ -587,7 +587,7 @@ export const VinylPlayer: React.FC = () => {
 
         {/* Toast confirmation */}
         {playlistAddedToast && (
-          <div className="mt-2 text-center text-xs text-red-300 bg-red-950/80 border border-red-800/60 rounded-full py-1.5 px-3">
+          <div className="mt-2 text-center text-xs text-blue-300 bg-blue-950/80 border border-blue-800/60 rounded-full py-1.5 px-3">
             {playlistAddedToast}
           </div>
         )}

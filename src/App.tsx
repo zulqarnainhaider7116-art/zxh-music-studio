@@ -15,6 +15,10 @@ import { Footer } from './components/Footer';
 import { FloatingMusicBot } from './components/FloatingMusicBot';
 import { ThemeSwitcher } from './components/ThemeSwitcher';
 import { InstallPrompt } from './components/InstallPrompt';
+import { useState } from 'react';
+import { Welcome } from './components/Welcome';
+import { LoginScreen } from './components/LoginScreen';
+import { RegisterScreen } from './components/RegisterScreen';
 
 const AppContent: React.FC = () => {
   const { activeTab, setActiveTab } = useMusic();
@@ -72,10 +76,32 @@ const AppContent: React.FC = () => {
   );
 };
 
-export default function App() {
+type AuthScreen = 'welcome' | 'login' | 'register' | 'music';
+function AppGate() {
+  const [screen, setScreen] = useState<AuthScreen>(() => {
+    try { return sessionStorage.getItem('zxh-music-guest') === '1' ? 'music' : 'welcome'; } catch { return 'welcome'; }
+  });
+  const [gender, setGender] = useState<'boy' | 'girl'>(() => {
+    try { return (localStorage.getItem('zxh-auth-gender') as 'boy' | 'girl') || 'girl'; } catch { return 'girl'; }
+  });
+  const chooseGender = (value: 'boy' | 'girl') => {
+    setGender(value);
+    try { localStorage.setItem('zxh-auth-gender', value); } catch {}
+    setScreen('login');
+  };
+  const enterGuest = () => {
+    try { sessionStorage.setItem('zxh-music-guest', '1'); } catch {}
+    setScreen('music');
+  };
+  if (screen === 'music') return <AppContent />;
   return (
-    <MusicProvider>
-      <AppContent />
-    </MusicProvider>
+    <div className="min-h-screen">
+      {screen === 'welcome' && <Welcome selectedGender={gender} onSelectGender={chooseGender} />}
+      {screen === 'login' && <LoginScreen gender={gender} onBack={() => setScreen('welcome')} onSwitchGender={setGender} onRegister={() => setScreen('register')} onGuestContinue={enterGuest} />}
+      {screen === 'register' && <RegisterScreen gender={gender} onBack={() => setScreen('login')} onLogin={() => setScreen('login')} />}
+    </div>
   );
+}
+export default function App() {
+  return <MusicProvider><AppGate /></MusicProvider>;
 }

@@ -19,6 +19,8 @@ import {
   ShieldCheck,
   LogIn,
   UserPlus,
+  Smartphone,
+  Layers,
 } from 'lucide-react';
 import { validateUsernameOrEmail, validatePassword, formatSocialProviderName } from '../utils/auth-validation';
 const boyImg = 'https://raw.githubusercontent.com/zulqarnainhaider7116-art/Login-dashboard-/main/src/assets/boy.png';
@@ -34,6 +36,7 @@ export interface LoginScreenProps {
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({ defaultMode = 'login', onGuestContinue }) => {
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [displayMode, setDisplayMode] = useState<'card-overlap' | 'full-room'>('card-overlap');
   const toggleSound = () => setSoundEnabled((value) => !value);
 
   // Mode state: 'login' | 'signup'

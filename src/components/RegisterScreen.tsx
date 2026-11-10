@@ -15,7 +15,6 @@ export const RegisterScreen: React.FC<Props> = ({ gender, onBack, onLogin }) => 
   const [confirm,setConfirm] = useState('');
   const [visible,setVisible] = useState(false);
   const [message,setMessage] = useState('');
-  const accent = girl ? 'purple' : 'blue';
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !username.trim() || !email.trim() || !password) { setMessage('Please complete every field.'); return; }
@@ -34,6 +33,7 @@ export const RegisterScreen: React.FC<Props> = ({ gender, onBack, onLogin }) => 
         <p className="text-slate-600 max-w-md mt-4 leading-relaxed">Create your profile and make every listening moment yours.</p>
         <motion.img animate={{y:[0,-10,0],rotate:[0,1,0]}} transition={{duration:5,repeat:Infinity,ease:'easeInOut'}} src={girl?girlArt:boyArt} alt={girl?'3D girl and kitten companion':'3D boy and puppy companion'} className="w-full max-w-[440px] max-h-[470px] object-contain drop-shadow-2xl mt-3"/>
       </motion.section>
+      <motion.img src={girl?girlArt:boyArt} alt={girl?'3D girl and kitten companion':'3D boy and puppy companion'} initial={{opacity:0,y:-12}} animate={{opacity:1,y:0}} className="lg:hidden mx-auto w-40 h-36 object-contain drop-shadow-2xl" />
       <motion.section initial={{opacity:0,y:22}} animate={{opacity:1,y:0}} className="w-full max-w-[510px] mx-auto rounded-[34px] sm:rounded-[42px] bg-white/75 backdrop-blur-2xl border border-white/90 shadow-[0_30px_90px_-30px_rgba(60,50,100,.35)] p-6 sm:p-9">
         <button onClick={onBack} className="inline-flex items-center gap-1.5 text-slate-600 font-bold text-sm hover:opacity-70"><ChevronLeft size={18}/> Back</button>
         <div className="mt-5 mb-6">

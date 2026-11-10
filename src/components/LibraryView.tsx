@@ -34,10 +34,10 @@ export const LibraryView: React.FC = () => {
       {/* Top Header matching Screen 3 */}
       <header className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="font-serif-title text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          <h1 className="font-serif-title text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
             Your Playlists
           </h1>
-          <p className="text-xs sm:text-sm text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
             A collection of moods, memories and moments.
           </p>
         </div>
@@ -47,7 +47,7 @@ export const LibraryView: React.FC = () => {
           <button
             onClick={() => setActiveTab('search')}
             aria-label="Search playlists"
-            className="p-2.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white transition-colors border border-white/[0.06]"
+            className="p-2.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-slate-600 hover:text-slate-900 transition-colors border border-white/[0.06]"
           >
             <Search className="w-4 h-4" />
           </button>
@@ -56,7 +56,7 @@ export const LibraryView: React.FC = () => {
             onClick={() => setShowCreatePlaylistModal(true)}
             aria-label="Create new playlist"
             title="Create Playlist"
-            className="w-10 h-10 rounded-full bg-gradient-to-tr from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white flex items-center justify-center shadow-[0_0_20px_rgba(239,68,68,0.6)] hover:scale-105 active:scale-95 transition-all"
+            className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-slate-900 flex items-center justify-center shadow-[0_0_20px_rgba(239,68,68,0.6)] hover:scale-105 active:scale-95 transition-all"
           >
             <Plus className="w-5 h-5 stroke-[2.5]" />
           </button>
@@ -79,12 +79,12 @@ export const LibraryView: React.FC = () => {
                 key={tab}
                 onClick={() => setLibraryTab(tab)}
                 className={`py-2 text-xs sm:text-sm tracking-wide transition-all capitalize relative whitespace-nowrap ${
-                  isActive ? 'text-red-400 font-semibold' : 'text-slate-400 hover:text-slate-200'
+                  isActive ? 'text-blue-400 font-semibold' : 'text-slate-500 hover:text-slate-200'
                 }`}
               >
                 {labels[tab]}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-500 rounded-full shadow-[0_0_8px_#ef4444]" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 rounded-full shadow-[0_0_8px_#ef4444]" />
                 )}
               </button>
             );
@@ -98,13 +98,13 @@ export const LibraryView: React.FC = () => {
           {filteredPlaylists.length === 0 ? (
             <div className="text-center py-16 bg-[#111117] rounded-3xl border border-white/[0.06] p-6">
               <Music className="w-10 h-10 text-slate-500 mx-auto mb-3" />
-              <h3 className="text-base font-semibold text-white">No playlists found</h3>
-              <p className="text-xs text-slate-400 mt-1 max-w-xs mx-auto">
+              <h3 className="text-base font-semibold text-slate-900">No playlists found</h3>
+              <p className="text-xs text-slate-500 mt-1 max-w-xs mx-auto">
                 Create a custom playlist to curate your favorite tracks and moods.
               </p>
               <button
                 onClick={() => setShowCreatePlaylistModal(true)}
-                className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-full text-xs font-semibold shadow-[0_0_15px_rgba(239,68,68,0.4)]"
+                className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-slate-900 rounded-full text-xs font-semibold shadow-[0_0_15px_rgba(239,68,68,0.4)]"
               >
                 Create First Playlist
               </button>
@@ -115,7 +115,7 @@ export const LibraryView: React.FC = () => {
                 <div
                   key={pl.id}
                   onClick={() => setSelectedPlaylist(pl)}
-                  className="group relative bg-[#121219] hover:bg-[#181822] border border-white/[0.06] hover:border-red-500/30 rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 shadow-lg flex flex-col justify-between"
+                  className="group relative bg-[#121219] hover:bg-[#181822] border border-white/[0.06] hover:border-blue-500/30 rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 shadow-lg flex flex-col justify-between"
                 >
                   {/* Playlist Cover Image with Crimson Ambiance */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/50">
@@ -133,7 +133,7 @@ export const LibraryView: React.FC = () => {
                         handlePlayPlaylist(pl);
                       }}
                       aria-label={`Play ${pl.title}`}
-                      className="absolute bottom-2.5 right-2.5 w-9 h-9 rounded-full bg-red-600/90 hover:bg-red-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(239,68,68,0.6)] transform translate-y-1 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all"
+                      className="absolute bottom-2.5 right-2.5 w-9 h-9 rounded-full bg-blue-600/90 hover:bg-blue-500 text-slate-900 flex items-center justify-center shadow-[0_0_15px_rgba(239,68,68,0.6)] transform translate-y-1 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all"
                     >
                       <Play className="w-4 h-4 fill-white translate-x-0.5" />
                     </button>
@@ -142,7 +142,7 @@ export const LibraryView: React.FC = () => {
                   {/* Card Info matching Reference */}
                   <div className="p-3">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-semibold text-xs sm:text-sm text-white group-hover:text-red-400 transition-colors truncate">
+                      <h3 className="font-semibold text-xs sm:text-sm text-slate-900 group-hover:text-blue-400 transition-colors truncate">
                         {pl.title}
                       </h3>
                       <button
@@ -151,12 +151,12 @@ export const LibraryView: React.FC = () => {
                           setSelectedPlaylist(pl);
                         }}
                         aria-label="Playlist options"
-                        className="p-1 text-slate-400 hover:text-white"
+                        className="p-1 text-slate-500 hover:text-slate-900"
                       >
                         <MoreVertical className="w-3.5 h-3.5" />
                       </button>
                     </div>
-                    <p className="text-[11px] text-slate-400 mt-0.5 font-mono">
+                    <p className="text-[11px] text-slate-500 mt-0.5 font-mono">
                       {pl.trackCount} songs
                     </p>
                   </div>
@@ -178,15 +178,15 @@ export const LibraryView: React.FC = () => {
                   playTrack(artist.topTracks[0], artist.topTracks);
                 }
               }}
-              className="p-4 rounded-2xl bg-[#111117] hover:bg-[#181824] border border-white/[0.06] hover:border-red-500/30 text-center cursor-pointer transition-all"
+              className="p-4 rounded-2xl bg-[#111117] hover:bg-[#181824] border border-white/[0.06] hover:border-blue-500/30 text-center cursor-pointer transition-all"
             >
               <img
                 src={artist.coverUrl}
                 alt={artist.name}
                 className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto object-cover mb-3 shadow-lg"
               />
-              <h3 className="text-sm font-semibold text-white">{artist.name}</h3>
-              <p className="text-xs text-slate-400 mt-0.5 font-mono">{artist.monthlyListeners} listeners</p>
+              <h3 className="text-sm font-semibold text-slate-900">{artist.name}</h3>
+              <p className="text-xs text-slate-500 mt-0.5 font-mono">{artist.monthlyListeners} listeners</p>
             </div>
           ))}
         </section>
@@ -199,7 +199,7 @@ export const LibraryView: React.FC = () => {
             <div
               key={track.id}
               onClick={() => playTrack(track, CURATED_TRACKS)}
-              className="p-3 rounded-2xl bg-[#111117] hover:bg-[#181824] border border-white/[0.06] hover:border-red-500/30 cursor-pointer transition-all"
+              className="p-3 rounded-2xl bg-[#111117] hover:bg-[#181824] border border-white/[0.06] hover:border-blue-500/30 cursor-pointer transition-all"
             >
               <div className="aspect-square rounded-xl overflow-hidden mb-2">
                 <img
@@ -208,10 +208,10 @@ export const LibraryView: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-xs sm:text-sm font-semibold text-white truncate">
+              <h3 className="text-xs sm:text-sm font-semibold text-slate-900 truncate">
                 {track.album || track.title}
               </h3>
-              <p className="text-[11px] text-slate-400 truncate mt-0.5">
+              <p className="text-[11px] text-slate-500 truncate mt-0.5">
                 {track.artist} · {track.releaseYear || '2024'}
               </p>
             </div>
@@ -225,20 +225,20 @@ export const LibraryView: React.FC = () => {
           {likedTracks.length === 0 ? (
             <div className="text-center py-16 bg-[#111117] rounded-3xl border border-white/[0.06] p-6">
               <Heart className="w-10 h-10 text-slate-500 mx-auto mb-3" />
-              <h3 className="text-base font-semibold text-white">No liked songs yet</h3>
-              <p className="text-xs text-slate-400 mt-1 max-w-xs mx-auto">
+              <h3 className="text-base font-semibold text-slate-900">No liked songs yet</h3>
+              <p className="text-xs text-slate-500 mt-1 max-w-xs mx-auto">
                 Tap the heart icon on any song to save it to your personal favorites collection.
               </p>
             </div>
           ) : (
             <>
               <div className="flex items-center justify-between px-2 mb-2">
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
                   {likedTracks.length} Saved Favorites
                 </span>
                 <button
                   onClick={() => playTrack(likedTracks[0], likedTracks)}
-                  className="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center gap-1.5"
+                  className="text-xs text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1.5"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   <span>Play All</span>
@@ -249,7 +249,7 @@ export const LibraryView: React.FC = () => {
                 <div
                   key={track.id}
                   onClick={() => playTrack(track, likedTracks)}
-                  className="flex items-center justify-between p-3 rounded-2xl bg-[#111117] hover:bg-[#171722] border border-white/[0.05] hover:border-red-500/30 cursor-pointer transition-all"
+                  className="flex items-center justify-between p-3 rounded-2xl bg-[#111117] hover:bg-[#171722] border border-white/[0.05] hover:border-blue-500/30 cursor-pointer transition-all"
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <img
@@ -258,23 +258,23 @@ export const LibraryView: React.FC = () => {
                       className="w-11 h-11 rounded-xl object-cover shrink-0"
                     />
                     <div className="min-w-0">
-                      <h4 className="text-sm font-medium text-white truncate">
+                      <h4 className="text-sm font-medium text-slate-900 truncate">
                         {track.title}
                       </h4>
-                      <p className="text-xs text-slate-400 truncate">
+                      <p className="text-xs text-slate-500 truncate">
                         {track.artist}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0">
-                    <Heart className="w-4 h-4 fill-red-500 text-red-500" />
+                    <Heart className="w-4 h-4 fill-blue-500 text-blue-500" />
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         playTrack(track, likedTracks);
                       }}
-                      className="p-2 rounded-full bg-white/[0.05] hover:bg-red-600/30 text-white"
+                      className="p-2 rounded-full bg-white/[0.05] hover:bg-blue-600/30 text-slate-900"
                     >
                       <Play className="w-3.5 h-3.5 fill-white" />
                     </button>

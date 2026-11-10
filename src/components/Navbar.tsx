@@ -58,7 +58,7 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#08080c]/90 backdrop-blur-2xl border-b border-white/[0.07] transition-all">
+    <header className="sticky top-0 z-40 w-full bg-white/85 backdrop-blur-2xl border-b border-white/[0.07] transition-all">
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 h-18 flex items-center justify-between gap-4">
         {/* Brand Logo & Tagline */}
         <div
@@ -68,17 +68,17 @@ export const Navbar: React.FC = () => {
           }}
           className="flex items-center gap-3 cursor-pointer group shrink-0 select-none"
         >
-          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 via-rose-700 to-black p-[1.5px] shadow-[0_0_22px_rgba(225,29,72,0.5)]">
-            <div className="w-full h-full bg-[#0d0d14] rounded-xl flex items-center justify-center">
-              <Disc className="w-5 h-5 text-red-500 group-hover:rotate-180 transition-transform duration-700" />
+          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-500 via-cyan-500 to-indigo-500 p-[1.5px] shadow-[0_0_22px_rgba(225,29,72,0.5)]">
+            <div className="w-full h-full bg-blue-50 rounded-xl flex items-center justify-center">
+              <Disc className="w-5 h-5 text-blue-500 group-hover:rotate-180 transition-transform duration-700" />
             </div>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-brand-title text-base sm:text-lg font-extrabold tracking-[0.18em] text-white">
+              <span className="font-brand-title text-base sm:text-lg font-extrabold tracking-[0.18em] text-slate-900">
                 ZXH
               </span>
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-950/80 text-red-400 border border-red-800/40 tracking-widest uppercase">
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-950/80 text-blue-400 border border-blue-800/40 tracking-widest uppercase">
                 Studio
               </span>
             </div>
@@ -102,12 +102,12 @@ export const Navbar: React.FC = () => {
                 className={`relative px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 ${
                   isActive
                     ? 'text-white font-semibold bg-white/[0.06] shadow-sm'
-                    : 'text-slate-300 hover:text-white hover:bg-white/[0.03]'
+                    : 'text-slate-600 hover:text-white hover:bg-white/[0.03]'
                 }`}
               >
                 <span>{link.label}</span>
                 {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-red-600 to-rose-400 rounded-full shadow-[0_0_8px_#ef4444]" />
+                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-blue-600 to-sky-400 rounded-full shadow-[0_0_8px_#ef4444]" />
                 )}
               </button>
             );
@@ -123,7 +123,7 @@ export const Navbar: React.FC = () => {
               value={headerSearch}
               onChange={(e) => setHeaderSearch(e.target.value)}
               placeholder="Search Hindi, Punjabi, Naats, Pop..."
-              className="w-full bg-[#13131b] border border-white/[0.08] focus:border-red-500/60 rounded-full pl-9 pr-8 py-2 text-xs text-white placeholder-slate-400 focus:outline-none transition-all shadow-inner"
+              className="w-full bg-white border border-white/[0.08] focus:border-blue-500/60 rounded-full pl-9 pr-8 py-2 text-xs text-white placeholder-slate-400 focus:outline-none transition-all shadow-inner"
             />
             {headerSearch && (
               <button
@@ -146,8 +146,8 @@ export const Navbar: React.FC = () => {
             aria-label="Toggle UI Sound Effects"
             className={`p-2 rounded-full border transition-all ${
               sfxEnabled
-                ? 'bg-red-950/40 border-red-800/40 text-red-400'
-                : 'bg-white/[0.04] border-white/[0.08] text-slate-400 hover:text-slate-200'
+                ? 'bg-blue-950/40 border-blue-800/40 text-blue-400'
+                : 'bg-white/[0.04] border-white/[0.08] text-slate-400 hover:text-blue-700'
             }`}
           >
             {sfxEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
@@ -167,7 +167,7 @@ export const Navbar: React.FC = () => {
             aria-label="Import local audio file"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-medium text-slate-300 hover:text-white transition-all"
           >
-            <Upload className="w-3.5 h-3.5 text-red-400" />
+            <Upload className="w-3.5 h-3.5 text-blue-400" />
             <span className="hidden xl:inline">Import Track</span>
           </button>
 
@@ -175,9 +175,9 @@ export const Navbar: React.FC = () => {
           <button
             onClick={() => setShowBrandModal(true)}
             aria-label="About ZXH Music Studio"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-red-950/60 to-rose-950/60 hover:from-red-900/80 hover:to-rose-900/80 border border-red-800/40 text-xs font-semibold text-red-300 transition-all shadow-[0_0_12px_rgba(225,29,72,0.15)]"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-950/60 to-sky-950/60 hover:from-blue-900/80 hover:to-sky-900/80 border border-blue-800/40 text-xs font-semibold text-blue-300 transition-all shadow-[0_0_12px_rgba(225,29,72,0.15)]"
           >
-            <Sparkles className="w-3.5 h-3.5 text-red-400" />
+            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
             <span>ZXH OFFICIAL</span>
           </button>
         </div>
@@ -197,14 +197,14 @@ export const Navbar: React.FC = () => {
             aria-label="Toggle Navigation Menu"
             className="p-2 rounded-xl bg-white/[0.04] text-slate-300 border border-white/[0.08]"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5 text-red-400" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-blue-400" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Responsive Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-white/[0.08] bg-[#0c0c12] px-5 py-4 space-y-3 animate-fadeIn">
+        <div className="lg:hidden border-t border-white/[0.08] bg-blue-50 px-5 py-4 space-y-3 animate-fadeIn">
           {/* Mobile Search input */}
           <form onSubmit={handleSearchSubmit} className="relative">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -213,7 +213,7 @@ export const Navbar: React.FC = () => {
               value={headerSearch}
               onChange={(e) => setHeaderSearch(e.target.value)}
               placeholder="Search Hindi, Punjabi, Naats, Pop..."
-              className="w-full bg-[#14141c] border border-white/[0.1] rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none"
+              className="w-full bg-white border border-white/[0.1] rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none"
             />
           </form>
 
@@ -230,7 +230,7 @@ export const Navbar: React.FC = () => {
                   }}
                   className={`text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors ${
                     isActive
-                      ? 'bg-red-950/60 text-red-400 border border-red-800/40 font-semibold'
+                      ? 'bg-blue-950/60 text-blue-400 border border-blue-800/40 font-semibold'
                       : 'text-slate-300 hover:bg-white/[0.04]'
                   }`}
                 >
@@ -248,7 +248,7 @@ export const Navbar: React.FC = () => {
               }}
               className="flex items-center gap-1.5 text-xs text-slate-300 hover:text-white"
             >
-              <Upload className="w-3.5 h-3.5 text-red-400" />
+              <Upload className="w-3.5 h-3.5 text-blue-400" />
               <span>Import Audio File</span>
             </button>
 
@@ -257,7 +257,7 @@ export const Navbar: React.FC = () => {
                 setShowBrandModal(true);
                 setMobileMenuOpen(false);
               }}
-              className="text-xs text-red-400 font-semibold"
+              className="text-xs text-blue-400 font-semibold"
             >
               ZXH OFFICIAL Dossier
             </button>

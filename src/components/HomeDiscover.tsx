@@ -116,23 +116,23 @@ export const HomeDiscover: React.FC = () => {
       {/* ======================================================== */}
       {/* SECTION A: CINEMATIC HERO SECTION                         */}
       {/* ======================================================== */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#140b12] via-[#0b080e] to-[#08080a] border-b border-white/[0.06] pt-8 md:pt-14 pb-16 md:pb-24">
+      <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-blue-50 to-cyan-50 border-b border-white/[0.06] pt-8 md:pt-14 pb-16 md:pb-24">
         {/* Ambient Crimson Glow Sphere */}
-        <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-rose-700/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
           <div className="grid grid-cols-1 gap-8 lg:gap-12 items-center">
             {/* Left Hero Content */}
             <div className="w-full max-w-5xl space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-800/40 text-red-400 text-xs font-semibold uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.25)]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.25)]">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>ZXH MUSIC STUDIO · PREMIER STREAMING</span>
               </div>
 
               <h1 className="font-serif-title text-5xl sm:text-7xl xl:text-8xl font-extrabold tracking-tight text-white leading-[1.08]">
                 MUSIC BEYOND <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-amber-300 italic font-normal drop-shadow-[0_0_35px_rgba(239,68,68,0.35)]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-500 italic font-normal drop-shadow-[0_0_35px_rgba(239,68,68,0.35)]">
                   BOUNDARIES.
                 </span>
               </h1>
@@ -145,9 +145,9 @@ export const HomeDiscover: React.FC = () => {
               <div className="pt-2 flex flex-wrap items-center justify-start gap-4">
                 <button
                   onClick={() => setActiveTab('explore')}
-                  className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-red-500/30 text-slate-200 font-medium text-sm transition-all"
+                  className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-blue-300/30 text-slate-200 font-medium text-sm transition-all"
                 >
-                  <Compass className="w-4 h-4 text-red-400" />
+                  <Compass className="w-4 h-4 text-blue-600" />
                   <span>Explore Music</span>
                 </button>
               </div>
@@ -168,7 +168,7 @@ export const HomeDiscover: React.FC = () => {
         <section>
           <div className="flex items-end justify-between mb-6">
             <div>
-              <div className="flex items-center gap-2 text-red-500 text-xs font-semibold uppercase tracking-widest mb-1">
+              <div className="flex items-center gap-2 text-blue-600 text-xs font-semibold uppercase tracking-widest mb-1">
                 <Flame className="w-4 h-4 fill-current" />
                 <span>Top Charts</span>
               </div>
@@ -178,7 +178,7 @@ export const HomeDiscover: React.FC = () => {
             </div>
             <button
               onClick={() => setActiveTab('explore')}
-              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-red-400 transition-colors"
+              className="flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-blue-700 transition-colors"
             >
               <span>View All</span>
               <ChevronRight className="w-4 h-4" />
@@ -194,24 +194,24 @@ export const HomeDiscover: React.FC = () => {
                 <div
                   key={track.id}
                   onClick={() => playTrack(track, liveTrending)}
-                  className={`group relative bg-[#12121a] hover:bg-[#181824] p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                  className={`group relative bg-white/85 hover:bg-blue-50 p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
                     isCurrent
-                      ? 'border-red-500/50 shadow-[0_0_20px_rgba(239,68,68,0.25)]'
-                      : 'border-white/[0.06] hover:border-red-500/30'
+                      ? 'border-blue-300 shadow-[8px_8px_18px_rgba(148,163,184,.2),-6px_-6px_14px_white]'
+                      : 'border-white/[0.06] hover:border-blue-200'
                   }`}
                 >
-                  <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-black/40">
+                  <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-blue-50">
                     <img
                       src={track.coverUrl}
                       alt={track.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div
-                      className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity ${
+                      className={`absolute inset-0 bg-blue-50/40 flex items-center justify-center transition-opacity ${
                         isCurrent && isPlaying ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
                       }`}
                     >
-                      <div className="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center shadow-[0_0_15px_#ef4444]">
+                      <div className="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center shadow-[5px_5px_12px_rgba(37,99,235,.22)]">
                         {isCurrent && isPlaying ? (
                           <Radio className="w-5 h-5 animate-pulse" />
                         ) : (
@@ -248,10 +248,29 @@ export const HomeDiscover: React.FC = () => {
           </div>
         </section>
 
+        {/* FEATURED NAATS — 12 live devotional selections */}
+        <section className="relative overflow-hidden rounded-[34px] border border-white/90 bg-gradient-to-br from-white via-blue-50 to-cyan-50 p-5 sm:p-7 md:p-9 shadow-[12px_12px_28px_rgba(148,163,184,.22),-10px_-10px_26px_rgba(255,255,255,.95)]">
+          <div className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-cyan-200/35 blur-3xl pointer-events-none"/>
+          <div className="relative z-10 flex flex-wrap items-end justify-between gap-3 mb-6">
+            <div><span className="inline-flex items-center gap-2 rounded-full bg-white/80 border border-blue-100 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[.2em] text-blue-700"><Sparkles className="w-3.5 h-3.5"/> Featured Collection</span><h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900">Featured Naats</h2><p className="mt-2 max-w-xl text-sm sm:text-base text-slate-600">A dedicated collection of Urdu Naats and peaceful Nasheeds.</p></div>
+            <button onClick={() => setActiveTab('naats')} className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-extrabold text-blue-700 shadow-[5px_5px_12px_rgba(148,163,184,.2),-4px_-4px_10px_white] border border-blue-100">Explore Naats <ChevronRight className="w-4 h-4"/></button>
+          </div>
+          <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-4">
+            {liveNaats.slice(0, 12).map((track) => {
+              const isCurrent = currentTrack?.id === track.id;
+              return <button key={track.id} onClick={() => playTrack(track, liveNaats)} className="group min-w-0 text-left rounded-[24px] border border-white bg-white/85 p-2.5 sm:p-3 shadow-[7px_7px_16px_rgba(148,163,184,.2),-6px_-6px_14px_white] hover:-translate-y-1 transition-all">
+                <div className="relative aspect-square overflow-hidden rounded-[18px] bg-blue-50"><img src={track.coverUrl} alt={track.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"/><span className="absolute bottom-2 right-2 flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg"><Play className="h-4 w-4 fill-current ml-0.5"/></span></div>
+                <span className="mt-3 block truncate text-sm font-extrabold text-slate-900">{track.title}</span><span className="mt-1 block truncate text-xs text-slate-500">{track.artist}</span>
+                {isCurrent && <span className="mt-2 inline-flex rounded-full bg-blue-50 px-2 py-1 text-[10px] font-bold text-blue-700">Now playing</span>}
+              </button>;
+            })}
+          </div>
+          {liveNaats.length < 10 && <p className="relative z-10 mt-4 text-xs text-slate-500">More Naats are being fetched from the live music catalogue…</p>}
+        </section>
         {/* ======================================================== */}
         {/* SECTION C: HINDI & BOLLYWOOD                             */}
         {/* ======================================================== */}
-        <section className="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-[#160d14] via-[#100a12] to-[#0a070c] border border-red-950/40 shadow-xl">
+        <section className="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-white via-blue-50 to-cyan-50 border border-blue-100 shadow-xl">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-red-400">
@@ -293,7 +312,7 @@ export const HomeDiscover: React.FC = () => {
                   onClick={() => playTrack(track, filteredHindiTracks)}
                   className={`flex items-center justify-between p-3 rounded-2xl border transition-all cursor-pointer group ${
                     isCurrent
-                      ? 'bg-red-950/40 border-red-500/50 shadow-md'
+                      ? 'bg-blue-50 border-red-500/50 shadow-md'
                       : 'bg-[#12121a]/80 hover:bg-[#181822] border-white/[0.06]'
                   }`}
                 >
@@ -671,7 +690,7 @@ export const HomeDiscover: React.FC = () => {
             <div className="pt-2 flex items-center gap-3">
               <button
                 onClick={() => setActiveTab('explore')}
-                className="px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-xs font-semibold shadow-[0_0_20px_rgba(239,68,68,0.5)] transition-all"
+                className="px-6 py-2.5 rounded-full bg-red-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-[0_0_20px_rgba(239,68,68,0.5)] transition-all"
               >
                 Start Listening Now
               </button>

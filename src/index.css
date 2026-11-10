@@ -12,13 +12,14 @@ button,input,textarea,select{font:inherit}button{-webkit-tap-highlight-color:tra
 .animate-vinyl-spin{animation:spinSlow 18s linear infinite}.animate-vinyl-spin-paused{animation:spinSlow 18s linear infinite;animation-play-state:paused}
 .zxh-boys-world{min-height:100vh;color:#172b4d;background:radial-gradient(circle at 8% 5%,rgba(147,197,253,.34),transparent 34rem),radial-gradient(circle at 94% 20%,rgba(165,243,252,.38),transparent 32rem),linear-gradient(135deg,#e7f0ff 0%,#f8fbff 48%,#e5f7ff 100%)}
 .zxh-boys-world header.sticky{background:rgba(255,255,255,.84)!important;border-color:rgba(191,219,254,.8)!important;box-shadow:0 8px 30px rgba(55,95,150,.08);backdrop-filter:blur(22px)}
-.zxh-boys-world [class*="bg-[#"]{background-color:rgba(255,255,255,.86)!important}
-.zxh-boys-world [class*="bg-gradient-to-"]:not(button):not(a){background-image:linear-gradient(145deg,rgba(255,255,255,.98),rgba(231,241,255,.94))!important}
-.zxh-boys-world [class*="bg-black/"]{background-color:rgba(219,234,254,.7)!important}
+.zxh-boys-world [class*="bg-black/"],.zxh-boys-world [class*="bg-slate-950"],.zxh-boys-world [class*="bg-gray-950"],.zxh-boys-world [class*="bg-zinc-950"],.zxh-boys-world [class*="bg-neutral-950"]{background-color:rgba(219,234,254,.88)!important}
+.zxh-boys-world [class*="bg-blue-950"],.zxh-boys-world [class*="bg-slate-900"],.zxh-boys-world [class*="bg-gray-900"],.zxh-boys-world [class*="bg-zinc-900"],.zxh-boys-world [class*="bg-neutral-900"]{background-color:rgba(224,242,254,.92)!important}
+.zxh-boys-world [class*="bg-indigo-950"],.zxh-boys-world [class*="bg-violet-950"]{background-color:rgba(237,233,254,.9)!important}
 .zxh-boys-world [class*="bg-red-"],.zxh-boys-world [class*="bg-rose-"]{background-color:#3b82f6!important}
 .zxh-boys-world [class*="border-red-"],.zxh-boys-world [class*="border-rose-"]{border-color:#bfdbfe!important}
 .zxh-boys-world [class*="text-red-"],.zxh-boys-world [class*="text-rose-"]{color:#2563eb!important}
-.zxh-boys-world [class*="text-white"],.zxh-boys-world [class*="text-slate-100"],.zxh-boys-world [class*="text-slate-200"],.zxh-boys-world [class*="text-slate-300"]{color:#1e3558!important}
+.zxh-boys-world [class*="text-white"],.zxh-boys-world [class*="text-slate-100"],.zxh-boys-world [class*="text-slate-200"],.zxh-boys-world [class*="text-slate-300"]{color:#263b5b!important}
+.zxh-boys-world [class*="text-blue-400"],.zxh-boys-world [class*="text-cyan-400"],.zxh-boys-world [class*="text-sky-400"]{color:#2563eb!important}
 .zxh-boys-world button[class*="bg-blue-"],.zxh-boys-world button[class*="bg-gradient-to-"],.zxh-boys-world button[class*="bg-red-"]{color:#fff!important}
 .zxh-boys-world button[class*="bg-gradient-to-"]{background-image:linear-gradient(135deg,#60a5fa,#2563eb)!important}
 .zxh-boys-world button[class*="bg-red-"]{background:#3b82f6!important}
@@ -31,3 +32,9 @@ button,input,textarea,select{font:inherit}button{-webkit-tap-highlight-color:tra
 .zxh-auth-screen{background:radial-gradient(circle at 10% 10%,rgba(147,197,253,.55),transparent 30rem),radial-gradient(circle at 90% 90%,rgba(165,243,252,.48),transparent 28rem),linear-gradient(135deg,#dbeafe,#f8fbff 55%,#cffafe)}
 .zxh-auth-screen .bg-\[\#F8F9FA\]{background:rgba(255,255,255,.88)!important;box-shadow:12px 12px 28px rgba(148,163,184,.22),-10px -10px 24px rgba(255,255,255,.95)!important}
 @media(max-width:640px){.zxh-boys-world main{padding-bottom:1rem}.zxh-boys-world h1{overflow-wrap:anywhere}}
+
+/* Restore colorful pastel surfaces instead of flattening every gradient/card to white */
+.zxh-boys-world main section.bg-gradient-to-b{background-image:linear-gradient(135deg,#dbeafe 0%,#eff6ff 48%,#cffafe 100%)!important}
+.zxh-boys-world [class*="bg-gradient-to-br"]{background-image:linear-gradient(135deg,#ffffff 0%,#eaf2ff 52%,#dff8ff 100%)!important}
+.zxh-boys-world [class*="bg-gradient-to-r"]{background-image:linear-gradient(90deg,#60a5fa 0%,#22d3ee 55%,#818cf8 100%)!important}
+.zxh-boys-world [class*="border-white/"]{border-color:rgba(147,197,253,.42)!important}

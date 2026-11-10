@@ -17,7 +17,6 @@ import { FloatingMusicBot } from './components/FloatingMusicBot';
 import { InstallPrompt } from './components/InstallPrompt';
 import { useState } from 'react';
 import { LoginScreen } from './components/LoginScreen';
-import { RegisterScreen } from './components/RegisterScreen';
 
 const AppContent: React.FC = () => {
   const { activeTab, setActiveTab } = useMusic();
@@ -75,7 +74,7 @@ const AppContent: React.FC = () => {
   );
 };
 
-type AuthScreen = 'login' | 'register' | 'music';
+type AuthScreen = 'login' | 'music';
 function AppGate() {
   const [screen, setScreen] = useState<AuthScreen>(() => {
     try { return sessionStorage.getItem('zxh-music-guest') === '1' ? 'music' : 'login'; } catch { return 'login'; }
@@ -86,8 +85,7 @@ function AppGate() {
   };
   if (screen === 'music') return <AppContent />;
   return <div className="min-h-screen">
-    {screen === 'login' && <LoginScreen gender="boy" onRegister={() => setScreen('register')} onGuestContinue={enterGuest} />}
-    {screen === 'register' && <RegisterScreen gender="boy" onBack={() => setScreen('login')} onLogin={() => setScreen('login')} />}
+    {screen === 'login' && <LoginScreen gender="boy" onGuestContinue={enterGuest} />}
   </div>;
 }
 export default function App() {

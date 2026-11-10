@@ -182,6 +182,14 @@ export const HomeDiscover: React.FC = () => {
           {liveNaats.length < 10 && <p className="relative z-10 mt-4 text-xs text-slate-500">More Naats are being fetched from the live music catalogue…</p>}
         </section>
 
+        {/* QUICK CATEGORY ACCESS — every category opens its own working catalogue */}
+        <section className="zxh-home-categories" aria-label="Browse music categories">
+          <div className="mb-5"><span className="text-xs font-extrabold uppercase tracking-[.2em] text-pink-600">Pick your sound</span><h2 className="mt-2 text-2xl sm:text-3xl font-black text-pink-600">Browse Categories</h2><p className="mt-1 text-sm text-slate-600">Open a category to explore its own music collection.</p></div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[{id:'hindi',title:'Hindi & Bollywood',desc:'Romance, hits and classics',emoji:'🎬'},{id:'punjabi',title:'Punjabi Beats',desc:'Desi hits and new sounds',emoji:'🔥'},{id:'naats',title:'Naats & Nasheeds',desc:'Urdu naats and devotionals',emoji:'🌙'},{id:'explore',title:'Explore All',desc:'Discover every music style',emoji:'🎧'}].map((item)=><button key={item.id} onClick={()=>setActiveTab(item.id as 'hindi'|'punjabi'|'naats'|'explore')} className="zxh-category-tile text-left rounded-2xl p-4 sm:p-5 transition-all"><span className="text-2xl">{item.emoji}</span><strong className="mt-3 block text-sm sm:text-base font-black text-pink-600">{item.title}</strong><span className="mt-1 block text-xs text-slate-600">{item.desc}</span><span className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-pink-600">Open category <ChevronRight className="w-3.5 h-3.5"/></span></button>)}
+          </div>
+        </section>
+
         {/* ======================================================== */}
         {/* SECTION B: TRENDING NOW (Smooth Horizontal Rail)         */}
         {/* ======================================================== */}

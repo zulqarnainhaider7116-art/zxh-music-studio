@@ -53,7 +53,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category }) => {
       desc: 'Explore romantic anthems, soulful Sufi melodies, heart-wrenching sad songs, and blockbuster Bollywood tracks.',
       filters: ['All', 'Romantic', 'Arijit Singh', 'Sad Songs', 'Classic Bollywood', 'New Releases'],
       bgGradient: 'from-sky-950/60 via-[#120810] to-[#08080a]',
-      accentColor: 'text-sky-400',
+      accentColor: 'text-pink-500',
     },
     punjabi: {
       tag: 'Desi Hip-Hop & Folk Beats',
@@ -61,7 +61,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category }) => {
       desc: 'High-octane Punjabi hits, heavy 808 basslines, swagger anthems and modern folk compositions.',
       filters: ['All', 'Sidhu Moose Wala', 'Diljit Dosanjh', 'AP Dhillon', 'Karan Aujla', 'Bhangra Hits'],
       bgGradient: 'from-amber-950/60 via-[#140f0a] to-[#08080a]',
-      accentColor: 'text-amber-400',
+      accentColor: 'text-pink-500',
     },
     naats: {
       tag: 'Sacred Devotional Vocals',
@@ -69,7 +69,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category }) => {
       desc: 'Peaceful Urdu Naats, soulful Hamd, Arabic Nasheeds, and reverent Durood-o-Salam praising the Holy Prophet (PBUH).',
       filters: ['All', 'Atif Aslam Naats', 'Maher Zain', 'Sami Yusuf', 'Owais Raza Qadri', 'Urdu Kalam'],
       bgGradient: 'from-emerald-950/60 via-[#07120e] to-[#08080a]',
-      accentColor: 'text-emerald-400',
+      accentColor: 'text-pink-500',
     },
   }[category];
 
@@ -81,7 +81,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category }) => {
     searchCategoryTracks(category, term)
       .then((res) => {
         if (isMounted) {
-          setTracks(res);
+          setTracks(res.length ? res : (category === 'hindi' ? HINDI_TRACKS : category === 'punjabi' ? PUNJABI_TRACKS : NAATS_TRACKS));
           setIsLoading(false);
         }
       })
@@ -124,7 +124,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category }) => {
               }}
               className={`px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
                 activeFilter === f
-                  ? 'bg-blue-600 text-slate-900 font-semibold shadow-md'
+                  ? 'bg-gradient-to-r from-pink-500 to-blue-500 text-white font-semibold shadow-md'
                   : 'bg-white/85 hover:bg-[#181824] text-slate-500 hover:text-slate-900 border border-white/[0.06]'
               }`}
             >

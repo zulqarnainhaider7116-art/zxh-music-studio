@@ -97,7 +97,7 @@ export async function searchTracks(query: string, limit = 25): Promise<Track[]> 
         t.artist.toLowerCase().includes(lower) ||
         t.genre?.toLowerCase().includes(lower)
     );
-    return fallback.length > 0 ? fallback : CURATED_TRACKS.slice(0, 4);
+    return fallback;
   }
 }
 

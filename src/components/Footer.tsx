@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
   const [legalModal, setLegalModal] = useState<'privacy' | 'terms' | null>(null);
 
   return (
-    <footer className="w-full border-t border-white/[0.08] bg-[#07070a] text-slate-400 pt-16 pb-36 px-4 sm:px-6 lg:px-8 mt-16">
+    <footer className="w-full border-t border-white/[0.08] bg-[#07070a] text-slate-400 pt-16 pb-28 px-4 sm:px-6 lg:px-8 mt-16">
       <div className="w-full max-w-[1600px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
         {/* Col 1: Brand & Identity */}
         <div className="lg:col-span-2 space-y-4">

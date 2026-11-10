@@ -152,3 +152,20 @@ body{background-size:100% 100%,contain,100% 100%!important;background-repeat:no-
 .zxh-boys-world main button[class*="bg-blue-"],.zxh-boys-world main button[class*="bg-gradient-to-"]{background-image:linear-gradient(110deg,#ec4899,#8b5cf6)!important;color:white!important}
 .zxh-boys-world main section.bg-gradient-to-b{background-image:linear-gradient(135deg,rgba(255,240,248,.42),rgba(231,240,255,.34))!important}
 @media(max-width:900px){body{background-size:100% 100%,contain,100% 100%!important;background-attachment:scroll!important}}
+
+
+/* ZXH MOBILE WALLPAPER + ROBOT POLISH */
+body{background-image:linear-gradient(135deg,#fff4fa,#edf4ff 55%,#e7f8ff)!important;background-attachment:scroll!important}
+.zxh-boys-world:before{background-image:linear-gradient(135deg,rgba(255,255,255,.10),rgba(219,234,254,.06)),var(--zxh-wallpaper-image)!important;background-size:cover,contain!important;background-position:center,center!important;background-repeat:no-repeat,no-repeat!important;background-color:#edf4ff!important;backdrop-filter:saturate(1.08)}
+@media(max-width:767px){
+ .zxh-boys-world:before{background-size:cover,contain!important;background-position:center,center!important;background-attachment:scroll!important}
+ .zxh-boys-world{background:transparent!important}
+ .zxh-boys-world main{position:relative}
+ .zxh-boys-world main section{scroll-margin-top:76px}
+}
+.zxh-robot-welcome{position:absolute;z-index:4;right:2%;top:4%;display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #ffffffd9;border-radius:20px;background:#ffffffc9;backdrop-filter:blur(18px);box-shadow:0 14px 34px #5475a526;animation:zxh-float 3.8s ease-in-out infinite}
+.zxh-robot-welcome-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;color:white;background:linear-gradient(145deg,#ee8fc4,#6d9ff2)}
+.zxh-robot-welcome b{display:block;color:#d9469a;font-size:11px;font-weight:900}
+.zxh-robot-welcome small{display:block;color:#7285a4;font-size:9px;margin-top:3px}
+.zxh-boys-world h1,.zxh-boys-world h2,.zxh-boys-world h3{color:#db2777!important}
+.zxh-boys-world [class*="text-slate-900"],.zxh-boys-world [class*="text-gray-900"]{color:#c02678!important}

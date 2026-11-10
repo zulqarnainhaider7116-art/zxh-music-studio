@@ -40,7 +40,7 @@ export const BottomNav: React.FC = () => {
                   <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_#3b82f6]" />
                 )}
               </div>
-              <span className={`text-[11px] mt-1 tracking-wide ${isActive ? 'text-blue-600' : 'text-slate-400'}`}>
+              <span className={`text-[11px] mt-1 tracking-wide ${isActive ? 'text-blue-600' : 'text-slate-500'}`}>
                 {item.label}
               </span>
             </button>

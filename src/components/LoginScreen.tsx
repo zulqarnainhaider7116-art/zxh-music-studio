@@ -54,17 +54,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   const [displayMode, setDisplayMode] = useState<'card-overlap' | 'full-room'>('card-overlap');
 
   const theme = getThemeConfig(gender);
-  const isGirl = gender === 'girl';
+  const isGirl = false;
 
   // Choose character artwork
-  const currentGirlImage =
-    selectedGirlPose === 'wink'
-      ? girlWink
-      : selectedGirlPose === 'phone'
-      ? girlPhone
-      : girlCharacter;
-
-  const characterImage = isGirl ? currentGirlImage : boyCharacter;
+  const characterImage = boyCharacter;
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -110,9 +103,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   return (
     <div
       className={`min-h-screen w-full flex flex-col items-center justify-start sm:justify-center py-4 sm:py-6 px-4 transition-colors duration-500 relative overflow-x-hidden ${
-        isGirl
-          ? 'bg-gradient-to-br from-[#EAE2F8] via-[#F3EDFB] to-[#DDD2F3]'
-          : 'bg-gradient-to-br from-[#DBEAFE] via-[#EFF6FF] to-[#BFDBFE]'
+        'bg-gradient-to-br from-[#DBEAFE] via-[#EFF6FF] to-[#BFDBFE]'
       }`}
     >
       {/* Ambient 3D Clay Background Spheres & Glow */}
@@ -162,7 +153,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 
       {/* Floating Top Control Bar */}
       <header className="w-full max-w-[420px] mx-auto mb-3 z-30 flex items-center justify-between px-1">
-        {onBack ? (
+        {false ? (
           <button
             onClick={onBack}
             className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/85 hover:bg-white text-slate-700 shadow-sm transition-all text-xs font-bold hover:scale-105 active:scale-95 border border-white/60 cursor-pointer"
@@ -207,31 +198,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
             )}
           </button>
 
-          {/* Quick Gender Switcher Pill */}
-          <div className="flex items-center bg-white/85 backdrop-blur-md p-1 rounded-full shadow-sm border border-white/60">
-            <button
-              onClick={() => onSwitchGender && onSwitchGender('girl')}
-              className={`px-3 py-1 text-xs font-bold rounded-full transition-all flex items-center gap-1 cursor-pointer ${
-                isGirl
-                  ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-sm'
-                  : 'text-slate-500 hover:text-purple-600'
-              }`}
-            >
-              <Heart className="w-3 h-3 fill-current" />
-              <span>Girl</span>
-            </button>
-            <button
-              onClick={() => onSwitchGender && onSwitchGender('boy')}
-              className={`px-3 py-1 text-xs font-bold rounded-full transition-all flex items-center gap-1 cursor-pointer ${
-                !isGirl
-                  ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-sm'
-                  : 'text-slate-500 hover:text-blue-600'
-              }`}
-            >
-              <Crown className="w-3 h-3 fill-current" />
-              <span>Boy</span>
-            </button>
-          </div>
+
         </div>
       </header>
 

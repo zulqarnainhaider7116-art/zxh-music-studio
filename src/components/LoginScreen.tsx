@@ -93,7 +93,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   };
 
   const handleSocialClick = (provider: 'google' | 'apple' | 'facebook') => {
-    showToast(`Connecting with ${formatSocialProviderName(provider)}...`);
+    showToast(`${formatSocialProviderName(provider)} sign-in needs authentication provider setup.`);
   };
 
   const handleForgotPassword = () => {
@@ -428,7 +428,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                     >
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h3 className="text-lg font-bold text-slate-800">Login Successful!</h3>
+                    <h3 className="text-lg font-bold text-slate-800">Demo Sign-in Preview</h3>
                     <p className="text-xs text-slate-500 mt-1 max-w-xs">
                       Welcome, <span className="font-bold text-slate-700">{identity}</span>! Your{' '}
                       {isGirl ? 'Girls World' : 'Boys World'} session is ready.
@@ -696,12 +696,12 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
             onClick={() => {
               setIdentity(isGirl ? 'luna.kitten@example.com' : 'leo.doggo@example.com');
               setPassword('adventure123');
-              showToast('Filled in demo credentials!');
+              showToast('Sample fields filled. This is a UI preview, not a real account.');
             }}
             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 hover:bg-white text-slate-600 text-xs font-semibold shadow-sm transition-all border border-white/60 cursor-pointer"
           >
             <HelpCircle className="w-3.5 h-3.5 text-slate-400" />
-            <span>Use Demo {isGirl ? 'Girl' : 'Boy'} Account</span>
+            <span>Fill Sample {isGirl ? 'Girl' : 'Boy'} Fields</span>
           </button>
         </div>
       </div>
@@ -738,7 +738,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                   type="button"
                   onClick={() => {
                     setShowForgotModal(false);
-                    showToast('Password recovery instructions sent to your email!');
+                    showToast('Password recovery requires a connected authentication provider.');
                   }}
                   className={`flex-1 py-2 text-xs font-bold text-white rounded-xl shadow-md cursor-pointer ${
                     isGirl ? 'bg-purple-600' : 'bg-blue-600'

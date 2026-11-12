@@ -68,9 +68,9 @@ export const Navbar: React.FC = () => {
           }}
           className="flex items-center gap-3 cursor-pointer group shrink-0 select-none"
         >
-          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-500 via-cyan-500 to-indigo-500 p-[1.5px] shadow-[0_0_22px_rgba(225,29,72,0.5)]">
-            <div className="w-full h-full bg-blue-50 rounded-xl flex items-center justify-center">
-              <Disc className="w-5 h-5 text-blue-500 group-hover:rotate-180 transition-transform duration-700" />
+          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-pink-400 via-pink-300 to-sky-200 p-[1.5px] shadow-[0_0_22px_rgba(225,29,72,0.5)]">
+            <div className="w-full h-full bg-pink-50 rounded-xl flex items-center justify-center">
+              <Disc className="w-5 h-5 text-pink-500 group-hover:rotate-180 transition-transform duration-700" />
             </div>
           </div>
           <div>
@@ -78,7 +78,7 @@ export const Navbar: React.FC = () => {
               <span className="font-brand-title text-base sm:text-lg font-extrabold tracking-[0.18em] text-slate-900">
                 ZXH
               </span>
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-950/80 text-blue-400 border border-blue-800/40 tracking-widest uppercase">
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-pink-100 text-pink-600 border border-pink-200 tracking-widest uppercase">
                 Studio
               </span>
             </div>
@@ -102,12 +102,12 @@ export const Navbar: React.FC = () => {
                 className={`relative px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 ${
                   isActive
                     ? 'text-white font-semibold bg-white/[0.06] shadow-sm'
-                    : 'text-slate-600 hover:text-white hover:bg-white/[0.03]'
+                    : 'text-slate-600 hover:text-pink-600 hover:bg-pink-50'
                 }`}
               >
                 <span>{link.label}</span>
                 {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-blue-600 to-sky-400 rounded-full shadow-[0_0_8px_#ef4444]" />
+                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-pink-500 to-sky-300 rounded-full shadow-[0_0_8px_#ef4444]" />
                 )}
               </button>
             );
@@ -123,7 +123,7 @@ export const Navbar: React.FC = () => {
               value={headerSearch}
               onChange={(e) => setHeaderSearch(e.target.value)}
               placeholder="Search Hindi, Punjabi, Naats, Pop..."
-              className="w-full bg-white border border-white/[0.08] focus:border-blue-500/60 rounded-full pl-9 pr-8 py-2 text-xs text-white placeholder-slate-400 focus:outline-none transition-all shadow-inner"
+              className="w-full bg-white border border-white/[0.08] focus:border-pink-400/60 rounded-full pl-9 pr-8 py-2 text-xs text-pink-800 placeholder-pink-300 focus:outline-none transition-all shadow-inner"
             />
             {headerSearch && (
               <button

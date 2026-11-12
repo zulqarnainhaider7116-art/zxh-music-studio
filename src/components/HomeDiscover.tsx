@@ -127,7 +127,7 @@ export const HomeDiscover: React.FC = () => {
             <div className="w-full max-w-5xl space-y-6 text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.25)]">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>ZXH MUSIC STUDIO · PREMIER STREAMING</span>
+                <span>ZXH OFFICIAL · YOUR FLUFFY PINK MUSIC UNIVERSE</span>
               </div>
 
               <h1 className="font-serif-title text-5xl sm:text-7xl xl:text-8xl font-extrabold tracking-tight text-white leading-[1.08]">

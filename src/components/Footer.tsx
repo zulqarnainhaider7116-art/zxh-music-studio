@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
   const [legalModal, setLegalModal] = useState<'privacy' | 'terms' | null>(null);
 
   return (
-    <footer className="w-full border-t border-white/[0.08] bg-[#07070a] text-slate-500 pt-16 pb-28 px-4 sm:px-6 lg:px-8 mt-16">
+    <footer className="w-full border-t border-white/[0.08] bg-pink-50 text-pink-700 pt-16 pb-28 px-4 sm:px-6 lg:px-8 mt-16">
       <div className="w-full max-w-[1600px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
         {/* Col 1: Brand & Identity */}
         <div className="lg:col-span-2 space-y-4">
@@ -20,18 +20,18 @@ export const Footer: React.FC = () => {
                 ZXH MUSIC STUDIO
               </span>
               <span className="text-[10px] tracking-[0.2em] text-blue-400 uppercase font-semibold">
-                Music Beyond Boundaries
+                YOUR SOUND. YOUR WORLD. YOUR VIBE.
               </span>
             </div>
           </div>
           <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
-            A world-class music streaming platform crafted for nocturnal creators and authentic music lovers. Discover Hindi, Punjabi, Naats, and international hits with genuine studio playback.
+            Your soft, feel-good music space. Discover Hindi and Punjabi favourites, peaceful Urdu Naats, Nasheeds, fresh playlists and sounds for every mood — all wrapped in the signature fluffy-pink ZXH experience.
           </p>
           <div className="pt-2 flex flex-wrap gap-2">
-            <span className="text-[11px] font-semibold text-blue-400 bg-blue-950/60 px-3 py-1 rounded-full border border-blue-800/40">
+            <span className="text-[11px] font-semibold text-pink-600 bg-pink-100 px-3 py-1 rounded-full border border-blue-800/40">
               Powered by ZXH OFFICIAL
             </span>
-            <span className="text-[11px] font-semibold text-slate-600 bg-white/[0.04] px-3 py-1 rounded-full border border-white/[0.08]">
+            <span className="text-[11px] font-semibold text-pink-700 bg-white/70 px-3 py-1 rounded-full border border-white/[0.08]">
               Dev: ZULQARNAIN X HAIDER
             </span>
           </div>
@@ -39,14 +39,14 @@ export const Footer: React.FC = () => {
 
         {/* Col 2: Explore Music */}
         <div className="space-y-3">
-          <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
+          <h4 className="text-xs font-bold text-pink-700 uppercase tracking-wider">
             Explore Music
           </h4>
           <ul className="text-xs space-y-2.5">
             <li>
               <button
                 onClick={() => setActiveTab('home')}
-                className="hover:text-blue-400 transition-colors"
+                className="hover:text-pink-600 transition-colors"
               >
                 Home & Trending
               </button>

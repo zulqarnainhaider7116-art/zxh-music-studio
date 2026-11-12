@@ -169,3 +169,68 @@ body{background-image:linear-gradient(135deg,#fff4fa,#edf4ff 55%,#e7f8ff)!import
 .zxh-robot-welcome small{display:block;color:#7285a4;font-size:9px;margin-top:3px}
 .zxh-boys-world h1,.zxh-boys-world h2,.zxh-boys-world h3{color:#db2777!important}
 .zxh-boys-world [class*="text-slate-900"],.zxh-boys-world [class*="text-gray-900"]{color:#c02678!important}
+
+
+/* =========================================================
+   ZXH OFFICIAL — FLUFFY PINK DESIGN SYSTEM v2.0
+   Soft cotton-candy surfaces, plush glass, clean hierarchy
+   ========================================================= */
+:root{
+ --zxh-pink-50:#fff5fb;--zxh-pink-100:#ffe8f4;--zxh-pink-200:#ffd0e8;
+ --zxh-pink-300:#ffacd8;--zxh-pink-400:#f47bbd;--zxh-pink-500:#e95aa7;
+ --zxh-pink-600:#d83d91;--zxh-ink:#53344a;--zxh-muted:#987b91;
+ --zxh-lilac:#eee7ff;--zxh-blue:#dff2ff;--zxh-glass:rgba(255,255,255,.68);
+ --zxh-border:rgba(239,154,199,.34);
+}
+html,body,#root{min-height:100%;background:#fff7fc;color:var(--zxh-ink)}
+body{background:
+ radial-gradient(ellipse at 5% 0%,rgba(255,204,231,.56),transparent 36rem),
+ radial-gradient(ellipse at 95% 12%,rgba(220,236,255,.72),transparent 34rem),
+ linear-gradient(145deg,#fff7fc 0%,#fffafd 48%,#f2f8ff 100%)!important;
+ background-attachment:fixed!important}
+.zxh-boys-world{color:var(--zxh-ink)!important;background:
+ radial-gradient(ellipse at 0% 10%,rgba(255,206,232,.46),transparent 34rem),
+ radial-gradient(ellipse at 100% 18%,rgba(215,235,255,.62),transparent 32rem),
+ linear-gradient(150deg,#fff7fc,#fffafd 52%,#f1f8ff)!important}
+.zxh-boys-world header.sticky{background:rgba(255,250,253,.82)!important;border-bottom:1px solid var(--zxh-border)!important;box-shadow:0 12px 36px rgba(206,113,166,.10)!important;backdrop-filter:blur(26px) saturate(1.25)!important}
+.zxh-boys-world footer{background:linear-gradient(145deg,rgba(255,235,247,.96),rgba(239,246,255,.96))!important;color:#92758a!important;border-top:1px solid var(--zxh-border)!important}
+.zxh-boys-world h1,.zxh-boys-world h2,.zxh-boys-world h3,.zxh-boys-world h4{color:#d94396!important;letter-spacing:-.035em}
+.zxh-boys-world p{line-height:1.72}
+.zxh-boys-world button{transition:transform .22s ease,box-shadow .22s ease,background .22s ease}
+.zxh-boys-world button:active{transform:scale(.975)}
+.zxh-boys-world button:focus-visible,.zxh-boys-world input:focus-visible{outline:3px solid rgba(232,91,169,.38);outline-offset:3px}
+.zxh-boys-world input,.zxh-boys-world textarea,.zxh-boys-world select{background:rgba(255,255,255,.78)!important;color:#62445a!important;border-color:rgba(234,159,198,.45)!important}
+.zxh-boys-world input::placeholder,.zxh-boys-world textarea::placeholder{color:#bd9db2!important}
+.zxh-boys-world [class*="bg-black/"],.zxh-boys-world [class*="bg-slate-950"],.zxh-boys-world [class*="bg-gray-950"],.zxh-boys-world [class*="bg-zinc-950"],.zxh-boys-world [class*="bg-neutral-950"],.zxh-boys-world [class*="bg-[#07070a]"],.zxh-boys-world [class*="bg-[#08080a]"]{background:rgba(255,247,252,.76)!important}
+.zxh-boys-world [class*="text-white"],.zxh-boys-world [class*="text-slate-900"],.zxh-boys-world [class*="text-gray-900"]{color:#d94396!important}
+.zxh-boys-world [class*="text-slate-200"],.zxh-boys-world [class*="text-slate-300"],.zxh-boys-world [class*="text-slate-400"],.zxh-boys-world [class*="text-slate-500"],.zxh-boys-world [class*="text-gray-500"]{color:#987b91!important}
+.zxh-boys-world [class*="border-white/"],.zxh-boys-world [class*="border-blue-"]{border-color:var(--zxh-border)!important}
+.zxh-boys-world [class*="bg-blue-950"],.zxh-boys-world [class*="bg-indigo-950"],.zxh-boys-world [class*="bg-cyan-950"]{background:rgba(255,225,241,.78)!important}
+.zxh-boys-world [class*="text-blue-"],.zxh-boys-world [class*="text-cyan-"],.zxh-boys-world [class*="text-indigo-"]{color:#df5ba2!important}
+.zxh-boys-world [class*="rounded-2xl"],.zxh-boys-world [class*="rounded-3xl"]{border-radius:26px}
+.zxh-boys-world [class*="shadow-"]{--tw-shadow-color:rgba(214,116,172,.13)!important}
+.zxh-boys-world main>div{isolation:isolate}
+.zxh-boys-world main section{scroll-margin-top:90px}
+.zxh-boys-world .bg-gradient-to-b,.zxh-boys-world .bg-gradient-to-br,.zxh-boys-world .bg-gradient-to-r{background-image:linear-gradient(135deg,rgba(255,228,243,.88),rgba(237,245,255,.90))!important}
+.zxh-boys-world .from-blue-500,.zxh-boys-world .from-blue-600,.zxh-boys-world .from-indigo-500{--tw-gradient-from:#f18bc2 var(--tw-gradient-from-position)!important}
+.zxh-boys-world .to-cyan-500,.zxh-boys-world .to-sky-400,.zxh-boys-world .to-indigo-500{--tw-gradient-to:#a9d9f7 var(--tw-gradient-to-position)!important}
+.zxh-boys-world .zxh-robot-welcome{border:1px solid #f7c5df;background:rgba(255,247,252,.82);box-shadow:0 16px 38px rgba(221,115,176,.16)}
+.zxh-boys-world .zxh-robot-welcome-icon{background:linear-gradient(145deg,#f18bc2,#a9d9f7)}
+/* Fluffy card language */
+.zxh-boys-world .rounded-xl,.zxh-boys-world .rounded-2xl,.zxh-boys-world .rounded-3xl{box-shadow:0 12px 32px rgba(205,133,176,.10)}
+.zxh-boys-world .zxh-fluffy-surface{background:var(--zxh-glass);border:1px solid rgba(255,255,255,.86);box-shadow:0 18px 48px rgba(210,132,179,.13),inset 0 1px rgba(255,255,255,.95);backdrop-filter:blur(24px)}
+@media(min-width:1024px){
+ .zxh-boys-world main{width:100%}
+ .zxh-boys-world main>div{max-width:1600px;margin-inline:auto}
+ .zxh-boys-world main section{border-radius:0}
+}
+@media(max-width:767px){
+ body{background-attachment:scroll!important}
+ .zxh-boys-world{overflow-x:hidden}
+ .zxh-boys-world main{min-width:0}
+ .zxh-boys-world main>div{padding-left:14px;padding-right:14px}
+ .zxh-boys-world footer{padding-bottom:112px!important}
+ .zxh-boys-world [class*="text-5xl"]{font-size:clamp(2.25rem,11vw,3.25rem);line-height:1.06}
+ .zxh-boys-world [class*="text-7xl"]{font-size:clamp(2.6rem,12vw,3.8rem);line-height:1.02}
+}
+@media(prefers-reduced-motion:reduce){.zxh-boys-world *{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

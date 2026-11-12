@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Disc3, Search, Upload, Sparkles, Volume2, VolumeX, Menu, X, Music2, Heart } from 'lucide-react';
+import { Search, Upload, Sparkles, Volume2, VolumeX, Menu, X, Music2, Heart } from 'lucide-react';
 import { useMusic } from '../context/MusicContext';
 import { NavTab } from '../types/music';
 

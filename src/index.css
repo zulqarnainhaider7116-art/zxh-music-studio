@@ -181,3 +181,6 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(23,107,80,.35);o
 @media(max-width:700px){.plush-welcome{border-radius:23px!important;padding:25px 21px!important;min-height:auto!important}.plush-welcome h1{font-size:clamp(43px,12vw,62px)!important}.plush-featured{border-radius:22px!important}.plush-album-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.plush-album-card{padding:9px;border-radius:17px!important}.plush-artist-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.plush-footer{padding-bottom:115px!important}}
 /* Persistent compact playback bar — clean light finish */
 .zxh-playback-bar{background:rgba(255,254,250,.96)!important;color:#243b31!important;border-top:1px solid #e5e8df!important;box-shadow:0 -8px 26px rgba(32,66,49,.08)!important}
+
+@supports selector(:has(*)){.zxh-boys-world:has(.zxh-playback-bar) .plush-bottom-nav{bottom:88px!important}}
+@media(max-width:700px){.zxh-playback-bar{height:72px!important;padding-left:10px!important;padding-right:10px!important;gap:7px!important}.zxh-playback-bar>div:first-child{min-width:0!important;width:42%!important;gap:8px!important}.zxh-playback-bar>div:nth-child(2){min-width:0!important}.zxh-playback-bar>div:last-child{display:none!important}}

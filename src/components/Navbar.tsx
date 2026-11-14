@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const links: {id:NavTab;label:string}[] = [
-    {id:'home',label:'Home'},{id:'explore',label:'Discover'},{id:'hindi',label:'Hindi'},{id:'punjabi',label:'Punjabi'},{id:'english',label:'English'},{id:'naats',label:'Naats'},{id:'playlists',label:'Library'}
+    {id:'home',label:'Home'},{id:'explore',label:'Discover'},{id:'hindi',label:'Hindi'},{id:'punjabi',label:'Punjabi'},{id:'english',label:'English'},{id:'naats',label:'Naats'},{id:'artists',label:'Artists'},{id:'albums',label:'Albums'},{id:'trending',label:'Trending'},{id:'playlists',label:'Library'}
   ];
   const submit = (e:React.FormEvent) => { e.preventDefault(); setSearchQuery(query.trim()); setActiveTab('search'); setMenuOpen(false); };
   const go = (id:NavTab) => { setActiveTab(id); setMenuOpen(false); };

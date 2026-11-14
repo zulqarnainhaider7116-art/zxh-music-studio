@@ -168,7 +168,7 @@ export const PlaybackBar: React.FC = () => {
       {/* Main Bottom Website Playback Bar */}
       <footer 
         aria-label="Audio Playback Bar"
-        className="fixed bottom-0 left-0 right-0 z-40 h-20 bg-[#0c0c14]/95 backdrop-blur-2xl border-t border-white/[0.08] px-4 sm:px-6 flex items-center justify-between gap-4 select-none shadow-[0_-8px_30px_rgba(0,0,0,0.8)]"
+        className="zxh-playback-bar fixed bottom-0 left-0 right-0 z-40 h-20 bg-[#0c0c14]/95 backdrop-blur-2xl border-t border-white/[0.08] px-4 sm:px-6 flex items-center justify-between gap-4 select-none shadow-[0_-8px_30px_rgba(0,0,0,0.8)]"
       >
         {/* Left Column: Track Info & Artwork */}
         <div className="flex items-center gap-3.5 w-1/4 min-w-[180px] max-w-[320px]">

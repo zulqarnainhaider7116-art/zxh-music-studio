@@ -6,6 +6,7 @@ import { ProfileView } from './components/ProfileView';
 import { VinylPlayer } from './components/VinylPlayer';
 import { PlaybackBar } from './components/PlaybackBar';
 import { HomeDiscover } from './components/HomeDiscover';
+import { CollectionLanding } from './components/CollectionLanding';
 import { LibraryView } from './components/LibraryView';
 import { SearchView } from './components/SearchView';
 import { ExploreView } from './components/ExploreView';
@@ -43,6 +44,9 @@ const AppContent: React.FC = () => {
       {/* Main Content Router */}
       <main className="flex-1 w-full relative z-0">
         {activeTab === 'home' && <HomeDiscover />}
+        {activeTab === 'artists' && <CollectionLanding kind="artists" />}
+        {activeTab === 'albums' && <CollectionLanding kind="albums" />}
+        {activeTab === 'trending' && <CollectionLanding kind="trending" />}
         {activeTab === 'explore' && <ExploreView />}
         {activeTab === 'hindi' && <CategoryView category="hindi" />}
         {activeTab === 'punjabi' && <CategoryView category="punjabi" />}

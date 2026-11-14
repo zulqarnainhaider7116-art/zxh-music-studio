@@ -74,3 +74,17 @@ img{max-width:100%}.font-serif-title,.font-brand-title{font-family:'Nunito',sans
 .zxh-boys-world [role="dialog"][aria-label="Full Screen Vinyl Player"] [class*="text-slate-400"],.zxh-boys-world [role="dialog"][aria-label="Full Screen Vinyl Player"] [class*="text-slate-300"],.zxh-boys-world [role="dialog"][aria-label="Full Screen Vinyl Player"] [class*="text-slate-200"]{color:#927d90!important}
 .zxh-boys-world [role="dialog"][aria-label="Full Screen Vinyl Player"] [class*="border-white/"]{border-color:#ead8e0!important}
 @media(max-width:700px){.zxh-boys-world [role="dialog"][aria-label="Full Screen Vinyl Player"]{padding-bottom:env(safe-area-inset-bottom)}}
+
+
+/* ZXH Music Studio — featured artist shelf */
+.plush-artist-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.plush-artist-card{position:relative;min-width:0;padding:12px 12px 15px;border:1px solid rgba(255,255,255,.9);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(255,242,247,.88));box-shadow:7px 8px 18px rgba(190,151,169,.13),-6px -6px 16px rgba(255,255,255,.92);text-align:left;overflow:hidden}
+.plush-artist-photo{position:relative;display:block;aspect-ratio:1;overflow:hidden;border-radius:18px;background:linear-gradient(135deg,#f8e0eb,#e5f3ef);box-shadow:inset 2px 2px 5px rgba(190,151,169,.12)}
+.plush-artist-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.plush-artist-card:hover .plush-artist-photo img{transform:scale(1.06)}
+.plush-artist-photo i{position:absolute;right:9px;bottom:9px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.9);color:#bd7198;box-shadow:0 4px 12px rgba(110,74,96,.12);font-style:normal}
+.plush-artist-card>strong{display:block;margin:12px 0 3px;color:#6e5a6e;font-size:12px;font-weight:1000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plush-artist-card>small{display:block;color:#a18d9d;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plush-artist-number{position:absolute;top:17px;left:17px;padding:4px 7px;border:1px solid rgba(255,255,255,.65);border-radius:99px;background:rgba(255,250,250,.78);color:#a87895;font-size:8px;font-weight:1000;backdrop-filter:blur(10px)}
+@media(max-width:1000px){.plush-artist-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.plush-artist-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.plush-artist-card{padding:9px;border-radius:19px}.plush-artist-photo{border-radius:14px}.plush-artist-card>strong{font-size:11px;margin-top:9px}.plush-artist-card>small{font-size:8px}}

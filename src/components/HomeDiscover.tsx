@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ArrowRight, AudioLines, Headphones, Heart, MoonStar, Music2, Play, Radio, Sparkles, Sun, Waves } from 'lucide-react';
 import { useMusic } from '../context/MusicContext';
-import { CURATED_TRACKS, HINDI_TRACKS, PUNJABI_TRACKS, NAATS_TRACKS, ENGLISH_TRACKS, CURATED_PLAYLISTS } from '../data/curatedMusic';
+import { CURATED_TRACKS, HINDI_TRACKS, PUNJABI_TRACKS, NAATS_TRACKS, ENGLISH_TRACKS, CURATED_PLAYLISTS, FEATURED_ARTISTS } from '../data/curatedMusic';
 import { searchCategoryTracks } from '../services/musicApi';
 import { Track } from '../types/music';
 
@@ -119,6 +119,19 @@ export const HomeDiscover: React.FC = () => {
       <section className="plush-section">
         <div className="plush-section-heading"><div><span className="plush-overline">Little songs making big waves</span><h2>On repeat lately</h2></div><button className="plush-text-link" onClick={() => setActiveTab('explore')}>See all <ArrowRight size={15}/></button></div>
         <div className="plush-track-grid">{trending.slice(0,8).map((track) => <TrackTile key={track.id} track={track} queue={trending}/>)}</div>
+      </section>
+
+      <section className="plush-section plush-artists-section">
+        <div className="plush-section-heading"><div><span className="plush-overline">Voices behind the feelings</span><h2>Featured artists</h2></div><button className="plush-text-link" onClick={() => setActiveTab('explore')}>Explore artists <ArrowRight size={15}/></button></div>
+        <div className="plush-artist-grid">
+          {FEATURED_ARTISTS.map((artist, index) => (
+            <button className="plush-artist-card" key={artist.id} onClick={() => artist.topTracks[0] && playTrack(artist.topTracks[0], artist.topTracks)}>
+              <span className="plush-artist-photo"><img src={artist.coverUrl} alt={artist.name} loading="lazy"/><i><Play size={16} fill="currentColor"/></i></span>
+              <strong>{artist.name}</strong><small>{artist.genre || 'Featured artist'}</small>
+              <span className="plush-artist-number">{String(index + 1).padStart(2, '0')}</span>
+            </button>
+          ))}
+        </div>
       </section>
 
       <section className="plush-playlist-banner">

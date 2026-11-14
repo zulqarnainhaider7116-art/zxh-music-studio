@@ -1,164 +1,47 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, AudioLines, Headphones, Heart, MoonStar, Music2, Play, Radio, Sparkles, Sun, Waves } from 'lucide-react';
+import React from 'react';
+import { ArrowDown, ArrowRight, Headphones, Play, Search, Sparkles } from 'lucide-react';
 import { useMusic } from '../context/MusicContext';
-import { CURATED_TRACKS, HINDI_TRACKS, PUNJABI_TRACKS, NAATS_TRACKS, ENGLISH_TRACKS, CURATED_PLAYLISTS, FEATURED_ARTISTS } from '../data/curatedMusic';
-import { searchCategoryTracks } from '../services/musicApi';
-import { Track } from '../types/music';
-
-const categoryTiles = [
-  { id: 'hindi' as const, title: 'Hindi melodies', note: 'Bollywood & timeless songs', icon: '♫', tone: 'emerald' },
-  { id: 'punjabi' as const, title: 'Punjabi music', note: 'Modern hits & folk beats', icon: '♪', tone: 'gold' },
-  { id: 'naats' as const, title: 'Naats & Nasheeds', note: 'Devotional collections', icon: '☾', tone: 'stone' },
-  { id: 'english' as const, title: 'English music', note: 'Global sounds & new finds', icon: '◉', tone: 'sage' },
-];
-
-const moods = [
-  { label: 'Soft mornings', query: 'soft morning acoustic', icon: Sun },
-  { label: 'Dreamy hours', query: 'dreamy chill music', icon: MoonStar },
-  { label: 'Feel the beat', query: 'upbeat pop hits', icon: AudioLines },
-  { label: 'Just breathe', query: 'peaceful nasheed', icon: Waves },
-];
+import { CURATED_TRACKS, NAATS_TRACKS } from '../data/curatedMusic';
 
 export const HomeDiscover: React.FC = () => {
-  const { playTrack, currentTrack, isPlaying, isLiked, toggleLike, setActiveTab, setSearchQuery, setSelectedPlaylist } = useMusic();
-  const [naats, setNaats] = useState<Track[]>(NAATS_TRACKS);
-  const [trending, setTrending] = useState<Track[]>(CURATED_TRACKS);
-  const [hindi, setHindi] = useState<Track[]>(HINDI_TRACKS);
-  const [punjabi, setPunjabi] = useState<Track[]>(PUNJABI_TRACKS);
-  const [english, setEnglish] = useState<Track[]>(ENGLISH_TRACKS);
-
-  useEffect(() => {
-    let live = true;
-    Promise.allSettled([
-      searchCategoryTracks('naats'),
-      searchCategoryTracks('trending'),
-      searchCategoryTracks('hindi'),
-      searchCategoryTracks('punjabi'),
-      searchCategoryTracks('english'),
-    ]).then(([n, t, h, p, e]) => {
-      if (!live) return;
-      if (n.status === 'fulfilled' && n.value.length) setNaats(n.value);
-      if (t.status === 'fulfilled' && t.value.length) setTrending(t.value);
-      if (h.status === 'fulfilled' && h.value.length) setHindi(h.value);
-      if (p.status === 'fulfilled' && p.value.length) setPunjabi(p.value);
-      if (e.status === 'fulfilled' && e.value.length) setEnglish(e.value);
-    }).catch(() => {});
-    return () => { live = false; };
-  }, []);
-
-  const allTracks = useMemo(() => [...hindi, ...punjabi, ...naats, ...english], [hindi, punjabi, naats, english]);
-  const featured = naats[0] || CURATED_TRACKS[3];
-  const featuredPlaylist = CURATED_PLAYLISTS[3];
-
-  const openMood = (query: string) => {
-    setSearchQuery(query);
-    setActiveTab('search');
-  };
-
-  const TrackTile = ({ track, queue }: { track: Track; queue: Track[] }) => {
-    const active = currentTrack?.id === track.id;
-    return (
-      <article className={`plush-track ${active ? 'is-current' : ''}`}>
-        <button className="plush-track-art" onClick={() => playTrack(track, queue)} aria-label={`Play ${track.title}`}>
-          <img src={track.coverUrl} alt="" loading="lazy" />
-          <span className="plush-play"><Play size={17} fill="currentColor" /></span>
-        </button>
-        <div className="plush-track-meta">
-          <button className="plush-track-title" onClick={() => playTrack(track, queue)}>{track.title}</button>
-          <span>{track.artist}</span>
+  const { setActiveTab, playTrack, currentTrack } = useMusic();
+  const heroTrack = NAATS_TRACKS[0] || CURATED_TRACKS[0];
+  return <div className="zxh-home-page">
+    <section className="zxh-cinema-hero">
+      <img className="zxh-hero-backdrop" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2400&q=90" alt="" />
+      <div className="zxh-hero-shade" />
+      <div className="zxh-hero-content">
+        <span className="zxh-eyebrow"><Sparkles size={14}/> ZXH OFFICIAL · MUSIC STUDIO</span>
+        <h1>Feel every<br/><em>frequency.</em></h1>
+        <p>A world of sound, stories and unforgettable moments. Discover your next favourite track.</p>
+        <div className="zxh-hero-actions">
+          <button className="zxh-cta-primary" onClick={() => setActiveTab('explore')}><Play size={17} fill="currentColor"/> Explore the sound</button>
+          <button className="zxh-cta-ghost" onClick={() => setActiveTab('search')}><Search size={17}/> Find your music</button>
         </div>
-        <button className={`plush-like ${isLiked(track.id) ? 'liked' : ''}`} onClick={() => toggleLike(track)} aria-label={isLiked(track.id) ? 'Unlike track' : 'Like track'}>
-          <Heart size={17} fill={isLiked(track.id) ? 'currentColor' : 'none'} />
-        </button>
-      </article>
-    );
-  };
-
-  return (
-    <div className="plush-home">
-      <section className="plush-welcome">
-        <div className="plush-welcome-copy">
-          <span className="plush-kicker"><Sparkles size={14}/> ZXH OFFICIAL · MUSIC STUDIO</span>
-          <h1>Music for<br/><em>every moment.</em></h1>
-          <p>Discover a considered collection of Hindi, Punjabi and English music, alongside a dedicated space for Naats and Nasheeds.</p>
-          <div className="plush-actions">
-            <button className="plush-primary" onClick={() => setActiveTab('explore')}><Play size={17} fill="currentColor"/> Explore music</button>
-            <button className="plush-soft-button" onClick={() => setActiveTab('playlists')}>My music <ArrowRight size={16}/></button>
-          </div>
-          <div className="plush-note"><span className="plush-note-dot"/> Curated listening · Made by ZXH OFFICIAL</div>
-        </div>
-        <div className="plush-hero-art" aria-label="Featured music artwork">
-          <div className="plush-orbit plush-orbit-one"/><div className="plush-orbit plush-orbit-two"/>
-          <div className="plush-hero-disc"><img src={featured.coverUrl} alt={featured.title}/><span><Headphones size={24}/></span></div>
-          <div className="plush-sticker sticker-top">made of music ✿</div>
-          <div className="plush-sticker sticker-bottom">soft sounds, big feelings</div>
-          <div className="plush-floating-dot dot-one"/><div className="plush-floating-dot dot-two"/>
-        </div>
-      </section>
-
-      <section className="plush-section">
-        <div className="plush-section-heading"><div><span className="plush-overline">DISCOVER THE COLLECTION</span><h2>Browse by category</h2></div><span className="plush-heading-mark">✳</span></div>
-        <div className="plush-categories">
-          {categoryTiles.map((item) => <button key={item.id} className={`plush-category tone-${item.tone}`} onClick={() => setActiveTab(item.id)}>
-            <span className="plush-category-icon">{item.icon}</span><strong>{item.title}</strong><small>{item.note}</small><span className="plush-category-arrow"><ArrowRight size={15}/></span>
-          </button>)}
-        </div>
-      </section>
-
-      <section className="plush-featured">
-        <div className="plush-featured-cover"><img src={featured.coverUrl} alt={featured.title}/><span className="plush-cover-label">A MOMENT OF PEACE</span></div>
-        <div className="plush-featured-copy"><span className="plush-overline">The devotional corner</span><h2>Let your heart<br/><em>find its quiet.</em></h2><p>Beautiful Naats and Nasheeds for slow moments, reflection and a little peace in your day.</p><button className="plush-primary" onClick={() => setActiveTab('naats')}><MoonStar size={17}/> Explore Naats</button></div>
-        <div className="plush-featured-list">{naats.slice(0,3).map((track) => <TrackTile key={track.id} track={track} queue={naats}/>)}</div>
-      </section>
-
-      <section className="plush-section">
-        <div className="plush-section-heading"><div><span className="plush-overline">LISTEN YOUR WAY</span><h2>Choose a listening mood</h2></div><span className="plush-heading-mark">♡</span></div>
-        <div className="plush-moods">{moods.map(({label,query,icon:Icon}) => <button key={label} onClick={() => openMood(query)}><span><Icon size={19}/></span>{label}<ArrowRight size={15}/></button>)}</div>
-      </section>
-
-      <section className="plush-section">
-        <div className="plush-section-heading"><div><span className="plush-overline">POPULAR RIGHT NOW</span><h2>Trending tracks</h2></div><button className="plush-text-link" onClick={() => setActiveTab('explore')}>See all <ArrowRight size={15}/></button></div>
-        <div className="plush-track-grid">{trending.slice(0,8).map((track) => <TrackTile key={track.id} track={track} queue={trending}/>)}</div>
-      </section>
-
-      <section className="plush-section plush-artists-section">
-        <div className="plush-section-heading"><div><span className="plush-overline">THE VOICES</span><h2>Featured artists</h2></div><button className="plush-text-link" onClick={() => setActiveTab('explore')}>Explore artists <ArrowRight size={15}/></button></div>
-        <div className="plush-artist-grid">
-          {FEATURED_ARTISTS.map((artist, index) => (
-            <button className="plush-artist-card" key={artist.id} onClick={() => artist.topTracks[0] && playTrack(artist.topTracks[0], artist.topTracks)}>
-              <span className="plush-artist-photo"><img src={artist.coverUrl} alt={artist.name} loading="lazy"/><i><Play size={16} fill="currentColor"/></i></span>
-              <strong>{artist.name}</strong><small>{artist.genre || 'Featured artist'}</small>
-              <span className="plush-artist-number">{String(index + 1).padStart(2, '0')}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="plush-section">
-        <div className="plush-section-heading"><div><span className="plush-overline">ALBUMS & RELEASES</span><h2>Explore albums</h2></div><button className="plush-text-link" onClick={() => setActiveTab('playlists')}>View library <ArrowRight size={15}/></button></div>
-        <div className="plush-album-grid">
-          {CURATED_TRACKS.filter((track, index, list) => track.album && list.findIndex(item => item.album === track.album) === index).slice(0,6).map((track) => (
-            <button className="plush-album-card" key={track.id} onClick={() => playTrack(track, CURATED_TRACKS)}>
-              <span className="plush-album-art"><img src={track.coverUrl} alt={track.album || track.title}/><i><Play size={17} fill="currentColor"/></i></span>
-              <strong>{track.album || track.title}</strong><small>{track.artist} · {track.releaseYear || 'Selected release'}</small>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="plush-playlist-banner">
-        <div className="plush-playlist-art"><img src={featuredPlaylist.coverUrl} alt={featuredPlaylist.title}/></div>
-        <div><span className="plush-overline">CURATED FOR YOUR LISTENING</span><h2>{featuredPlaylist.title}</h2><p>{featuredPlaylist.description}</p><button className="plush-soft-button" onClick={() => setSelectedPlaylist(featuredPlaylist)}>Open this playlist <ArrowRight size={16}/></button></div>
-        <span className="plush-banner-sparkle">✦</span>
-      </section>
-
-      <section className="plush-mini-player">
-        <div className="plush-mini-icon"><Radio size={20}/></div>
-        <div><span>NOW PLAYING</span><strong>{currentTrack?.title || 'Choose your next favourite'}</strong><small>{currentTrack?.artist || 'Tap any song to start listening'}</small></div>
-        <button onClick={() => currentTrack ? playTrack(currentTrack, allTracks) : setActiveTab('explore')} aria-label="Play current track"><Play size={18} fill="currentColor"/></button>
-        {isPlaying && <i className="plush-playing-indicator"/>}
-      </section>
-      <div className="plush-credit-line">Crafted for listeners · <strong>ZXH OFFICIAL</strong> · Created by <strong>ZULQARNAIN X HAIDER</strong></div>
-    </div>
-  );
+        <div className="zxh-hero-caption"><span>01 / 04</span><i/> CURATED SOUND · UNLIMITED FEELING</div>
+      </div>
+      <button className="zxh-hero-feature" onClick={() => playTrack(heroTrack, NAATS_TRACKS)} aria-label="Play featured Naat">
+        <img src={heroTrack.coverUrl} alt={heroTrack.title}/>
+        <span><small>FEATURED LISTENING</small><strong>{heroTrack.title}</strong><i><Play size={15} fill="currentColor"/></i></span>
+      </button>
+      <button className="zxh-scroll-cue" onClick={() => setActiveTab('explore')}><ArrowDown size={17}/> DISCOVER MORE</button>
+    </section>
+    <section className="zxh-entry-strip">
+      <button onClick={() => setActiveTab('hindi')}><span>01</span><strong>Hindi</strong><small>Melodies & memories</small><ArrowRight/></button>
+      <button onClick={() => setActiveTab('punjabi')}><span>02</span><strong>Punjabi</strong><small>Rhythm & energy</small><ArrowRight/></button>
+      <button onClick={() => setActiveTab('english')}><span>03</span><strong>English</strong><small>Global soundscape</small><ArrowRight/></button>
+      <button onClick={() => setActiveTab('naats')}><span>04</span><strong>Naats</strong><small>Peace for the soul</small><ArrowRight/></button>
+    </section>
+    <section className="zxh-home-editorial">
+      <div><span className="zxh-eyebrow zxh-dark-eyebrow">THE SOUND OF YOUR WORLD</span><h2>One place.<br/><em>Every feeling.</em></h2></div>
+      <p>Move through dedicated music spaces, discover artists, explore releases and build a library that feels like yours.</p>
+      <div className="zxh-editorial-links">
+        <button onClick={() => setActiveTab('trending')}>Trending now <ArrowRight/></button>
+        <button onClick={() => setActiveTab('artists')}>Meet the artists <ArrowRight/></button>
+        <button onClick={() => setActiveTab('albums')}>Albums & releases <ArrowRight/></button>
+        <button onClick={() => setActiveTab('playlists')}>Your collection <ArrowRight/></button>
+      </div>
+    </section>
+    <div className="zxh-home-credit">A listening experience by <b>ZXH OFFICIAL</b> · Created by <b>ZULQARNAIN X HAIDER</b></div>
+  </div>;
 };

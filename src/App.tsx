@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { BottomNav } from './components/BottomNav';
 import { ProfileView } from './components/ProfileView';
 import { VinylPlayer } from './components/VinylPlayer';
+import { PlaybackBar } from './components/PlaybackBar';
 import { HomeDiscover } from './components/HomeDiscover';
 import { LibraryView } from './components/LibraryView';
 import { SearchView } from './components/SearchView';
@@ -45,6 +46,7 @@ const AppContent: React.FC = () => {
         {activeTab === 'explore' && <ExploreView />}
         {activeTab === 'hindi' && <CategoryView category="hindi" />}
         {activeTab === 'punjabi' && <CategoryView category="punjabi" />}
+        {activeTab === 'english' && <CategoryView category="english" />}
         {activeTab === 'naats' && <CategoryView category="naats" />}
         {activeTab === 'playlists' && <LibraryView />}
         {activeTab === 'search' && <SearchView />}
@@ -59,6 +61,7 @@ const AppContent: React.FC = () => {
 
       {/* Expanded Turntable Vinyl Player Overlay */}
       <VinylPlayer />
+      <PlaybackBar />
 
       {/* Playlist Detail Modal */}
       <PlaylistDetailModal />

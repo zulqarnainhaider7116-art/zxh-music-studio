@@ -184,3 +184,21 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(23,107,80,.35);o
 
 @supports selector(:has(*)){.zxh-boys-world:has(.zxh-playback-bar) .plush-bottom-nav{bottom:88px!important}}
 @media(max-width:700px){.zxh-playback-bar{height:72px!important;padding-left:10px!important;padding-right:10px!important;gap:7px!important}.zxh-playback-bar>div:first-child{min-width:0!important;width:42%!important;gap:8px!important}.zxh-playback-bar>div:nth-child(2){min-width:0!important}.zxh-playback-bar>div:last-child{display:none!important}}
+
+ 
+/* Hard reset legacy pastel/pink tokens and component skins */
+:root{--pink:transparent;--pink-deep:#244c3b;--cream:#f5f3ec;--fur:#e9e8df;--blue:#c7ad78;--mint:#dfe5d9;--lilac:#e9e8df;--yellow:#c7ad78;--shadow:none}
+body{background:#f5f3ec!important}
+.plush-header-search button,.plush-icon-button,.plush-menu-button{background:#244c3b!important;color:#f5f3ec!important}
+.plush-mobile-menu,.plush-mobile-menu form,.plush-mobile-menu>div button,.plush-about-link{background:#eeede5!important;color:#294637!important;box-shadow:none!important;border-radius:3px!important}
+.plush-mobile-menu>div button.active{background:#d9dfd4!important;color:#244c3b!important}
+.plush-header-actions .plush-icon-button i{background:#c7ad78!important;color:#203b2e!important}
+.plush-bottom-nav{background:rgba(246,245,239,.97)!important}
+.zxh-boys-world [class*="shadow-"]{--tw-shadow:0 0 #0000}
+.zxh-boys-world [class*="rounded-"]{border-radius:0}
+.zxh-boys-world .zxh-playback-bar [class*="rounded-"]{border-radius:3px}
+.zxh-boys-world .zxh-playback-bar img{border-radius:3px}
+.zxh-boys-world .zxh-playback-bar button{color:#294637!important}
+.zxh-boys-world .zxh-playback-bar button[class*="bg-gradient-to-tr"]{color:#fff!important}
+.zxh-boys-world .zxh-playback-bar [class*="text-red-"]{color:#9b8353!important}
+@media(max-width:600px){.plush-header{padding:8px 12px!important}.plush-brand-mark{width:39px;height:39px}.plush-brand b{font-size:12px}.plush-brand small{font-size:7px}.plush-import-button{padding:10px!important}.plush-import-button span{display:none}}

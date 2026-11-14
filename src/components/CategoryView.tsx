@@ -25,7 +25,7 @@ import { Track } from '../types/music';
 import { formatTime } from '../utils/audioUtils';
 
 interface CategoryViewProps {
-  category: 'hindi' | 'punjabi' | 'naats';
+  category: 'hindi' | 'punjabi' | 'english' | 'naats';
 }
 
 export const CategoryView: React.FC<CategoryViewProps> = ({ category }) => {
@@ -37,6 +37,8 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category }) => {
         return HINDI_TRACKS;
       case 'punjabi':
         return PUNJABI_TRACKS;
+      case 'english':
+        return ENGLISH_TRACKS;
       case 'naats':
         return NAATS_TRACKS;
     }
@@ -54,6 +56,14 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category }) => {
       filters: ['All', 'Romantic', 'Arijit Singh', 'Sad Songs', 'Classic Bollywood', 'New Releases'],
       bgGradient: 'from-sky-950/60 via-[#120810] to-[#08080a]',
       accentColor: 'text-pink-500',
+    },
+    english: {
+      tag: 'International Music',
+      title: 'English Music',
+      desc: 'Explore global pop, indie, cinematic soundtracks and fresh international discoveries.',
+      filters: ['All', 'Pop', 'Indie', 'Soundtracks', 'New Releases'],
+      bgGradient: 'from-emerald-950/60 via-[#07120e] to-[#08080a]',
+      accentColor: 'text-emerald-700',
     },
     punjabi: {
       tag: 'Desi Hip-Hop & Folk Beats',
@@ -81,7 +91,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({ category }) => {
     searchCategoryTracks(category, term)
       .then((res) => {
         if (isMounted) {
-          setTracks(res.length ? res : (category === 'hindi' ? HINDI_TRACKS : category === 'punjabi' ? PUNJABI_TRACKS : NAATS_TRACKS));
+          setTracks(res.length ? res : (category === 'hindi' ? HINDI_TRACKS : category === 'punjabi' ? PUNJABI_TRACKS : category === 'english' ? ENGLISH_TRACKS : NAATS_TRACKS));
           setIsLoading(false);
         }
       })
